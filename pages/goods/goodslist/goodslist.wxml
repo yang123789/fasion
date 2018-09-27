@@ -1,0 +1,211 @@
+<view>
+  <view class="motify {{prompt==''?'hide':''}}">
+    <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+    <view class="motify-inner">{{prompt}}</view>
+  </view>
+  <view class="head">
+    <view class="head_back a" id="head_back">
+      <view class="icon-back i">  </view>
+    </view>
+    <view class="head-title">
+      <view class='span'>
+        <view class="controlSearch">
+          <view class="control-search-input">
+            <input type="text" class="search-input custom-search-input" bindinput='searchInput' placeholder="搜索商品" value='{{search_text}}'/>
+            <image src='/images/goods/search_icon_2.png' class="search-button custom-search-button" catchtap='search'/>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view id="index_content">
+    <!--列表页内容start-->
+    <section class="category-content-section">
+      <section class="filtrate-term">
+        <view class='ul'>
+          <view class="li {{screen==1?'':'big-width'}} drop_down data-category" catchtap='category'>
+            <view class="a">分类<view class="i fa fa-angle-down fa-lg"></view></view>
+          </view>
+          <view class="li {{screen==1?'':'big-width'}} drop_down data-ordrt-sort" catchtap='sort'>
+            <view class='a'>排序<view class="i fa fa-angle-down fa-lg"></view></view>
+          </view>
+          <block wx:if='{{screen == 1}}'>
+            <view class="li {{screen==1?'show':'hide'}} drop_down data-ordrt-sort" catchtap='screen'>
+              <view class='a'>筛选<view class="i fa fa-angle-down fa-lg"></view></view>
+            </view>
+          </block>
+          <view class="li last-child data-display-mode" catchtap='showType'>
+            <view class='a'><image class="i fa fa-lg" src='/images/goods/{{showType==1?"fa-th-large":"fa-list-ul"}}.png' mode='widthFix'/></view>
+          </view>
+        </view>
+      </section>
+      <!-- 商品列表 -->
+      <view class="goods-list-grid openList">
+        <view class="blank-div"></view>
+        <view id="goods_list">
+          <view class="tablelist-append clearfix">
+            <view class="p {{goods_list[0]==undefined?'':'hide'}}">
+              <image src="/images/goods/wap_nodata.png" mode='widthFix'/>
+              <br/>Sorry！没有找到您想要的商品……
+            </view>
+            <block wx:for='{{goods_list}}' wx:key='' wx:for-item='goods' wx:for-index='index'>
+              <block wx:if='{{showType==1}}'>
+                <!-- 块展示 -->
+                <view class="product single_item info">
+                  <view class='li'>
+                    <view class="item">
+                      <view class="item-tag-box"></view>
+                      <view class="item-pic">
+                        <view class='a' catchtap='listClick' data-url="/goods/goodsdetail/goodsdetail?goods_id={{goods.goods_id}}&&goods_name={{goods.goods_name}}">
+                          <image class='lazy' lazy-load='true' data-index='{{index}}' binderror='errorImg' src="{{goods.pic_cover_small}}" mode='aspectFit'/>
+                        </view>
+                      </view>
+                      <view class='dl'>
+                        <view class='dt'>
+                          <view class='a' catchtap='listClick' data-url='/goods/goodsdetail/goodsdetail?goods_id={{goods.goods_id}}&&goods_name={{goods.goods_name}}'>
+                            <block wx:for='{{goods.gorup_list}}' wx:key='' wx:for-item='vo'>
+                              <i class="goods_tab">{{vo.group_name}}</i>
+                            </block>
+                            {{goods.goods_name}}
+                          </view>
+                        </view>
+                        <view class='dd'>
+                          <view class='i goods-price'>￥{{goods.promotion_price}}</view>
+                          <!-- <block wx:if='{{goods.shipping_fee==0}}'>
+                            <view class='i shipping_fee'>包邮</view>
+                          </block> -->
+                        </view>
+                      </view>
+                    </view>
+                  </view>
+                </view>
+              </block>
+              <block wx:else>
+                <!-- 列表展示 -->
+                <view class="goods_info">
+                  <view class="goods_img">
+                    <view class='a' catchtap='listClick' data-url="/goods/goodsdetail/goodsdetail?goods_id={{goods.goods_id}}&&goods_name={{goods.goods_name}}">
+                      <image class='lazy' lazy-load='true' data-index='{{index}}' binderror='errorImg' src="{{goods.pic_cover_small}}" mode='widthFix'/>
+                    </view>
+                  </view>
+                  <view class='data_info'>
+                    <view class='goods_name' catchtap='listClick' data-url='/goods/goodsdetail/goodsdetail?goods_id={{goods.goods_id}}&&goods_name={{goods.goods_name}}'>
+                      <block wx:for='{{goods.gorup_list}}' wx:key='' wx:for-item='vo'>
+                        <view class="i goods_tab">{{vo.group_name}}</view>
+                      </block>
+                      {{goods.goods_name}}
+                    </view>
+                    <view class='price_share'>
+                      <view class='span price'>
+                        ￥{{goods.promotion_price}}
+                        <!-- <block wx:if='{{goods.shipping_fee==0}}'>
+                          <view class='i shipping_fee'>包邮</view>
+                        </block> -->
+                      </view>
+                    </view>
+                    <!-- <view class="data-goods-sales-info">
+                      <view class="span data-sales">
+                        销售量：<view class='i'>{{goods.sales}}</view>
+                      </view>
+                    </view> -->
+                  </view>
+                </view>
+              </block>
+            </block>
+          </view>
+        </view>
+      </view>
+      <!-- 选择分类start -->
+      <view class="data-category-select-layer {{categoryStatus==1?'show':''}}">
+        <view class="ul primary_classification">
+          <view class="li {{category_id==0?'active':''}}"  catchtap='selectCategory' data-id="0" data-index='-1'>全部分类</view>
+          <block wx:for='{{goodsCategoryList}}' wx:key='' wx:for-item='category' wx:for-index='index'>
+            <view class='li {{category_index==index?"active":""}}' catchtap='selectCategory' data-id="{{category.category_id}}" data-index='{{index}}'>{{category.category_name}}</view>
+          </block>
+        </view>
+        <view class="ul two_stage_classification">
+          <block wx:for='{{goodsCategoryList[category_index].child_list}}' wx:key='' wx:for-item='category'>
+            <view class='li {{category.category_id==category_id?"active":""}}' catchtap='selectCategory' data-id="{{category.category_id}}" data-index='{{category_index}}'>
+              <view class='a' data-id="{{category.category_id}}">{{category.category_name}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+      <!-- 选择分类end -->
+      <!-- 排序start -->
+      <view class="filtrate-more sale-num {{sortStatus==1?'show':''}}">
+        <view class="span filtrate-sort">
+          <view class="a {{obyzd==''?'current':''}}" catchtap='selectSort' data-obyzd="" data-st="">默认 </view>
+        </view>
+        <view class="span filtrate-sort">
+          <view class="a {{obyzd=='ng.sales'?'current':''}}" catchtap='selectSort' data-obyzd="ng.sales" data-st="{{salesSort}}">销售量 </view>
+        </view>
+        <view class="span filtrate-sort">
+          <view class="a {{obyzd=='ng.is_new'?'current':''}}" catchtap='selectSort' data-obyzd="ng.is_new" data-st="{{newSort}}">新品 </view>
+        </view>
+        <view class="span filtrate-sort">
+          <view class="a {{obyzd=='ng.promotion_price'?'current':''}}" catchtap='selectSort' data-obyzd="ng.promotion_price" data-st="{{priceSort}}">价格 </view>
+        </view>
+      </view>
+      <!-- 排序end -->
+      <!-- 筛选start -->
+      <view class="screening_condition {{screenStatus==1?'show':''}}">
+        <view class="head-title">
+          <view class="mui-title">筛选</view>
+        </view>
+        <view class="ul conditions">
+          <!-- 品牌筛选 -->
+          <block wx:if='{{category_brands.length > 0}}'>
+            <view class='li'>
+              <view class="condition_name click-down" is_open="0">
+                <view class='span'>品牌</view>
+                <view class="i fa fa-angle-down fa-lg"></view>
+              </view>
+              <view class="condition_value">
+                <view class="a all selected">全部<image src="/images/goods/pro_span4.png"/></view>
+                <block wx:for='{{category_brands}}' wx:key='' wx:for-item='brands'>
+                  <view class="a" catchtap='selectBrand' data-id='{{brands.brand_id}}'>{{brands.brand_name}}<image src="/images/goods/pro_span4.png"/></view>
+                </block>
+              </view>
+            </view>
+          </block>
+          <!-- 属性筛选 -->
+          <!-- 规格筛选 -->
+          <!-- 价格筛选 -->
+          <block wx:if='{{category_price_grades.length > 0}}'>
+            <view class='li'>
+              <view class="condition_name click-down" is_open="0">
+                <view class='span'>价格</view>
+                <view class="i fa fa-angle-down fa-lg"></view>
+              </view>
+              <view class="condition_value">
+                <!-- 选中价格 -->
+                <block wx:if='{{new_min_price == "" && new_max_price == ""}}'>
+                  <view class="a all {{min_price=='' && max_price=='' ? 'selected' : ''}}" catchtap='selectPrice' data-min='0' data-max='0'>全部<image src="/images/goods/pro_span4.png"/></view>
+                  <block wx:for='{{category_price_grades}}' wx:key='' wx:for-item='price'>
+                    <block wx:if='{{price[1] > 0}}'>
+                      <view class="a {{min_price==price[0] && max_price==price[1] ? 'selected' : ''}}" catchtap='selectPrice' data-min='{{price[0]}}' data-max='{{price[1]}}'>￥{{price[0]}}<view class='i'>-</view>￥{{price[1]}}<image src="/images/goods/pro_span4.png"/></view>
+                    </block>
+                  </block>
+                </block>
+                <!-- 当前选中 -->
+                <block wx:else>
+                  <view class="a all {{new_min_price==0 && new_max_price==0 ? 'selected' : ''}}" catchtap='selectPrice' data-min='0' data-max='0'>全部<image src="/images/goods/pro_span4.png"/></view>
+                  <block wx:for='{{category_price_grades}}' wx:key='' wx:for-item='price'>
+                    <view class="a {{new_min_price==price[0] && new_max_price==price[1] ? 'selected' : ''}}" catchtap='selectPrice' data-min='{{price[0]}}' data-max='{{price[1]}}'>￥{{price[0]}}<view class='i'>-</view>￥{{price[1]}}<image src="/images/goods/pro_span4.png"/></view>
+                  </block>
+                </block>
+              </view>
+            </view>
+          </block>
+        </view>
+        <view class="bottom-area">
+          <view class="a reset" catchtap='restPrice'>重置</view>
+          <view class="a confirm_screen" catchtap='confirmPrice'>确认</view>
+        </view>
+      </view>
+      <!-- 筛选end -->
+    </section>
+  </view>
+  <view class="mask-div {{maskStatus==1?'show':''}} {{screenStatus==1?'top':''}}" catchtap='closePoupo'></view>
+</view> 

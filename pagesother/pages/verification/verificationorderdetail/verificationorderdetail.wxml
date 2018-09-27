@@ -1,0 +1,26 @@
+<view class="motify {{prompt==''?'hide':''}}">
+  <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+  <view class="motify-inner">{{prompt}}</view>
+</view>
+<view class="container">
+	<view class="verification_goods_info">
+    <image src='/images/order/verification_goods_detail.jpg' class='back_img'/>
+		<view class="goods_img">
+			<image src="{{virtual_detail.picture.pic_cover_micro}}" binderror='errorImg' mode='widthFix'/>
+		</view>
+		<view class="p name">{{virtual_detail.goods_name}}</view>
+		<view class="p desc">{{virtual_detail.virtual_goods_name}}</view>
+	</view>
+  <view class="a immediateUuse" catchtap='immediateUse'>立即使用</view>
+</view>
+<!-- 导航列表 -->
+<view class="list-container">
+	<view class='ul'>
+		<view class='a last-child' catchtap='memberCenter'>
+      <view class='li'>
+        <view class="span title">会员中心</view>
+        <view class="span tip">点击进入会员中心</view>
+      </view>
+    </view>
+	</view>
+</view>  

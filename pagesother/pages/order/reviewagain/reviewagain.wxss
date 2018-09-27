@@ -1,0 +1,243 @@
+.order-detail-remark {
+  padding: 0 15px;
+  border-bottom: 1px solid #e3e3e3;
+  background: #fff;
+  color: #333;
+  border-top: 1px solid #CCC;
+}
+
+.order-detail-remark .remark-out {
+  padding: 10px 0;
+}
+
+.clear:before, .clear:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.evaluate {
+  width: 100%;
+}
+
+.order-detail-r {
+  margin-bottom: 20px;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.order-detail .order-detail-r {
+  overflow: hidden;
+}
+
+.remark-r-ul {
+  content: '';
+  clear: both;
+  display: inline-block;
+  width: 100%;
+}
+
+.order-detail .order-detail-r .ul {
+  margin: 0;
+  list-style: none;
+  font-size: 12px;
+}
+
+.order-detail .order-detail-r .ul .li {
+  padding: 0 0 4px 0;
+}
+
+.order-detail .order-detail-r .name, .order-detail .order-detail-r .name .label {
+  line-height: 12px;
+  font-size: 12px;
+}
+
+.remark-r-ul .name{
+  width: 30%;
+  float: left;
+  height: 85px;
+  margin-right: 5px;
+  text-align: center;
+  line-height: 85px;
+  border: 1px solid #e5e5e5;
+  overflow: hidden;
+}
+
+.remark-r-ul .name image{
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.remark-right {
+  content: '';
+  display: inline-block;
+  clear: both;
+  width: 60%;
+}
+
+.remark-right .li-name{
+  width: 100%;
+  float: left;
+  font-size: 13px;
+  height: 40px;
+  line-height: 1.6;
+  overflow: hidden;
+}
+
+.remark-right .li-sku{
+  width: 100%;
+  float: left;
+  font-size: 12px;
+  color: #999999;
+  padding-bottom: 0;
+}
+
+.evaluate_right {
+  float: left;
+  width: 100%;
+  height: 100%;
+}
+
+.evaluate_right .title{
+  height: 30px;
+  line-height: 30px;
+  font-size: 13px;
+}
+
+.evaluate_right .rate_content {
+  padding: 3px;
+  zoom: 1;
+  position: relative;
+  border: 0;
+  background: #fff;
+}
+
+.evaluate_right .rate_content textarea{
+  height: 81px;
+  font-size: 12px;
+}
+
+.evaluate_right_two {
+  position: absolute;
+  z-index: 2;
+  bottom: -60px;
+  left: 0px;
+}
+
+.evaluate_right .input-file {
+  width: 65px;
+  height: 65px;
+  padding: 0;
+  margin: 0;
+  border: none 0;
+  opacity: 0;
+  filter: alpha(opacity = 0);
+  cursor: pointer;
+  line-height: 20px;
+  background-color: #FBFBFB;
+}
+
+.evaluate_right_imgs .li {
+  float: left;
+  display: block;
+  height: 30px;
+  width: 30px;
+  background: no-repeat center center;
+  background-size: cover;
+  margin-right: 0;
+}
+
+.evaluate_right_imgs .li .span {
+  cursor: pointer;
+  text-align: center;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  z-index: 3;
+  font-size: 12px;
+  background-color: #000;
+  opacity: .8;
+  filter: alpha(opacity = 80);
+  color: #FFF;
+  text-decoration: none;
+  display: none;
+}
+
+.evaluate_right_three {
+  position: relative;
+  z-index: 1;
+  background-color: #F5F5F5;
+  text-align: center;
+  color: #666;
+  border: solid 1px;
+  border-color: #DCDCDC #DCDCDC #B3B3B3 #DCDCDC;
+  display: block;
+  float: left;
+  margin-right: 5px;
+  cursor: pointer;
+  height: 60px;
+  width: 60px;
+  line-height: 55px;
+  background: #fff;
+  top: 0px;
+}
+
+.evaluate_right_three.send{
+  border: 0;
+  width: 37px;
+  font-size: 12px;
+}
+
+.evaluate_right_imgs {
+  margin-top: 12px;
+}
+
+.evaluate_right .rate_content .evaluate_right_imgs {
+  float: left;
+}
+
+.evaluate_right_four {
+  float: left;
+  display: block;
+  font-size: 12px;
+  margin-top: 22px;
+  margin-left: 2px;
+}
+
+.evaluation{
+  background: #fff;
+  margin-top: 6px;
+  height: 45px;
+  line-height: 45px;
+  padding: 0 10px 0 10px;
+}
+
+.right{
+  float: right;
+}
+
+#btn_submit {
+  background: red;
+  border: 0;
+  color: #fff;
+  padding: 5px;
+  font-size: 13px;
+  border-radius: 3px;
+  display: inline;
+}
+
+.evaluate_right_three image{
+  width: 28px;
+  max-height: 25px;
+  vertical-align:middle;
+}
+
+.evaluate_right_three.send{
+  border: 0;
+  width: 37px;
+  line-height: 60px;
+}

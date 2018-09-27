@@ -1,0 +1,79 @@
+<view class="motify {{prompt==''?'hide':''}}">
+  <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+  <view class="motify-inner">{{prompt}}</view>
+</view>
+<view class="main_content">
+  <block wx:if='{{promoter_info.promoter_id > 0 && reapply == 0}}'>
+    <block wx:if='{{promoter_info.is_audit == 0}}'>
+      <view class="frog">
+        <image src="/pagesnfx/images/agent_apply.png" />申请正在审核中......
+      </view>
+      <view class="a a_button" catchtap='memberCenter'>返回会员中心</view>
+    </block>
+    <block wx:if='{{promoter_info.is_audit == -1}}'>
+      <view class="frog">
+        <image src="/pagesnfx/images/agent_apply.png" />申请已被拒绝......
+      </view>
+    </block>
+  </block>
+  <block wx:else>
+    <view class="p title_img">
+      <image src="/pagesnfx/images/apply_promoter.png" mode='widthFix' />
+    </view>
+    <view class="apply_content">
+      <view class="p apply_title_one">申请等级
+        <view class="span title_two">添加信息，立刻赚钱</view>
+      </view>
+      <view class="content_i">
+        <block wx:for='{{promoter_level}}' wx:key='' wx:for-item='promoter' wx:for-index='index'>
+          <view class="a {{index > level_index ? 'no_i' : ''}}">
+            {{promoter.level_name}}（消费满{{promoter.level_money}}/已消费{{user_consume}}）
+            <view class='span'>
+              <block wx:if='{{level_index >= 0 && index == 0}}'>
+                <icon type='success_no_circle' color='red' size='16'></icon>
+              </block>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="apply_content">
+      <view class="p apply_title_one">申请信息</view>
+      <view class="content_i">
+        <view class="weui_cell">
+          <view class="weui_cell_hd">
+            <view class="label weui_label">店铺名称</view>
+          </view>
+          <view class="weui_cell_bd weui_cell_primary">
+            <input class="weui_input" type="text" id="promoter_shop_name" bindinput='inputPromoterShopName' maxlength='100' placeholder="请输入店铺名称" />
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="a a_button" catchtap='applyPromoter'>申请</view>
+  </block>
+  <view class="apply_content">
+    <view class="apply_title_item">
+      <image class="i apply_add" src='/pagesnfx/images/apply_add.png'></image>
+      <view class="item_row">
+        <view class="p item_title">无门槛加入</view>
+        <view class="p item_content">零成本、不囤货，轻松获利</view>
+      </view>
+    </view>
+    <view class="apply_title_item">
+      <image class="i extension" src='/pagesnfx/images/extension.png'></image>
+      <view class="item_row">
+        <view class="p item_title">多维度推广</view>
+        <view class="p item_content">商品、商铺、二维码任选</view>
+      </view>
+    </view>
+    <view class="apply_title_item">
+      <image class="i team" src='/pagesnfx/images/team.png'></image>
+      <view class="item_row">
+        <view class="p item_title">新增团队玩法</view>
+        <view class="p item_content">支持线上组件团队，奖励更多</view>
+      </view>
+    </view>
+  </view>
+</view>

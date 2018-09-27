@@ -1,0 +1,35 @@
+<scroll-view>
+  <view class="my-account">
+    <view class="account-box">
+      <view class="balace">{{account_info.data[0].point==undefined?0:account_info.data[0].point}}</view>
+      <view class='point-label'>积分</view>
+      <view class="a account-title bottom hide">兑换余额</view>
+    </view>
+  </view>
+  <view class="integral-declaration">
+    <view class="declaration-title">
+      积分说明
+    </view>
+    <view class="declaration-content"></view>
+  </view>
+  <view class="table ns-table">
+    <view class='tbody'>
+      <block wx:for='{{records_list}}' wx:key='' wx:for-item='records'>
+        <view align="center" class='tr'>
+          <view class='td'>
+            <view class="span ns-lf" style="color: #444">{{records.type_name}}</view>
+            <view class="span ns-rg">{{records.number}}</view>
+          </view>
+          <view class='td bottom-td'>
+            <view class="span ns-lf">{{records.text}}</view>
+            <view class="span ns-rg-time">{{records.create_time}}</view>
+          </view> 
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class="emptyFrame {{records_list[0]==undefined?'':'hide'}}">
+    <image class="user_balance" src='/images/member/point.png'></image>
+    <view class='span'>您暂时还没有积分记录哦！</view>
+  </view>
+</scroll-view>

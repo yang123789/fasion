@@ -1,0 +1,53 @@
+<scroll-view>
+  <view class="motify {{prompt==''?'hide':''}}">
+    <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+    <view class="motify-inner">{{prompt}}</view>
+  </view>
+  <view class="form-info">
+    <view class="div-item">
+      <view class='span'>姓名</view> <input type="text" placeholder="请输入收件人姓名" bindblur='inputEvent' data-type='consigner' value="{{consigner}}"/>
+    </view>
+
+    <view class="div-item">
+      <view class='span'>手机</view> <input type="number" maxlength='11' placeholder="请输入手机号" bindblur='inputEvent' data-type='mobile' value="{{mobile}}"/>
+    </view>
+
+    <view class="div-item">
+      <view class='span'>固定电话</view> <input type="number" bindblur='inputEvent' data-type='phone' placeholder="固定电话（选填）" value="{{phone}}"/>
+    </view>
+
+    <view class="div-item">
+      <view class='span'>省份</view>
+      <picker bindchange="bindProvincChange" mode='selector' value="{{provinceIndex}}" range="{{provinceArray}}" data-id='{{provinceArray[provinceIndex].province_id}}' range-key="province_name">
+        <view class="picker">
+          {{provinceArray[provinceIndex].province_name}}
+        </view>
+      </picker>
+    </view>
+
+    <view class="div-item">
+      <view class='span'>城市</view>
+      <picker bindchange="bindCityChange" mode='selector' value="{{cityIndex}}" range="{{cityArray}}" data-id='{{cityArray[cityIndex].city_id}}' range-key="city_name">
+        <view class="picker">
+          {{cityArray[cityIndex].city_name}}
+        </view>
+      </picker>
+    </view>
+
+    <view class="div-item">
+      <view class='span'>区县</view>
+      <picker bindchange="bindDistrictChange" mode='selector' value="{{districtIndex}}" range="{{districtArray}}" data-id='{{districtArray[districtIndex].district_id}}' range-key="district_name">
+        <view class="picker">
+          {{districtArray[districtIndex].district_name}}
+        </view>
+      </picker>
+    </view>
+
+
+    <view class="div-item">
+      <view class='span'>详细地址</view>
+      <input type="text" placeholder="请输入详细地址" bindblur='inputEvent' data-type='address' value="{{address}}"/>
+    </view>
+  </view>
+  <button class="btn-save" catchtap='saveAddress'>保存</button>
+</scroll-view>

@@ -1,0 +1,12 @@
+<view class="custom-tag-list-goods wenzhang_list" id="notice_list">
+  <view class='ul'>
+    <block wx:for='{{notice_list}}' wx:key='' wx:for-item='notice'>
+      <view class='li' catchtap='noticeContent' data-id='{{notice.id}}'>
+        <view class="p box-title">
+          <view class='a'>{{notice.notice_title}}</view>
+        </view>
+        <view class="p box-time">{{notice.create_time}}</view>
+      </view>
+    </block>
+  </view>
+</view>

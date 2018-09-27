@@ -1,0 +1,42 @@
+<view class="cf-container">
+  <view class="ul cf-content">
+    <view class="li cf-tab-item {{nav==0?'select':''}}"><view class='a' data-status='0' catchtap='selectTopNav'>未使用</view></view>
+    <view class="li cf-tab-item {{nav==1?'select':''}}"><view class='a' data-status='1' catchtap='selectTopNav'>已使用</view></view>
+    <view class="li cf-tab-item {{nav==-1?'select':''}}"><view class='a' data-status='-1' catchtap='selectTopNav'>已过期</view></view>
+  </view>
+</view>
+<view class="com_content">
+  <view class='ul' id="not_use">
+    <block wx:for='{{virtual_list}}' wx:key='' wx:for-item='virtual' wx:for-index='index'>
+      <view class='li'>
+        <view class="a not_use" catchtap='{{nav==0?"verificationDetail":""}}' data-id='{{virtual.virtual_goods_id}}'>
+          <block wx:if='{{nav == 0}}'>
+            <image src="/images/member/virtual_member.jpg" mode='widthFix'/>
+          </block>
+          <block wx:if='{{nav == 1}}'>
+            <image src="/images/member/virtual_member_ing.jpg" mode='widthFix'/>
+          </block>
+          <block wx:if='{{nav == -1}}'>
+            <image src="/images/member/virtual_member_ed.png" mode='widthFix'/>
+          </block>
+          <view class="coupon-price">
+            <view class='i'><image src="{{virtual.picture_info==''?0:virtual.picture_info}}" lazy-load='true' binderror='errorImg' data-index='{{index}}' mode='widthFix'/></view>
+            <view class='p'>{{virtual.goods_name}}</view>
+          </view>
+          <view class="coupon-lose">有效期:<span>{{virtual.end_time}}</span></view>
+          <view class="coupon-price-right">
+            <view class='p'>可用次数</view>
+            <view class='p last-child'>{{virtual.confine_use_number-virtual.use_number}}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <view class='clear'></view>
+  </view>
+  <block wx:if='{{virtual_list.length == 0}}'>
+    <view class="null_default">
+      <view class="i icon-nocontent-youhuiquan"></view>
+      <view class="span nulltext">暂无虚拟码！</view>
+    </view>
+  </block>
+</view>

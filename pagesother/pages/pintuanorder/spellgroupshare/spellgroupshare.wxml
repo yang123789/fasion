@@ -1,0 +1,61 @@
+<view class="motify {{prompt==''?'hide':''}}">
+  <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+  <view class="motify-inner">{{prompt}}</view>
+</view>
+<view class="section order-detail-wating-share">
+  <block wx:if='{{timers_array[0].end == 1}}'>
+    <view class='time'>拼单已结束</view><br/>
+  </block>
+  <block wx:else>
+	  <view class='time'>{{timers_array[0].hour + ':' + timers_array[0].minute + ':' + timers_array[0].second}}</view><br/>
+	</block>
+  <view class='label'>
+		<view class='span'>还差<view class='b'>{{tuangou_group_info.poor_num}}</view>人，人满才算成功</view>	
+	</view>
+  <block wx:if='{{timers_array[0].end != 1}}'>
+    <button id="invite_friends" open-type='share'>邀请好友</button>
+    <view class='a'>
+      <button data-id='{{tuangou_group_info.goods_id}}' data-name='{{tuangou_group_info.goods_name}}' data-group='{{tuangou_group_info.group_id}}' catchtap='joinBuy'>一键参团</button>
+    </view>
+  </block>
+</view>
+<view class="section group_detail">
+	<view class="list-item">
+		<view class="ul user-list">
+      <block wx:for='{{tuangou_group_info.user_list}}' wx:key='' wx:for-item='user' wx:for-index='index'>
+        <view class='li'>
+          <block wx:if='{{index == 0}}'>
+            <view class="span boss">拼主</view>
+          </block>
+          <image src="{{user.user_headimg}}" lazy-load='true' mode='widthFix'/>
+        </view>
+      </block>
+      <block wx:for='{{empty_list}}' wx:key=''>
+        <view class='li'>
+          <image src="/images/pintuan/spelling_who.png" lazy-load='true' mode='widthFix'/>
+        </view>
+      </block>
+    </view>
+	</view>
+	<view class="list-item goods_info">
+		<view class="span item-title">商品名称</view>
+		<view class='a' catchtap='goodsDetail' data-id='{{tuangou_group_info.goods_id}}' data-name='{{tuangou_group_info.goods_name}}'>
+      <view class="span goods_name">{{tuangou_group_info.goods_name}}</view>
+    </view>
+	</view>
+</view>
+<block wx:if='{{maskStatus == 1}}'>
+  <view class="mask-layer-bg" catchtap='popupClose'></view>
+  <view class="mask-layer-invite-friends" catchtap='popupClose'>
+    <block wx:if='{{timers_array[0].end == 1}}'>
+      <view></view>
+      <view class='h4'>拼单已结束</view>
+    </block>
+    <block wx:else>
+      <view>
+        <image src="/images/pintuan/invite-friends_share.png" mode='widthFix'/>
+      </view>
+      <view class='h4'>还差<strong>{{tuangou_group_info.poor_num}}</strong>人，点击上方按钮转发给好友</view>
+    </block>
+  </view>
+</block>

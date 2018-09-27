@@ -1,0 +1,535 @@
+<view>
+  <view class="motify {{prompt==''?'hide':''}}">
+    <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+    <view class="motify-inner">{{prompt}}</view>
+  </view>
+  <view class='hr'></view>
+  <view id="addressok" class="{{member_address==null?'hide':''}} {{member_address.length==0?'hide':''}}">
+    <view class="js-order-address express-panel js-edit-address express-panel-edit">
+      <view class="ul express-detail">
+        <view class='a' catchtap='myAddress'>
+          <view class="li clearfix">
+            <view class="span name">收货人信息：{{member_address.consigner}}</view>
+            <view class="span tel">{{member_address.phone}}</view>
+          </view>
+          <view class="li address-detail">收货地址：{{member_address.address_info}}　{{member_address.address}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <block wx:if='{{order_info.address_is_have == 0}}'>
+    <view class="empty-address-tip">
+      <view id="noaddress">
+        <image src='/images/order/order_address.png' />
+        <view class='a' catchtap='myAddress'>新增收货地址</view>
+      </view>
+    </view>
+  </block>
+  <view class='order_top_image'>
+    <block wx:for='{{order_top_image}}' wx:key=''>
+      <image class="block-item expresse" lazy-load='true' src='/images/order/border_order_top.png'></image>
+      <image class="block-item expresse" lazy-load='true' src='/images/order/border_order_top.png'></image>
+      <image class="block-item expresse" lazy-load='true' src='/images/order/border_order_top.png'></image>
+    </block>
+  </view>
+  <view class='blank-block'></view>
+  <view class="order">
+    <!-- 商品 -->
+    <block wx:for='{{order_info.itemlist}}' wx:key='' wx:for-item='goods' wx:for-index='index'>
+      <view class="order-goods-item {{index==0?'first':''}} clearfix">
+        <view class="name-card block-item">
+          <view class="a thumb">
+            <image catchtap='goodsDetail' data-id='{{goods.goods_id}}' src="{{goods.picture_info.pic_cover_small}}" binderror='errorImg' data-index='{{index}}' mode='widthFix'></image>
+          </view>
+          <view class="detail">
+            <view class="clearfix detail-row">
+              <view class="right-col">
+                ￥
+                <view class='span'>{{goods.price}}</view>
+              </view>
+              <view class="left-col">
+                <view class='h3'>
+                  <view class='a'>{{goods.goods_name}}</view>
+                </view>
+              </view>
+            </view>
+            <view class="clearfix detail-row">
+              <view class="right-col">
+                <view class=" c-gray-darker">
+                  ×
+                  <view class='span'>{{goods.num}}</view>
+                </view>
+              </view>
+              <view class="left-col">
+                <view class='p' class="c-gray-darker">{{goods.sku_name}}</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <!-- 赠品 -->
+    <block wx:for='{{order_info.goods_mansong_gifts}}' wx:key='' wx:for-item='goods' wx:for-index='index'>
+      <view class="order-goods-item clearfix">
+        <view class="name-card block-item">
+          <image class="gift" src="/images/order/gift.png" mode='widthFix' />
+          <view class="a thumb">
+            <image catchtap='goodsDetail' data-id='{{goods.gift_goods.goods_id}}' src="{{goods.gift_goods.picture_info.pic_cover_small}}" binderror='errorGiftImg' data-index='{{index}}' mode='widthFix'></image>
+          </view>
+          <view class="detail">
+            <view class="clearfix detail-row">
+              <view class="right-col">
+                ￥
+                <view class='span s'>{{goods.gift_goods.price}}</view>
+              </view>
+              <view class="left-col">
+                <view class='h3'>
+                  <view class='a'>{{goods.gift_goods.goods_name}}</view>
+                </view>
+              </view>
+            </view>
+            <view class="clearfix detail-row">
+              <view class="right-col">
+                <view class=" c-gray-darker">
+                  ×
+                  <view class='span'>{{goods.count}}</view>
+                </view>
+              </view>
+              <view class="left-col">
+                <view class='p' class="c-gray-darker"></view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <block wx:if='{{order_tag == "buy_now" && order_goods_type == 0}}'>
+      <view class="item-options first-child" style="line-height: 30px;">
+        <view class='label hit'>
+          <view class='span hit'>请填写手机号码，方便卖家与您联系</view>
+        </view>
+      </view>
+      <view class="item-options">
+        <view class='label'>手机号码</view>
+        <input type="number" bindinput='inputTel' id="user_telephone" maxlength='11' value="{{user_telephone}}" placeholder="手机号码" />
+      </view>
+    </block>
+
+    <view class="item-options {{coupon_list[0]==undefined?'hide':''}}" catchtap='couponStatus' data-status='1'>
+      <view class='label'>优惠券</view>
+      <view class="span arrow-right color-gray">{{use_coupon==0?'不使用优惠券':'￥'+coupon_money}}</view>
+    </view>
+
+    <view class="item-options" catchtap='payType' data-status='1'>
+      <view class='label'>支付方式</view>
+      <view class="span arrow-right color-gray">{{pay_type==0?'在线支付':'货到付款'}}</view>
+    </view>
+
+    <view class="dividing-line">
+      <!-- 分隔行 -->
+    </view>
+
+    <block wx:if='{{order_tag != "buy_now" || order_goods_type != 0}}'>
+      <view class="item-options" catchtap='deliveryType' data-status='1'>
+        <view class='label'>配送方式</view>
+        <block wx:if='{{shop_config.seller_dispatching == 0 && shop_config.buyer_self_lifting == 0}}'>
+          <view class="span arrow-right color-gray">商家未配置配送方式</view>
+        </block>
+        <block wx:else>
+          <view class="span arrow-right color-gray">
+            <block wx:if='{{delivery_type == 1}}'>
+              商家配送
+            </block>
+            <block wx:if='{{delivery_type == 2}}'>
+              门店自提
+            </block>
+            <block wx:if='{{delivery_type == 3}}'>
+              本地配送
+            </block>
+          </view>
+        </block>
+      </view>
+
+      <!-- 物流公司 -->
+      <block wx:if='{{shop_config.is_logistics == 1}}'>
+        <view class="item-options {{order_info.express_company_count==0||delivery_type==2?'hide':''}}" catchtap='expressCompany' data-status='1'>
+          <view class='label'>物流公司</view>
+          <view class="span arrow-right color-gray">{{express_company_list[0]!=undefined?express_company:'商家未配置物流公司'}}</view>
+        </view>
+      </block>
+
+      <view class="item-options {{delivery_type==2?'':'hide'}}" catchtap='pickUp' data-status='1'>
+        <view class='label'>自提地址</view>
+        <view class="span {{pick_up==0?'':'arrow-right'}} color-gray">{{pick_up==0?'商家未配置自提点':pick_up_point}}</view>
+      </view>
+    </block>
+
+    <!-- 配送时间 -->
+    <block wx:if='{{delivery_type == 1 && shop_config.order_designated_delivery_time == 1}}'>
+      <view class="item-options" data-flag="shipping_time">
+        <label>配送时间</label>
+        <view id="shipping_time">
+          <block wx:if='{{shipping_time_index > -1}}'>
+            <view class="span delete" catchtap='deleteShippingTime'>删除</view>
+            <view class="span update" catchtap='updateShippingTime'>修改</view>
+            <view class="span time">
+              {{shipping_time[shipping_time_index].year + '-' + shipping_time[shipping_time_index].month + '-' + shipping_time[shipping_time_index].day + ' ' + shipping_time[shipping_time_index].week}}
+            </view>
+          </block>
+          <block wx:else>
+            <view class="span update" catchtap='updateShippingTime'>修改</view>
+            <view class="span time">工作日、双休日与节假日均可送货</view>
+          </block>
+        </view>
+      </view>
+    </block>
+
+    <view class="dividing-line">
+      <!-- 分隔行 -->
+    </view>
+
+    <view class="item-options">
+      <block wx:if='{{order_info.point_config.is_open == 1}}'>
+        <view class='label'>现有积分
+          <view class="b account_balance">{{member_account.point}}</view>
+        </view>
+        <view class='span'>使用
+          <input type="number" id="use_point" bindinput='inputPoint' data-max="{{max_use_point > member_account.point ? member_account.point : max_use_point}}" value='{{use_point}}' />个
+        </view>
+      </block>
+      <block wx:else>
+        <view class='label'>现有积分</view>
+        <view class='span'>
+          <view class="b account_balance">{{member_account.point}}</view>个
+        </view>
+      </block>
+    </view>
+
+    <view class="dividing-line">
+      <!-- 分隔行 -->
+    </view>
+
+    <view class="item-options {{shop_config.order_invoice_content_list[0]==undefined?'hide':''}}" catchtap='invoiceType'>
+      <view class='label'>发票信息
+        <view class='span invoice-info'></view>
+      </view>
+      <view class="span arrow-right color-gray">{{invoice_need==1?'需要发票':'不需要发票'}}</view>
+    </view>
+
+    <view class="item-options invoice {{invoice_need==1?'':'hide'}}">
+      <view class='label'>
+        <view class='span invoice-info'>将收取{{shop_config.order_invoice_tax}}%的发票税率</view>
+      </view>
+    </view>
+    <block wx:if='{{invoice_need == 1}}'>
+      <block wx:if='{{mask_status == 0}}'>
+        <view class="item-options invoice">
+          <view class='label'>发票抬头</view>
+          <textarea id="invoice-title" bindinput='inputInvoiceTitle' maxlength="50" auto-height='true' placeholder="个人或公司发票抬头" value='{{invoice_title}}'></textarea>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="item-options invoice">
+          <view class='label'>发票抬头</view>
+          <input id="invoice-title" maxlength="50" placeholder="个人或公司发票抬头" value='{{invoice_title}}'></input>
+        </view>
+      </block>
+
+      <block wx:if='{{mask_status == 0}}'>
+        <view class="item-options invoice">
+          <view class='label'>纳税人识别号</view>
+          <textarea id="taxpayer-identification-number" bindinput='inputTaxpayerIdentificationNumber' auto-height='true' maxlength="50" placeholder="纳税人识别号" value='{{taxpayer_identification_number}}'></textarea>
+        </view>
+      </block>
+      <block wx:else>
+        <view class="item-options invoice">
+          <view class='label'>纳税人识别号</view>
+          <input id="taxpayer-identification-number" maxlength="50" placeholder="纳税人识别号" value='{{taxpayer_identification_number}}'></input>
+        </view>
+      </block>
+    </block>
+
+    <view class="item-options invoice {{invoice_need==1?'':'hide'}}" catchtap='invoiceContent'>
+      <view class='label'>发票内容</view>
+      <view class="span arrow-right color-gray">{{invoice_content}}</view>
+    </view>
+
+    <block wx:if='{{mask_status == 0}}'>
+      <view class="item-options">
+        <view class='label'>买家留言</view>
+        <textarea id="leavemessage" auto-height='true' bindinput='inputMessage' placeholder="给卖家留言" maxlength="100" value='{{leavemessage}}'></textarea>
+      </view>
+    </block>
+    <block wx:else>
+      <view class="item-options">
+        <view class='label'>买家留言</view>
+        <input id="leavemessage" placeholder="给卖家留言" maxlength="100" value='{{leavemessage}}'></input>
+      </view>
+    </block>
+
+    <view class="dividing-line">
+      <!-- 分隔行 -->
+    </view>
+
+    <view class="order-list">
+      <view class='h3'>结算信息</view>
+      <view class='p'>
+        <view class='label'>共
+          <view class="b orange-bold js-goods-num">{{itemlist.length}}</view>种商品　总计</view>
+        <view class='span'>￥
+          <view class="b js-total-money">{{count_money}}</view>
+        </view>
+      </view>
+
+      <block wx:if='{{order_tag != "buy_now" || order_goods_type != 0}}'>
+        <view class='p'>
+          <view class='label'>运费</view>
+          <view class='span'>￥
+            <view class='b' id="discount_money">
+              <block wx:if='{{delivery_type == 1}}'>{{express_money}}</block>
+              <block wx:if='{{delivery_type == 2}}'>{{pick_up_money}}</block>
+              <block wx:if='{{delivery_type == 3}}'>{{o2o_distribution}}</block>
+            </view>
+          </view>
+        </view>
+      </block>
+
+      <block wx:if='{{order_info.point_config.is_open == 1}}'>
+        <view class='p'>
+          <view class='label'>积分抵现</view>
+          <view class='span'>￥
+            <view class='b' id="discount_money">{{use_point_money}}</view>
+          </view>
+        </view>
+      </block>
+
+      <view class='p'>
+        <view class='label'>总优惠</view>
+        <view class='span'>￥
+          <view class='b' id="discount_money">{{discount_money}}</view>
+        </view>
+      </view>
+      <view class='p {{shop_config.order_invoice_content_list[0]==undefined?"hide":""}}'>
+        <view class='label'>发票税额：</view>
+        <view class='span'>￥
+          <view class='b' id="invoice_tax_money">{{order_invoice_money}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <block wx:if='{{copyRight.default_logo != "" && copyRight.technical_support != ""}}'>
+    <view class="footer">
+      <view class="copyright" id="bottom_copyright">
+        <view class="ft-copyright">
+          <block wx:if='{{copyRight.default_logo != ""}}'>
+            <image src="{{copyRight.default_logo}}" mode='aspectFit' id="copyright_logo_wap"></image>
+          </block>
+          <block wx:if='{{copyRight.technical_support != ""}}'>
+            <view class='a' id="copyright_companyname">{{copyRight.technical_support}}</view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view style='height:30px;'></view>
+  </block>
+  <view style="height: 50px"></view>
+  <view class="order-total-pay bottom-fix">
+    <view class="pay-container clearfix">
+      <view class="span c-gray-darker font-size-12">应付金额：</view>
+      <view class="span font-size-13 theme-price-color">
+        <view class='b'>￥{{pay_money}}</view>
+        <block wx:if='{{order_info.count_point_exchange != 0 && order_info.count_point_exchange != undefined}}'>
+          <view class='span theme-price-color font-size-13'>+{{order_info.count_point_exchange}}积分</view>
+        </block>
+      </view>
+      <button class="commit-bill-btn" catchtap='commitOrder'>提交订单</button>
+    </view>
+  </view>
+  <view class="mask-layer {{mask_status==1?'':'hide'}}" catchtap='closePoupo'></view>
+  <!-- 选择优惠券 -->
+  <view class="mask-layer-control {{coupon_status==1?'':'hide'}}">
+    <view class="header">选择优惠券
+      <icon class="span close" catchtap='closePoupo' type='cancel' size='22' color='#666'></icon>
+    </view>
+    <view class="list">
+      <view class='ul'>
+        <view class="li item" catchtap='selectCoupon' data-id="0" data-money="0.00">
+          <icon class="check-img {{use_coupon==0?'':'check-false'}}" type='{{use_coupon==0?"success":""}}' color='#3283FA' size='18'></icon>
+          <view class="single">不使用优惠券</view>
+        </view>
+        <block wx:for='{{coupon_list}}' wx:key='' wx:for-item='coupon'>
+          <view class="li item" catchtap='selectCoupon' data-id="{{coupon.coupon_id}}" data-code="{{coupon.coupon_code}}" data-money="{{coupon.money}}">
+            <icon class="check-img {{use_coupon==coupon.coupon_id?'':'check-false'}}" type='{{use_coupon==coupon.coupon_id?"success":""}}' color='#3283FA' size='18'></icon>
+            <view>
+              <view class="p font-size-12">{{coupon.coupon_name}}
+                <view class="em pull-right">{{coupon.money}}元</view>
+              </view>
+              <view class="p font-size-12 c-gray-darker">满{{coupon.at_least}}元减{{coupon.money}}元</view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="footer">
+      <button class="btn-green" catchtap='closePoupo'>确定</button>
+    </view>
+  </view>
+  <!-- 支付方式 -->
+  <view class="mask-layer-control {{pay_box_status==1?'':'hide'}}">
+    <view class="header">请选择支付方式
+      <icon class="span close" catchtap='closePoupo' data-status='0' type='cancel' size='22' color='#666'></icon>
+    </view>
+    <view class="list">
+      <view class='ul'>
+        <view class="li item" data-flag="0" catchtap='selectPayType'>
+          <icon class="check-img {{pay_type==0?'':'check-false'}}" type='{{pay_type==0?"success":""}}' color='#3283FA' size='18'></icon>
+          <view class="single">在线支付</view>
+        </view>
+        <block wx:if='{{shop_config.order_delivery_pay == 1}}'>
+          <view class="li item" data-flag="4" catchtap='selectPayType'>
+            <icon class="check-img {{pay_type==4?'':'check-false'}}" type='{{pay_type==4?"success":""}}' color='#3283FA' size='18'></icon>
+            <view class="single">货到付款</view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="footer">
+      <button class="btn-green" catchtap='closePoupo'>确定</button>
+    </view>
+  </view>
+  <!-- 配送方式 -->
+  <view class="mask-layer-control {{delivery_status==1?'':'hide'}}">
+    <view class="header">选择配送方式
+      <icon class="span close" catchtap='closePoupo' data-status='0' type='cancel' size='22' color='#666'></icon>
+    </view>
+    <block wx:if='{{shop_config.buyer_self_lifting == 0 && shop_config.seller_dispatching == 0}}'>
+      <view class='p' style="padding: 30px;text-align: center;">商家未配置配送方式</view>
+    </block>
+    <block wx:else>
+      <view class="list">
+        <view class='ul'>
+          <block wx:if='{{shop_config.seller_dispatching == 1}}'>
+            <view class="li item" catchtap='deliveryTypeSelect' data-status='1'>
+              <icon class="check-img {{delivery_type==1?'':'check-false'}}" type="{{delivery_type==1?'success':''}}" color='#3283FA' size='18'></icon>
+              <view class="single">商家配送</view>
+            </view>
+          </block>
+          <block wx:if="{{shop_config.buyer_self_lifting == 1 && pay_type == 0}}">
+            <view class="li item" catchtap='deliveryTypeSelect' data-status='2'>
+              <icon class="check-img {{delivery_type==2?'':'check-false'}}" type="{{delivery_type==2?'success':''}}" color='#3283FA' size='18'></icon>
+              <view class="single">门店自提</view>
+            </view>
+          </block>
+          <block wx:if="{{order_info.is_open_o2o_distribution == 1}}">
+            <view class="li item" catchtap='deliveryTypeSelect' data-status='3'>
+              <icon class="check-img {{delivery_type==3?'':'check-false'}}" type="{{delivery_type==3?'success':''}}" color='#3283FA' size='18'></icon>
+              <view class="single">本地配送</view>
+            </view>
+          </block>
+        </view>
+      </view>
+      <view class="footer">
+        <button class="btn-green" catchtap='closePoupo'>确定</button>
+      </view>
+    </block>
+  </view>
+  <!-- 选择物流公司 -->
+  <view class="mask-layer-control {{express_company_status==0?'hide':''}}">
+    <view class="header">选择物流公司
+      <icon class="span close" catchtap='closePoupo' type='cancel' size='22' color='#666'></icon>
+    </view>
+    <view class="list">
+      <view class='ul'>
+        <block wx:for="{{express_company_list}}" wx:key='' wx:for-item='company'>
+          <view class="li item" catchtap='selectExpressCompany' data-id='{{company.co_id}}' data-fee='{{company.express_fee}}' data-name='{{company.company_name}}'>
+            <icon class="check-img {{shipping_company_id==company.co_id?'':'check-false'}}" type='{{shipping_company_id==company.co_id?"success":""}}' color='#3283FA' size='18'></icon>
+            <view class="single">{{company.company_name}}</view>
+          </view>
+        </block>
+        <block wx:if='{{express_company_list[0] == undefined}}'>
+          <view class='p none-list'>商家未设置物流公司</view>
+        </block>
+      </view>
+    </view>
+    <view class="footer">
+      <button class="btn-green" catchtap='closePoupo'>确定</button>
+    </view>
+  </view>
+  <!-- 选择自提地址 -->
+  <view class="mask-layer-control {{pick_up_status==0?'hide':''}}">
+    <view class="header">选择自提地址
+      <icon class="span close" catchtap='closePoupo' type='cancel' size='22' color='#666'></icon>
+    </view>
+    <view class="list">
+      <view class='ul'>
+        <block wx:for='{{order_info.pickup_point_list.data}}' wx:key='' wx:for-item='pickup'>
+          <view class="li item" catchtap='pickUpSelect' data-id='{{pickup.id}}' data-province='{{pickup.province_name}}' data-city='{{pickup.city_name}}' data-disctrict='{{pickup.district_name}}' data-address='{{pickup.address}}'>
+            <icon class="check-img {{pick_up==pickup.id?'':'check-false'}}" type='{{pick_up==pickup.id?"success":""}}' color='#3283FA' size='18'></icon>
+            <view class="single">{{pickup.province_name + '　' + pickup.city_name + '　' + pickup.district_name + '　' + pickup.address}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="footer">
+      <button class="btn-green" catchtap='closePoupo'>确定</button>
+    </view>
+  </view>
+  <!-- 选择发票信息 -->
+  <view class="mask-layer-control {{invoice_status==1?'':'hide'}}">
+    <view class="header">选择发票
+      <icon class="span close" catchtap='closePoupo' type='cancel' size='22' color='#666'></icon>
+    </view>
+    <view class="list">
+      <view class='ul'>
+        <view class="li item" data-status="0" catchtap='selectInvoice'>
+          <icon class="check-img {{invoice_need==0?'':'check-false'}}" type='{{invoice_need==0?"success":""}}' color='#3283FA' size='18'></icon>
+          <view class="single">不需要发票</view>
+        </view>
+        <view class="li item" data-status="1" catchtap='selectInvoice'>
+          <icon class="check-img {{invoice_need==1?'':'check-false'}}" type='{{invoice_need==1?"success":""}}' color='#3283FA' size='18'></icon>
+          <view class="single">需要发票</view>
+        </view>
+      </view>
+    </view>
+    <view class="footer">
+      <button class="btn-green" catchtap='closePoupo'>确定</button>
+    </view>
+  </view>
+  <!-- 选择发票内容信息 -->
+  <view class="mask-layer-control {{invoice_content_status==1?'':'hide'}}">
+    <view class="header">请选择发票内容
+      <icon class="span close" catchtap='closePoupo' type='cancel' size='22' color='#666'></icon>
+    </view>
+    <view class="list">
+      <view class='ul'>
+        <block wx:for='{{shop_config.order_invoice_content_list}}' wx:key='' wx:for-item='voince'>
+          <view class="li item" catchtap='selectInvoiceContent' data-content='{{voince}}'>
+            <icon class="check-img {{invoice_content==voince?'':'check-false'}}" type='{{invoice_content==voince?"success":""}}' color='#3283FA' size='18'></icon>
+            <view class="single">{{voince}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="footer">
+      <button class="btn-green" catchtap='closePoupo'>确定</button>
+    </view>
+  </view>
+  <!-- 选择配送时间 -->
+  <view class="mask-layer-control {{shipping_time_status==1?'':'hide'}}">
+    <view class="header">指定配送时间
+      <icon class="span close" catchtap='closePoupo' type='cancel' size='22' color='#666'></icon>
+    </view>
+    <view class="date-list">
+      <view class='ul'>
+        <block wx:for='{{shipping_time}}' wx:key='' wx:for-item='shipping' wx:for-index='index'>
+          <view data-index="{{index}}" catchtap='selectShippingTime' class='li {{shipping_time_index==index?"active":""}}'>{{shipping.year + '-' + shipping.month + '-' + shipping.day + ' ' + shipping.week}}</view>
+        </block>
+      </view>
+    </view>
+    <view class="footer">
+      <button class="btn-green" catchtap='closePoupo'>确定</button>
+    </view>
+  </view>
+</view>

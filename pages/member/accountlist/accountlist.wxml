@@ -1,0 +1,79 @@
+<scroll-view>
+  <view class="motify {{prompt==''?'hide':''}}">
+    <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+    <view class="motify-inner">{{prompt}}</view>
+  </view>
+  <view class="side-nav address">
+    <block wx:for='{{account_list}}' wx:key='id' wx:for-item='account' wx:for-index='key'>
+      <view class="li">
+        <view class="color-border">
+            <image class="block-item expresse" src='/images/order/border_order_top.png'></image>
+            <image class="block-item expresse" src='/images/order/border_order_top.png'></image>
+            <image class="block-item expresse" src='/images/order/border_order_top.png'></image>
+            <image class="block-item expresse" src='/images/order/border_order_top.png'></image>
+            <image class="block-item expresse" src='/images/order/border_order_top.png'></image>
+        </view>
+        <view class="div-simply">
+          <view class="payStatus span">姓名：</view>
+          <view class="payStatus span">
+            <view class="name span">{{account.realname}}</view>
+          </view>
+          <view class="child-div">
+            <view class="a" catchtap='aClick' data-url='/member/updateaccount/updateaccount?id={{account.id}}'>【修改】</view>
+            <view class="a" catchtap='delAccount' data-id='{{account.id}}' data-key="{{key}}" data-default='{{account.is_default}}'>【删除】</view>
+          </view>
+        </view>
+        <view class='a' catchtap='selectAccount' data-key='{{key}}' data-id='{{account.id}}'>
+          <view class="div-simply">
+            <view class="payStatus span">账号类型：</view>
+            <view class="payStatus span">
+              <view class="mobile span">{{account.account_type_name}}</view>
+            </view>
+          </view>
+          <view class="div-simply {{account.account_type == 2?'last-child':''}}">
+            <view class="payStatus span">手机号码：</view>
+            <view class="payStatus span">
+              <view class="mobile span">{{account.mobile}}</view>
+            </view>
+            <block wx:if="{{account.account_type != 1}}">
+              <view class="payStatus span right">
+                <icon class="icon-success" type="{{account.is_default==1?'success':''}}" size='14'></icon>
+              </view>
+            </block>
+          </view>
+          <block wx:if='{{account.account_type == 1}}'>
+            <view class="div-simply">
+              <view class="payStatus span">提现账号：</view>
+              <view class="payStatus span">
+                <view class="mobile span">{{account.account_number}}</view>
+              </view>
+            </view>
+            <view class="div-simply last-child">
+              <view class="payStatus span">支行信息：</view>
+              <view class="payStatus span">
+                <view class="mobile span">{{account.branch_bank_name}}</view>
+              </view>
+              <view class="payStatus span right">
+                <icon class="icon-success" type="{{account.is_default==1?'success':''}}" size='14'></icon>
+              </view>
+            </view>
+          </block>
+          <block wx:if='{{account.account_type == 3}}'>
+            <view class="div-simply last-child">
+              <view class="payStatus span">提现账号：</view>
+              <view class="payStatus span">
+                <view class="mobile span">{{account.account_number}}</view>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </block>
+  </view>
+  <image class='img {{account_list[0]==undefined?"":"hide"}}' src='/images/member/member_none_account.png'/>
+  <view class="addr-box {{account_list[0]==undefined?'':'hide'}}">
+    <view class="span iconfont address-icon"></view>
+    <view class="p addr-tip">您还没有添加账户，添加一个吧!</view>
+  </view>
+  <button class="btn-save" catchtap='addAccount'>新增账户</button>
+</scroll-view>

@@ -1,0 +1,12 @@
+<view class="motify {{prompt==''?'hide':''}}">
+  <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+  <view class="motify-inner">{{prompt}}</view>
+</view>
+<view class='qrcode-box'>
+  <image src='{{path}}' mode='widthFix' catchlongtap='showSaveQrcode'></image>
+  <image id='change_qrcode' src='/images/member/change.png' catchtap='changeQrcode'></image>
+</view>
+<block wx:if='{{show_save_qrcode == 1}}'>
+  <view class='mask-layer' catchtap='hideSaveQrcode'></view>
+  <button class='save-button' catchtap='saveQrcode'>保存到手机</button>
+</block>

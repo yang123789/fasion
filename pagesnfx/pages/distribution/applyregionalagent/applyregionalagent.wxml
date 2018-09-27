@@ -1,0 +1,73 @@
+<view class="motify {{prompt==''?'hide':''}}">
+  <icon class="i show_type warning" type='warn' size='25' color='#FFF'>
+  </icon>
+  <view class="motify-inner">{{prompt}}</view>
+</view>
+<view class="step-process">
+  <view class="ul clear" id="ul">
+    <view class="li step01 current">
+      <view class="p name">申请区域代理</view>
+      <view class="span number">1</view>
+      <view class="span prcess-line prcess-line-r"></view>
+    </view>
+    <!-- 待审核 -->
+    <view class='li {{region_alagent_info.agent_type == 1 ? "current" : ""}}'>
+      <view class="p name">待审核</view>
+      <view class="span prcess-line prcess-line-l"></view>
+      <view class="span number">2</view>
+      <view class="span prcess-line prcess-line-r"></view>
+    </view>
+    <view class='li step03  {{region_alagent_info.agent_type == 1 ? "current" : ""}}'>
+      <view class="p name">申请成功</view>
+      <view class="span prcess-line prcess-line-l"></view>
+      <view class="span number">3</view>
+    </view>
+  </view>
+</view>
+<block wx:if='{{region_alagent_info.agent_type == -1}}'>
+  <view class="apply">
+    <view class="p agent_type">
+      <view class='span'>用户消费金额：</view>
+      <view class="span apply-money" id="user_money">{{region_alagent_info.shop_sale_money}}</view>
+    </view>
+    <view class="p agent_type">
+      <view class='span'>区域代理类型：</view>
+      <picker mode='selector' bindchange='bindApplyTypeChange' range='{{agent_type_array}}' value="{{agent_type_index}}" range-key='type_name'>{{agent_type_array[agent_type_index].type_name}}</picker>
+    </view>
+    <view class="p agent_type">
+      <view class='span'>真实姓名：</view>
+      <input type="text" id="user_name" bindinput='inputRealName' class="apply_input" maxlength='50'/>
+    </view>
+    <view class="p agent_type">
+      <view class='span'>联系电话：</view>
+      <input type="number" id="user_mobile" bindinput='inputMobile' class="apply_input" maxlength='11'/>
+    </view>
+    <view class="p apply_address">
+      <view class='span'>联系地址：</view>
+      <picker bindchange="bindProvincChange" mode='selector' range='{{province_array}}' value="{{province_index}}" range-key="province_name">{{province_array[province_index].province_name}}</picker>
+      <picker bindchange="bindCityChange" mode='selector' range='{{city_array}}' value="{{city_index}}" range-key="city_name">{{city_array[city_index].city_name}}</picker>
+      <picker bindchange="bindDistrictChange" mode='selector' range='{{district_array}}' value="{{district_index}}" range-key="district_name">{{district_array[district_index].district_name}}</picker>
+    </view>
+    <view class="p apply-p">
+      <view class="i fa fa-info-circle">
+        <block wx:if='{{agent_type == 1}}'>
+          <view class='span' id="apply_money">最低消费{{region_alagent_info.region_config.application_require_province}}</view>元，才可成为
+        </block>
+        <block wx:if='{{agent_type == 2}}'>
+          <view class='span' id="apply_money">最低消费{{region_alagent_info.region_config.application_require_city}}</view>元，才可成为
+        </block>
+        <block wx:if='{{agent_type == 3}}'>
+          <view class='span' id="apply_money">最低消费{{region_alagent_info.region_config.application_require_district}}</view>元，才可成为
+        </block>
+        <view class='span' id="apply_name">{{agent_type_array[agent_type_index].type_name}}</view>
+      </view>
+    </view>
+  </view>
+  <view catchtap="applyRegionAlagent" class="a a_button">申请</view>
+</block>
+<block wx:if='{{region_alagent_info.agent_type == 0}}'>
+  <view class="frog">
+    <image src="/pagesnfx/images/agent_apply.png" />申请正在审核中......
+  </view>
+  <view catchtap="distributionCenter" class="a a_button">返回推广中心</view>
+</block>

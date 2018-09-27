@@ -1,0 +1,35 @@
+<view class="motify {{prompt==''?'hide':''}}">
+  <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+  <view class="motify-inner">{{prompt}}</view>
+</view>
+<view class="new-my-path">
+	<view class='nav'>
+    <view class='ul'>
+      <view data-id="" class="li {{category_id==''?'selected':''}}" catchtap="selectCate">全部宝贝</view>
+      <block wx:for='{{category_list}}' wx:key='' wx:for-item='category'>
+        <view data-id="{{category.category_id}}" class="li {{category_id==category.category_id?'selected':''}}" catchtap="selectCate">{{category.category_name}}</view>
+      </block>
+    </view>
+  </view>
+	<view class="list">
+    <view class='ul'>
+      <block wx:for='{{goods_list}}' wx:key='' wx:for-item='goods' wx:for-index='index'>
+        <view class='li'>
+          <block wx:if='{{goods_list[index-1].month != goods.month || goods_list[index-1].day != goods.day}}'>
+            <view class="date">{{goods.month+'月'+goods.day+'日'}}</view>
+          </block>
+          <view class="right">
+            <view class="img-block">
+              <image src="{{goods.goods_info.picture_info.pic_cover_small}}" lazy-load='true' mode='widthFix' binderror='errorImg' data-index='{{index}}'/>
+            </view>
+            <view class="content-block">
+              <view class="a goods-name">{{goods.goods_info.goods_name}}</view>
+              <view class="span price">￥{{goods.goods_info.promotion_price}}</view>
+              <view catchtap="delMyPath" data-id='{{goods.browse_id}}' data-index='{{index}}' class="a del">删除</view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

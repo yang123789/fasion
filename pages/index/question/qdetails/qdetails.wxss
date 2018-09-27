@@ -1,0 +1,21 @@
+/* pages/index/question/qdetails/qdetails.wxss */
+@import "../../../../wxParse/wxParse.wxss";
+page{
+    background:#fff;
+}
+.containernav .title{
+    font-size:34rpx;
+    color:#333;
+    text-align: center;
+    margin-top:40rpx;
+    margin-bottom:40rpx;
+}
+.margin0{
+    width:100%;
+    position:relative;
+}
+.containernav{
+    padding-left:30rpx;
+    padding-right:30rpx;
+    overflow: hidden;
+}

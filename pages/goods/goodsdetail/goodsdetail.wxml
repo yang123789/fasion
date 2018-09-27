@@ -1,0 +1,735 @@
+<import src="../../../wxParse/wxParse.wxml" />
+
+<block wx:if='{{is_loading == 0}}'>
+  <view class='loading-box'>
+    <image src='/images/member/Loading.png'></image>
+  </view>
+</block>
+<view class='{{maskShow==1?"noscroll":""}}'>
+  <view class="motify {{prompt==''?'hide':''}}">
+    <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+    <view class="motify-inner">{{prompt}}</view>
+  </view>
+  <view id="share_img" class="share_img {{is_share==1?'show':''}}" catchtap='cancleShare'>
+    <view class='p'>
+      <image class="arrow" src="/images/goods/goods_share.png" mode='widthFix' />
+    </view>
+    <view class='p click'>点击上方按钮</view>
+    <view class='p hint'>将此商品转发给好友</view>
+  </view>
+  <view class='top-hr'></view>
+  <!-- 模式切换 -->
+  <block wx:if='{{goods_info.goods_video_address != "" && goods_info.goods_video_address != undefined}}'>
+    <view class="goods-alter">
+      <view class="span goods-alter-video {{selectType=='video'?'on':''}}}}" catchtap='selectType' data-type='video'>视频</view>
+      <view class="span goods-alter-image {{selectType=='img'?'on':''}}" catchtap='selectType' data-type='img'>图片</view>
+    </view>
+  </block>
+  <!-- 视频 -->
+  <block wx:if='{{selectType == "video"}}'>
+    <video src='{{goods_info.goods_video_address}}' autoplay='true' style='height:{{swiperHeight}}px'></video>
+  </block>
+  <!-- 图片 -->
+  <block wx:if='{{selectType == "img"}}'>
+    <swiper indicator-dots="{{indicatorDots}}" indicator-color='{{indicatorColor}}' indicator-active-color='{{indicatorActiveColor}}' autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular='{{circular}}' style='height:{{swiperHeight}}px'>
+      <block wx:for="{{imgUrls}}" wx:key="" wx:for-index='index'>
+        <swiper-item>
+          <image src="{{item.pic_cover_big}}" catchtap='preivewImg' data-index='{{index}}' binderror='errorImg' class="slide-image" mode='widthFix' />
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class="favorites">
+      <image class="i fac fa-heart-o" src='/images/goods/collection{{goods_info.is_member_fav_goods==0?"":"_check"}}.png' catchtap='collection'></image>
+    </view>
+  </block>
+  <!-- 积分兑换标签 -->
+  <block wx:if='{{goods_info.point_exchange_type == 1 || goods_info.point_exchange_type == 3 }}'>
+    <view class="goods-header js-goods-header goods-activity clearfix">
+      <view class="goods-price point">
+        <view class="current-price activity-price">
+          <view class="span price-title js-price-title ">积分兑换</view>
+        </view>
+      </view>
+    </view>
+  </block>
+  <!-- 商品图，价格 -->
+  <block wx:if="{{goods_info.promotion_type == 2 && goods_info.promotion_detail != ''}}">
+    <view class="goods-header js-goods-header goods-activity clearfix">
+      <view class="goods-price {{timer_array.end==1?'gray':''}}">
+        <view class="current-price activity-price">
+          <view class="i js-goods-price price">￥{{goods_info.promotion_price}}</view>
+          <view class="span price-title js-price-title {{timer_array.end==1?'gray':''}}">限时折扣</view>
+        </view>
+        <view class='em' class="original-price">￥{{goods_info.price}}</view>
+        <view class="font-size-12 overview-countdown js-activity-tips started">
+          <block wx:if='{{timer_array.end == 0}}'>
+            <view class="countdown-title">距结束仅剩</view>
+            <view class="js-discount-time countdown">
+              <view class="span c-red js-day">{{timer_array.day}}</view> 天
+              <view class="span c-red js-hour">{{timer_array.hour}}</view> 时
+              <view class="span c-red js-min">{{timer_array.minute}}</view> 分
+              <view class="span c-red js-sec">{{timer_array.second}}</view> 秒
+            </view>
+          </block>
+          <block wx:else>
+            <view class="countdown-title">活动已结束</view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </block>
+  <view class="buy_area">
+    <view class="fn_wrap" style="position: relative;">
+      <view class="h1 title" id="itemName">
+        <block wx:for='{{goods_info.goods_group_list}}' wx:key='' wx:for-item='vo'>
+          <i class="goods_tab">{{vo.group_name}}</i>
+        </block>
+        {{goods_info.goods_name}}
+      </view>
+      <view class="p goods-introduction">{{goods_info.introduction}}</view>
+      <block wx:if='{{goods_info.point_exchange_type == 2}}'>
+        <view class='p exchange'>
+          本商品可使用积分进行兑换，
+          <view class='a' bindtap='integerExchange'>前去兑换</view>
+        </view>
+      </block>
+      <block wx:if='{{goods_info.goods_pintuan.is_open == 1 && goods_info.goods_pintuan.tuangou_content_json.colonel_content != ""}}'>
+        <view class='p pintuan-content'>
+          {{goods_info.goods_pintuan.tuangou_content_json.colonel_content}}
+        </view>
+      </block>
+      <!-- <button class="span give-the-thumbs-up" open-type='share'>
+        <image src='/images/goods/icon_share.png' class="i fa fa-thumbs-up" mode='scaleToFill'></image>分享
+      </button> -->
+    </view>
+    <view class="price_wrap">
+      <view class="span tit" id="priceTitle"></view>
+      <view class="span price">
+        <block wx:if='{{goods_info.point_exchange_type == 3}}'>
+          <view class='span point'>{{goods_info.point_exchange}}积分</view>
+        </block>
+        <block wx:else>
+          <view class='span'>会员价：￥{{goods_info.promote_price
+            < goods_info.member_price ? goods_info.promote_price : goods_info.member_price}}</view>
+              <block wx:if='{{goods_info.point_exchange_type == 1}}'>
+                <view class='span point'>+{{goods_info.point_exchange}}积分</view>
+              </block>
+              <block wx:if='{{goods_info.is_open_presell == 1}}'>
+                <view class='span presell'>定金：￥{{goods_info.presell_price}}</view>
+              </block>
+        </block>
+        </view>
+        <view class="span flag hide" id="priceDis"></view>
+      </view>
+      <!-- 限购 -->
+      <block wx:if='{{goods_info.max_buy!=0}}'>
+        <!-- <view class="hr divider-line"></view> -->
+        <view class="price_postage">
+          <view class="span price_postage_tit">
+            <i class='max-buy'>限购数量</i>　{{goods_info.max_buy}}个
+          </view>
+        </view>
+      </block>
+      <view class="hr with-margin-l"></view>
+      <!-- <view class="stock-detail">
+        <view class='span first'>销量：{{goods_info.sales}}笔</view>
+        <view class='span'>运费：{{goods_info.shipping_fee_id == 0 && goods_info.shipping_fee_name[0].company_name != undefined ?goods_info.shipping_fee_name[0].company_name : goods_info.shipping_fee}}</view>
+        <view class='span last'>点击：{{goods_info.clicks}}</view>
+      </view> -->
+    </view>
+    <view class="hr with-margin-l"></view>
+    <!-- <view class="hr divider-line"></view> -->
+    <!-- 满减送 -->
+    <block wx:if='{{goods_info.mansong_name != "" && goods_info.mansong_name != undefined && goods_info.mansong_name != null}}'>
+      <view class="price_postage">
+        <view class="span price_postage_tit js-reduced-send single">
+          <view class='i goods_tab'>
+            满减
+          </view>
+          {{goods_info.mansong_name}}
+        </view>
+      </view>
+      <hr class="hr with-margin-l" />
+    </block>
+    <!-- 阶梯优惠 -->
+    <block wx:if='{{goods_info.goodsLadderPreferentialList[0] != indefined}}'>
+      <view class="price_postage" id="ladder_preferential">
+        <view class="span price_postage_tit js-reduced-send single" catchtap='ladderPreferentialShow'>
+          <view class='i goods_tab'>阶梯优惠</view>
+          满
+          <view class='b'>{{goods_info.goodsLadderPreferentialList[0].quantity}}</view>件,每件降
+          <view class='b'>{{goods_info.goodsLadderPreferentialList[0].quantity}}</view>元
+          <image class="jiantou" src='/images/goods/assistant_right.png'></image>
+        </view>
+      </view>
+    </block>
+    <!-- 阶梯优惠弹框 -->
+    <view class="bottom_popup {{ladderPreferentialShow==1?'show':''}}" data-popup-type="store_service">
+      <view class="bottom_popup_title">阶梯优惠</view>
+      <view class="ul coupon_list">
+        <view class="mark mark_title">阶梯优惠</view>
+        <block wx:for='{{goods_info.goodsLadderPreferentialList}}' wx:key='' wx:for-item='vo'>
+          满
+          <view class='b'>{{vo.quantity}}</view>件,每件降
+          <view class='b'>{{vo.price}}</view>元
+        </block>
+      </view>
+      <view class="bottom_popup_button" id="complete" catchtap='popupClose'>
+        <view class='span'>完成</view>
+      </view>
+    </view>
+    <!-- 满额包邮 -->
+    <block wx:if='{{goods_info.baoyou_name != "" && goods_info.baoyou_name != undefined}}'>
+      <view class="price_postage" id="receive_coupons">
+        <view class="span price_postage_tit single">
+          <i class="goods_tab">包邮</i>
+          {{goods_info.baoyou_name}}
+        </view>
+      </view>
+      <view class="hr with-margin-l"></view>
+    </block>
+    <!-- 领取优惠劵 -->
+    <block wx:if='{{goods_info.goods_pintuan == undefined}}'>
+      <block wx:if='{{goods_info.goods_pintuan.is_open != 1}}'>
+        <block wx:if='{{goods_info.goods_coupon_list[0]!=undefined}}'>
+          <view class="price_postage" id="receive_coupons">
+            <view class="span price_postage_tit single" catchtap='popupShow'>
+              <i class="goods_tab">领券</i>
+              领取优惠劵
+              <image class="i jiantou" src='/images/goods/assistant_right.png'></image>
+            </view>
+          </view>
+          <view class="hr with-margin-l"></view>
+        </block>
+      </block>
+    </block>
+    <!-- 领取优惠券弹框 -->
+    <view class="bottom_popup {{popupShow==1?'show':''}}">
+      <view class="bottom_popup_title">
+        领取优惠劵
+      </view>
+      <view class="ul coupon_list">
+        <block wx:for='{{goods_info.goods_coupon_list}}' wx:key='' wx:for-item='coupon' wx:for-index='coupon_index'>
+          <view class='li'>
+            <view class="js-coupon {{coupon.status==0?'gray-border':''}}">
+              <view class="coupon-price" catchtap='toReceivePopup' data-fetch='{{coupon.max_fetch}}' data-received='{{coupon.receive_quantity}}' data-id='{{coupon.coupon_type_id}}' data-index='{{coupon_index}}'>
+                <image src="/images/goods/goods_coupon_recive{{coupon.status==0?'d':''}}.png" />
+                <view class="p price">￥{{coupon.money}}</view>
+                <view class="p desc">{{coupon.status==1?'立即领取':'已领取'}}</view>
+              </view>
+              <view class="coupon-lose">
+                <view class="p condition">{{coupon.money}}元优惠券，满{{coupon.at_least}}可用</view>
+                <view class="p time">
+                  <view class='span'>{{coupon.start_time}}</view>
+                  至
+                  <view class='span'>{{coupon.end_time}}</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+      <view class="bottom_popup_button" id="complete" catchtap='popupClose'>
+        <view class='span'>完成</view>
+      </view>
+    </view>
+    <!-- 已选择 -->
+    <!-- <block wx:if='goods_info.goods_pintuan == undefined'>
+      <block wx:if='{{goods_info.goods_pintuan.is_open != 1}}'>
+        <view class="price_postage" id="theSelected" catchtap='sBuyShow' data-type='buy'>
+          <view class='span left'>已选择</view>
+          <view class="span selected">{{sku_info.sku_name}} 　{{goodsNum}}件</view>
+          <image class="i jiantou" src='/images/goods/assistant_right.png'></image>
+        </view>
+        <view class="hr with-margin-l"></view>
+      </block>
+    </block> -->
+    <!-- 预售发货时间 -->
+    <block wx:if='{{goods_info.is_open_presell == 1}}'>
+      <view class="price_postage">
+        <view class='span'>发货</view>
+        <view class='span delivery-time'>
+          <block wx:if='{{goods_info.presell_delivery_type == 1}}'>
+            {{goods_info.presell_time}}后可发货
+          </block>
+          <block wx:if='{{goods_info.presell_delivery_type == 2}}'>
+            付款{{goods_info.presell_day}}天后可发货
+          </block>
+        </view>
+      </view>
+      <view class="hr with-margin-l"></view>
+    </block>
+    <!-- 商家服务 -->
+    <block wx:if='{{goods_info.existingMerchant[0]!=undefined}}'>
+      <view class="price_postage">
+        <view class='span'>服务</view>
+        <view class='span left'>
+          由
+          <view class='a'>{{shop_name}}</view>发货并提供售后服务
+        </view>
+      </view>
+      <view class="hr with-margin-l"></view>
+      <view class="price_postage" id="store_service" catchtap='serviceShow'>
+        <block wx:for='{{goods_info.existingMerchant}}' wx:key='' wx:for-item='vo'>
+          <view class='span'>
+            <icon type='success_no_circle' size='10' color='#FF4C4C'></icon>
+            {{vo.title}}
+          </view>
+        </block>
+        <image class="i jiantou" src='/images/goods/assistant_right.png'></image>
+      </view>
+    </block>
+    <!-- 商家服务弹框 -->
+    <view class="bottom_popup {{serviceShow==1?'show':''}}" data-popup-type="store_service">
+      <view class="bottom_popup_title">商家服务</view>
+      <view class="ul coupon_list">
+        <block wx:for='{{goods_info.existingMerchant}}' wx:key='' wx:for-item='vo'>
+          <view class='li'>
+            <view class="p service_title">
+              <icon type='success_no_circle' size='14' color='#FF4C4C'></icon>
+              {{vo.title}}
+            </view>
+            <view class="p service_desc">{{vo.describe}}</view>
+          </view>
+        </block>
+      </view>
+      <view class="bottom_popup_button" id="complete" catchtap='popupClose'>
+        <view class='span'>完成</view>
+      </view>
+    </view>
+    <!-- 积分抵现 -->
+    <block wx:if='{{goods_info.max_use_point > 0 && goods_info.point_config.is_open == 1 && goods_info.point_exchange_type != 1 && goods_info.point_exchange_type != 3}}'>
+      <view class="hr with-margin-l"></view>
+      <view class="price_postage">
+        <view class='span'>购买本商品积分可抵{{goods_info.max_use_point * goods_info.point_config.convert_rate}}元</view>
+      </view>
+    </block>
+    <!-- 拼团 -->
+    <block wx:if='{{goods_info.goods_pintuan != undefined}}'>
+      <block wx:if='{{goods_info.goods_pintuan.is_open == 1 && goods_info.goods_pintuan.pintuan_list.data[0] != undefined && goods_info.goods_pintuan.pintuan_list.data[0].real_num != 0}}'>
+        <view class="hr with-margin-l"></view>
+        <view class='spelling-block'>
+          <swiper class='ul' autoplay='true' interval='3500' duration='1000' circular='true' vertical='true'>
+            <block wx:for='{{goods_info.goods_pintuan.pintuan_list.data}}' wx:key='' wx:for-item='pintuan' wx:for-index='index'>
+              <swiper-item>
+                <view class='li'>
+                  <view class="user-logo">
+                    <image src="{{pintuan.group_user_head_img}}" mode='widthFix' binderror='errorPintuanUserImg' data-index='{{index}}' />
+                  </view>
+                  <view class="span user-name">{{pintuan.group_name}}</view>
+                  <button catchtap='spellList' data-index='{{index}}'>去拼单</button>
+                  <view class="info">
+                    <view class='span'>还差
+                      <view class='strong'>{{pintuan.poor_num}}人</view>拼成</view>
+                    <br/>
+                    <view class='time'>剩余：{{timers_array[index].hour+':'+timers_array[index].minute+':'+timers_array[index].second}}</view>
+                  </view>
+                </view>
+              </swiper-item>
+            </block>
+          </swiper>
+        </view>
+      </block>
+    </block>
+    <!-- 拼团弹框 -->
+    <block wx:if='{{spellingShow == 1}}'>
+      <view class="mask-layer-spelling">
+        <view class='h3'>参与
+          <strong>{{spelling.group_name}}</strong>的拼单</view>
+        <view class='p'>仅剩
+          <strong>{{spelling.poor_num}}</strong>个名额，
+          <view class='time'>{{timers_array[spelling.index].hour+':'+timers_array[spelling.index].minute+':'+timers_array[spelling.index].second}}后结束</view>
+        </view>
+        <image class="mask-layer-spelling-close" src="/images/pintuan/mask_layer_spelling_close.png" mode='widthFix' catchtap='popupClose' />
+        <view class="user-list">
+          <view class='ul'>
+            <view class='li'>
+              <view class="span boss">拼主</view>
+              <image src="{{spelling.group_user_head_img}}" mode='widthFix' />
+            </view>
+            <view class='li'>
+              <image src="/images/pintuan/spelling_who.png" mode='widthFix' />
+            </view>
+          </view>
+        </view>
+        <button catchtap='participateSpellList' data-id='{{spelling.group_id}}'>参与拼单</button>
+      </view>
+    </block>
+    <!-- 赠送积分 -->
+    <!-- <block wx:if='{{goods_info.give_point != 0 && goods_info.give_point != undefined}}'>
+      <view class="hr with-margin-l"></view>
+      <view class="price_postage">
+        <view class="span price_postage_tit">
+          <image class="i fa fa-database red" src='/images/goods/send_point.png' /> 赠送积分
+          <view class='span red'>{{goods_info.give_point}}</view>
+          分
+        </view>
+      </view>
+    </block> -->
+    <!-- 团购 -->
+    <block wx:if='{{goods_info.group_info != "" && goods_info.group_info != undefined}}'>
+      <view class="hr with-margin-l"></view>
+      <view class="price_postage" catchtap='groupPurchase' data-id='{{goods_info.goods_id}}' data-name='{{goods_info.goods_name}}'>
+        <view class="span left">去团购</view>
+        <image class="i jiantou" src='/images/goods/assistant_right.png'></image>
+      </view>
+    </block>
+    <!-- <view class="hr divider-line"></view> -->
+    <!-- 商品组合套餐 -->
+    <block wx:if='{{goods_info.comboPackageGoodsArray.goods_array[0] != undefined}}'>
+      <view class='a combo-package' catchtap='comboPackages' data-id='{{goods_info.goods_id}}'>
+        <view class="price_postage">
+          <view class="span price_postage_tit single">组合套餐
+            <image class="i jiantou" src='/images/goods/assistant_right.png'></image>
+          </view>
+        </view>
+        <view class="hr with-margin-l"></view>
+      </view>
+      <view class="combo_package">
+        <view class="combo_package_goods">
+          <view class="goods">
+            <view class='a' catchtap='comboGoodsDetail' data-id='{{goods_info.goods_id}}' data-name='{{goods_info.goods_name}}'>
+              <image src="{{goods_info.picture_detail.pic_cover_micro}}" class="g-img" mode='widthFix'></image>
+              <view class="p g-price">￥{{goods_info.promotion_price}}</view>
+            </view>
+          </view>
+          <view class="i fa fa-plus" aria-hidden="true"></view>
+          <block wx:for='{{goods_info.comboPackageGoodsArray.goods_array}}' wx:key='' wx:for-item='goods' wx:for-index='index'>
+            <view class="goods">
+              <view class='a' catchtap='comboGoodsDetail' data-id='{{goods.goods_id}}' data-name='{{goods.goods_name}}'>
+                <image src="{{goods.pic_cover_micro}}" class="g-img" mode='widthFix' data-index='{{index}}' binderror='errorComboImg'></image>
+                <view class="p g-price">￥{{goods.promotion_price}}</view>
+              </view>
+            </view>
+            <block wx:if='{{index < goods_info.comboPackageGoodsArray.goods_array.length-1}}'>
+              <view class="i fa fa-plus" aria-hidden="true"></view>
+            </block>
+          </block>
+        </view>
+      </view>
+      <!-- <view class="hr divider-line"></view> -->
+    </block>
+    <!-- 商品评价 -->
+    <!-- <block wx:if="{{comments_list[0]!=undefined}}">
+      <view class="evaluation-container">
+        <view class="evaluation-title">
+          商品评价 (
+          <view class='em'>{{goods_info.evaluates_count.praise_count}}</view>)
+        </view>
+        <view class="ul evaluation-type js-product-evaluation">
+          <view class='li' catchtap='moreEvaluation' data-type='0'>
+            全部
+            <view class='em'>({{goods_info.evaluates_count.evaluate_count}})</view>
+          </view>
+          <view class='li' catchtap='moreEvaluation' data-type='4'>
+            图片
+            <view class='em'>({{goods_info.evaluates_count.imgs_count}})</view>
+          </view>
+          <view class='li' catchtap='moreEvaluation' data-type='1'>
+            好评
+            <view class='em'>({{goods_info.evaluates_count.praise_count}})</view>
+          </view>
+          <view class='li' catchtap='moreEvaluation' data-type='2'>
+            中评
+            <view class='em'>({{goods_info.evaluates_count.center_count}})</view>
+          </view>
+          <view class='li' catchtap='moreEvaluation' data-type='3'>
+            差评
+            <view class='em'>({{goods_info.evaluates_count.bad_count}})</view>
+          </view>
+        </view>
+        <view class="evaluation-comments"> -->
+          <!-- 评价人信息 -->
+          <!-- <view class="evaluation-userinfo">
+            <image src="{{comments_list[0].user_img}}" class="headimg" lazy-load='true' binderror='errorHeadImg' data-index='0'></image>
+            <view class="span nickname">{{comments_list[0].member_name}}</view>
+            <view class="time evaluation-time">{{comments_list[0].addtime}}</view> 
+          </view>-->
+          <!-- 初次评价 -->
+          <!-- <view class="evaluation-content">{{comments_list[0].content}}</view> -->
+          <!-- 店家回复 -->
+          <!-- <block wx:if="{{comments_list[0].explain_first != ''}}">
+            <view class="evaluation-reply">店家回复:{{comments_list[0].explain_first}}</view>
+          </block> -->
+          <!-- 评价图片 -->
+          <!-- <view class="ul evaluation-pics">
+            <block wx:for='{{comments_list[0].image}}' wx:key='' wx:for-item='img'>
+              <view class='li'>
+                <image src="{{img}}" class="comment-pic" mode='aspectFit' />
+              </view>
+            </block>
+          </view> -->
+          <!-- 追评 -->
+          <!-- <block wx:if='{{comments_list[0].again_addtime != 0}}'>
+            <view class="p review-evaluation">
+              追加评价
+              <view class="time review-time">{{comments_list[0].again_addtime}}</view>
+            </view>
+            <view class="evaluation-content review">{{comments_list[0].again_content}}</view>
+          </block> -->
+          <!-- 追评店家回复 -->
+          <!-- <block wx:if="{{comments_list[0].again_explain != ''}}">
+            <view class="evaluation-reply">店家回复:{{comments_list[0].again_explain}}</view>
+          </block> -->
+          <!-- 追评图片 -->
+          <!-- <view class="ul evaluation-pics">
+            <block wx:for='{{comments_list[0].again_image}}' wx:key='' wx:for-item='img'>
+              <view class='li'>
+                <image src="{{img}}" class="comment-pic" mode='aspectFit' />
+              </view>
+            </block>
+          </view>
+        </view>
+        <view class="check-more">
+          <button catchtap='moreEvaluation' data-type='0'>查看更多评价</button>
+        </view>
+      </view>
+    </block> -->
+    <!-- <block wx:else>
+      <view class="evaluation-container">
+        <view class="evaluation-title">
+          暂无评价 (
+          <view class='em'>0</view>)
+        </view>
+      </view>
+    </block> -->
+    <view class="hr divider-line"></view> 
+    <!-- 商品属性 -->
+    <block wx:if="{{goods_info.goods_attribute_list[0]!=undefined}}">
+      <view class="tab-module-title">商品属性</view>
+      <view class="hr with-margin-l"></view>
+      <view class="detail_info_wrap p-attribute" id="p-attribute">
+        <view class="ul attribute-ul">
+          <block wx:for='{{goods_info.goods_attribute_list}}' wx:key='' wx:for-item='attribute'>
+            <view class='li'>
+              <view class='em'>{{attribute.attr_value}}：</view>
+              <view class="span goods-attr-value">{{attribute.attr_value_name}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+     <view class="hr divider-line"></view> 
+    </block>
+    <!-- 商品详情 -->
+    <block wx:if='{{detail_id != 0}}'>
+      <view class="tab-module-title">商品详情</view>
+      <view class="hr with-margin-l"></view>
+      <view class="detail_info_wrap" id="p-detail">
+        <view class="detail_list" id="content">
+          <template is="wxParse" data="{{wxParseData:description.nodes}}" />
+        </view>
+      </view>
+    </block>
+    <block wx:if='{{copyRight.default_logo != "" && copyRight.technical_support != ""}}'>
+      <view class="footer">
+        <view class="copyright" id="bottom_copyright">
+          <view class="ft-copyright">
+            <block wx:if='{{copyRight.default_logo != ""}}'>
+              <image src="{{copyRight.default_logo}}" mode='aspectFit' id="copyright_logo_wap"></image>
+            </block>
+            <block wx:if='{{copyRight.technical_support != ""}}'>
+              <view class='a' id="copyright_companyname">{{copyRight.technical_support}}</view>
+            </block>
+          </view>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view style='height:80px;'></view>
+    </block>
+    <!-- 弹出框 -->
+    <view class="mask {{maskShow==1?'':'hide'}}" id="mask" catchtap='popupClose'></view>
+    <view class='span hide' id="addcart_way">
+      <view class='i'></view>
+    </view>
+    <view animation="{{animation}}" class="s-buy" id="s_buy">
+      <view class="popup hide" id="popup"></view>
+      <view class="ul s-buy-ul">
+        <view class="li s-buy-pro">
+          <view class="span pro-img">
+            <!-- 商品SKU图片 -->
+            <image src='{{goods_info.img_list[0].pic_cover_micro}}' class="js-thumbnail"></image>
+          </view>
+          <view class="pro-info">
+            <view class="p name">{{goods_info.goods_name}}</view>
+            <view class="p pro-price" id="price">
+              <block wx:if='{{goods_info.point_exchange_type == 3}}'>
+                {{goods_info.point_exchange}}积分
+              </block>
+              <block wx:else>
+                ￥{{buyButtonStatus==3||buyButtonStatus==4?goods_info.goods_pintuan.tuangou_money:member_price}}
+                <block wx:if='{{goods_info.point_exchange_type == 1}}'>
+                  +{{goods_info.point_exchange}}积分
+                </block>
+              </block>
+            </view>
+          </view>
+          <view class="i icon-close" id="icon_close" catchtap='popupClose'></view>
+        </view>
+      </view>
+      
+      
+     <view class="defaultsize">
+            <view class="size-box">
+                <view class="st-name">身体尺寸选择必填(此商品会按本尺寸进行制作)</view>
+                <view class="st-contant" wx:if="{{goods_info.default_size!=null}}" bindtap='selsize'>{{goods_info.default_size.sizename}} ></view>
+                <view class="st-contant" wx:else bindtap='addsize'>
+                添加尺寸+
+                </view>
+            </view>
+    </view>
+      <view class="hr with-margin-l"></view>
+      <view class="ul s-buy-ul specification" id="specification">
+        <block wx:for='{{spec_list}}' wx:key='' wx:for-index='key' wx:for-item='spec'>
+          <view class="li s-buy-li {{xztitle&&spec.spec_name=='绣字颜色'?'yin':''}}">
+            <view class="left">{{spec.spec_name}}：</view>
+            <view class="right" name="specvals">
+              <block wx:for='{{spec.value}}' wx:for-item='sku' wx:for-index='k' wx:key=''> 
+                <view class="span select {{sku.status==1?'current':''}}" catchtap='skuSelect' data-key="{{key}}" data-k='{{k}}' data-picture-id="0" data-title="{{sku.spec_value_title}}">
+              <view class="s-matter">
+                    <image src="{{sku.spec_value_path}}" class="img" mode="aspectFill"></image>
+                    <view class="s-title">{{sku.spec_value_title}}</view>
+                    <view class="s-contant">{{sku.spec_value_detail}}</view>
+              </view>
+                </view>
+              </block>
+             
+            </view>
+          </view>
+          
+          <view class="hr with-margin-l {{key==spec_list.length?'hide':''}}"></view>
+        </block>
+        <block wx:for='{{spec_list}}' wx:key='' wx:for-index='key' wx:for-item='spec'>
+         <view class="li s-buy-li {{spec.spec_name!='绣字位置'?'yin':''}}" >
+                <view wx:if="{{xztitle?'':'yin'}}">
+                    <view class="left">绣字内容：</view>
+                    <input type="text" placeholder='请输入绣字内容' bindinput="xz"></input>
+                </view>
+            </view>
+            </block>
+      </view>
+      <view class="hr with-margin-l"></view>
+      <view class="li s-buy-li">
+        <view class="left" style="float:left;">购买数量：</view>
+        <view class="right">
+          <view class="span reduce quantity-minus-disabled" catchtap='goodsNumAdjust' data-type='minus'>-</view>
+          <input class="number" name="quantity" autocomplete="off" bindinput='goodsNumAdjustCheck' value="{{goodsNum}}" min="1" max="277" id="num" />
+          <view class="span add" catchtap='goodsNumAdjust' data-type='add'>+</view>
+        </view>
+        <view class='span last-goods' id="Stock">剩余{{stock}}件</view>
+        <view class='span last-goods {{goods_info.max_buy!=0?"":"hide"}}' id="Stock">限购{{goods_info.max_buy}}件</view>
+      </view>
+      <view class="ul s-buy-ul">
+        <view class="s-buy-btn">
+          <view class="a btn {{buyButtonStatus==0?'':'hide'}} {{stock==0?'disabled':''}} {{goods_info.state==0?'disabled':''}}" id="submit_ok" catchtap="{{stock==0?'nullStock':'buyNext'}}" tag="buyBtn1">{{goods_info.state==0?'已下架':'下一步'}}</view>
+          <view class="a btn {{buyButtonStatus==1?'':'hide'}} {{stock==0?'disabled':''}} {{goods_info.state==0?'disabled':''}}" id="submit_ok" catchtap="{{stock==0?'nullStock':'addCart'}}" tag="buyBtn1">{{goods_info.state==0?'已下架':'加入购物车'}}</view>
+          <view class="a btn {{buyButtonStatus==3?'':'hide'}} {{stock==0?'disabled':''}} {{goods_info.state==0?'disabled':''}}" id="submit_ok" catchtap="{{stock==0?'nullStock':'groupBooking'}}" tag="buyBtn1">{{goods_info.state==0?'已下架':'下一步'}}</view>
+          <view class="a btn {{buyButtonStatus==4?'':'hide'}} {{stock==0?'disabled':''}} {{goods_info.state==0?'disabled':''}}" id="submit_ok" catchtap="{{stock==0?'nullStock':'confirmSpellingList'}}" tag="buyBtn1">{{goods_info.state==0?'已下架':'下一步'}}</view>
+          <view class="a btn {{buyButtonStatus==5?'':'hide'}} {{stock==0?'disabled':''}} {{goods_info.state==0?'disabled':''}}" id="submit_ok" catchtap="{{stock==0?'nullStock':'pointExchange'}}" tag="buyBtn1">{{goods_info.state==0?'已下架':'下一步'}}</view>
+          <view class="a btn {{buyButtonStatus==6?'':'hide'}} {{stock==0?'disabled':''}} {{goods_info.state==0?'disabled':''}}" id="submit_ok" catchtap="{{stock==0?'nullStock':'goodsPresell'}}" tag="buyBtn1">{{goods_info.state==0?'已下架':'下一步'}}</view>
+          <view class="a btn {{buyButtonStatus==7?'':'hide'}} {{stock==0?'disabled':''}} {{goods_info.state==0?'disabled':''}}" id="submit_ok" catchtap="{{stock==0?'nullStock':'bargainNext'}}" tag="buyBtn1">{{goods_info.state==0?'已下架':'下一步'}}</view>
+        </view>
+      </view>
+    </view>
+    <view class="b-address {{addressShow==1?'show':'hide'}}" id="b-address">
+      <view class='h3'>请选择地址</view>
+      <view class='address_ul'>
+        <block wx:for='{{goods_info.addresslist.data}}' wx:key='' wx:for-item='address' wx:for-index='index'>
+          <view class="a address_block" data-bargain_id='{{goods_info.bargain_id}}' data-address_id='{{address.id}}' catchtap='addBargainLaunch'>
+            <view class='li clearfix'>
+              <view class='span name'>收货人信息：{{address.consigner}} </view>
+              <view class='span tel'>{{address.mobile}}</view>
+            </view>
+            <view class='li address-detail'>收货地址：{{address.address_info}}-{{address.address}}</view>
+          </view>
+        </block>
+
+        <view class="a address">
+          <view class='li address' catchtap='newAddress' data-id='{{goods_info.goods_id}}' data-name='{{goods_info.goods_name}}' data-bargain_id='{{goods_info.bargain_id}}'>新增收货地址</view>
+        </view>
+
+      </view>
+
+    </view>
+    <view class="js-bottom-opts bottom-fix">
+      <view class="responsive-wrapper">
+        <view class="a new-btn buy-cart" catchtap='tapSwitch' data-url='/index/index'>
+          <image src="/images/goods/go_home.png" mode='scaleToFill'></image>
+          <view class="span desc">首页</view>
+        </view>
+        <button class="a new-btn buy-cart" open-type="contact" session-from="weapp">
+          <image src="/images/goods/kefux.png" mode='scaleToFill'></image>
+          <view class="span desc">客服</view>
+        </button>
+        <block wx:if='{{goods_info.goods_pintuan == undefined}}'>
+          <view id="global-cart" class="a new-btn buy-cart {{goods_info.cart_count>0?'buy-cart-msg':''}}" catchtap='tapSwitch' data-url='/goods/cart/cart'>
+            <image src='/images/goods/cart_uncheck.png' mode='scaleToFill'></image>
+            <view class="span desc">购物车</view>
+          </view>
+        </block>
+        <view class="big-btn-2-1">
+          <!-- 砍价商品 -->
+          <block wx:if='{{goods_info.goods_bargain != undefined && is_bargain == 1}}'>
+            <view class="a big-btn bargain orange-btn" catchtap='sBuyShow' id="buyBtn1" data-type='buy'>
+              <view class='span goods-price'>￥{{goods_info.member_price}}</view>
+              <br/>
+              <view class='span'>单独购买</view>
+            </view>
+            <view class="a big-btn bargain red-btn" catchtap='sBuyShow' id="buyBtn1" data-type='bargain'>
+              <view class='span goods-price'>￥{{goods_info.member_price}}</view>
+              <br/>
+              <view class='span'>发起砍价</view>
+            </view>
+
+          </block>
+          <!-- 非砍价商品 -->
+          <!-- 拼团商品 -->
+          <block wx:elif='{{goods_info.goods_pintuan != undefined}}'>
+            <block wx:if='{{goods_info.tuangou_group_count > 0}}'>
+              <view class="a big-btn pintuan red-btn bigger" catchtap='participateSpellList' id="buyBtn1" data-id='{{group_id}}'>
+                <view class='span goods-price'>￥{{goods_info.goods_pintuan.tuangou_money}}</view>
+                <br/>
+                <view class='span'>参加拼团</view>
+              </view>
+            </block>
+            <block wx:else>
+              <view class="a big-btn pintuan orange-btn" catchtap='sBuyShow' id="buyBtn1" data-type='buy'>
+                <view class='span goods-price'>￥{{goods_info.member_price}}</view>
+                <br/>
+                <view class='span'>单独购买</view>
+              </view>
+              <view class="a big-btn pintuan red-btn" catchtap='sBuyShow' id="buyBtn1" data-type='group'>
+                <view class='span goods-price'>￥{{goods_info.goods_pintuan.tuangou_money}}</view>
+                <br/>
+                <view class='span'>发起拼单</view>
+              </view>
+            </block>
+          </block>
+          <block wx:else>
+            <!-- 非拼团商品 -->
+
+            <!-- 预售商品 -->
+            <block wx:if='{{goods_info.is_open_presell == 1}}'>
+              <view class="a big-btn red-btn bigger yd" catchtap='sBuyShow' id="buyBtn1" data-type='goods_presell'>立即预定</view>
+            </block>
+            <block wx:else>
+              <!-- 积分兑换商品 -->
+              <block wx:if='{{goods_info.point_exchange_type == 1 || goods_info.point_exchange_type == 3 }}'>
+                <view class="a big-btn red-btn bigger" catchtap='sBuyShow' id="buyBtn1" data-type='js_point_exchange'>立即兑换</view>
+              </block>
+              <!-- 非积分兑换商品 -->
+              <block wx:else>
+                <block wx:if='{{goods_info.goods_type > 0}}'>
+                  <view class="a big-btn orange-btn" catchtap='sBuyShow' id="addCart" data-type='addCart'>加入购物车</view>
+                  <view class="a big-btn red-btn" catchtap='sBuyShow' id="buyBtn1" data-type='buy'>立即购买</view>
+                </block>
+                <block wx:if='{{goods_info.goods_type == 0}}'>
+                  <view class="a big-btn red-btn bigger" catchtap='sBuyShow' id="buyBtn1" data-type='buy'>立即购买</view>
+                </block>
+              </block>
+            </block>
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>

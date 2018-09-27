@@ -1,0 +1,33 @@
+<scroll-view>
+  <view class="motify {{prompt==''?'hide':''}}">
+    <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+    <view class="motify-inner">{{prompt}}</view>
+  </view>
+  <view class="cf-container" data-reactid="2">
+    <view class="cf-edge" data-reactid="3"></view>
+    <view class="ul cf-content" data-reactid="4">
+      <view class="li cf-tab-item {{collection_type==0?'select':''}}" catchtap='listClick' data-type="0"><view class='a' >全部</view></view>
+      <view class="li cf-tab-item {{collection_type==1?'select':''}}" catchtap='listClick' data-type="1"><view class='a' >本周</view></view>
+      <view class="li cf-tab-item {{collection_type==2?'select':''}}" catchtap='listClick' data-type="2"><view class='a'>本月</view></view>
+      <view class="li cf-tab-item {{collection_type==3?'select':''}}" catchtap='listClick' data-type="3"><view class='a'>本年</view></view>
+    </view>
+  </view>
+  <view class="collection_goods_list">
+    <block wx:for='{{collection_list}}' wx:key='' wx:for-item='collection' wx:for-index='index'>
+      <view class="goods_info fav_id_5 {{index==collection_list.length-1?'last-child':''}}">
+        <view class="collection_time">{{collection.fav_time}}</view>
+        <view class="goods_img">
+          <image src='{{collection.goods_image}}' mode='aspectFit' binderror='errorImg' data-index='{{index}}'/>
+        </view>
+        <view class="data_info">
+          <view class="goods_name">{{collection.goods_name}}</view>
+          <view class="price_share">
+            <view class="price span">￥{{collection.promotion_price}}</view>
+            <view class="cancel_collection span" catchtap='cancleCollection' data-id='{{collection.fav_id}}' data-type='{{collection.fav_type}}' data-index='{{index}}'>取消收藏</view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <view class="collection_goods_empty li cf-tab-item {{collection_list[0]==undefined?'':'hide'}}">您还没有收藏记录</view>
+  </view>
+</scroll-view> 

@@ -1,0 +1,89 @@
+<view class="motify {{prompt==''?'hide':''}}">
+  <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+  <view class="motify-inner">{{prompt}}</view>
+</view>
+<view class="bro-spare">
+  <view class="tip_head">
+    <view class="p tip-txt">
+      <image class="i icon-money" src='/pagesnfx/images/icon_money.png'/>可提现佣金余额</view>
+    <view class="span number-big">¥{{user_account.commission_cash}}</view>
+  </view>
+  <view class="tip_bottom">
+    <view class="p field-2 lf">累计佣金
+      <br/>
+      <view class='big'>￥{{user_account.commission}}</view>
+    </view>
+    <view class="p field-2 lf">待审核金额
+      <br/>
+      <view class='big'>￥{{user_account.commission_locked}}</view>
+    </view>
+    <view class="p field-2 rg">已提现
+      <br/>
+      <view class='big'>￥{{user_account.commission_withdraw}}</view>
+    </view>
+  </view>
+</view>
+<!--推广员-->
+<view class='promoter-box'>
+  <view class="p xiajip">
+    <view class="span xiajispanleft">
+      <!-- <image class="i module-icon" src='/pagesnfx/images/promoter.png' /> -->推广员
+    </view>
+    <view class="span xiajispanright"></view>
+  </view>
+  <view class="ul maneylist">
+    <view class="li maneylist-li">
+      <view class="a a-personal" catchtap='listClick' data-url='/pagesnfx/pages/distribution/useraccountrecordsdetail/useraccountrecordsdetail?shop_id={{shop_id}}&type_id=1'>
+        <view class="span text">分销佣金</view>
+        <view class="span money-number">¥{{user_account.commission_promoter}}
+          <image class="i arrow" src='/pagesnfx/images/icon-ps.png' />
+        </view>
+      </view>
+    </view>
+    <block wx:if='{{shop_config.is_regional_agent > 0}}'>
+      <view class="li maneylist-li">
+        <view class="a a-personal" catchtap='listClick' data-url='/pagesnfx/pages/distribution/useraccountrecordsdetail/useraccountrecordsdetail?shop_id={{shop_id}}&type_id=2'>
+          <view class="span text">区域代理佣金</view>
+          <view class="span money-number">¥{{user_account.commission_region_agent}}
+            <image class="i arrow" src='/pagesnfx/images/icon-ps.png' />
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+<view class="blank"></view>
+<!--股东-->
+<block wx:if='{{shop_config.is_partner_enable > 0}}'>
+  <view class="nav_two">
+    <view class="p xiajip">
+      <view class="span xiajispanleft gd">
+        <image class="i shareholder" src='/pagesnfx/images/shareholder.png' />股东
+      </view>
+      <view class="span xiajispanright"></view>
+    </view>
+    <view class="ul maneylist">
+      <view class="li maneylist-li">
+        <view class="a a-personal" catchtap='listClick' data-url='/pagesnfx/pages/distribution/useraccountrecordsdetail/useraccountrecordsdetail?shop_id={{shop_id}}&type_id=4'>
+          <view class="span text">股东分红</view>
+          <view class="span money-number">¥{{user_account.commission_partner}}
+            <image class="i arrow" src='/pagesnfx/images/icon-ps.png' />
+          </view>
+        </view>
+      </view>
+      <block wx:if='{{shop_config.is_global_enable}}'>
+        <view class="li maneylist-li">
+          <view class="a a-personal" catchtap='listClick' data-url='/pagesnfx/pages/distribution/useraccountrecordsdetail/useraccountrecordsdetail?shop_id={{shop_id}}&type_id=5'>
+            <view class="span text">全球分红</view>
+            <view class="span money-number">¥{{user_account.commission_partner_global}}
+              <image class="i arrow" src='/pagesnfx/images/icon-ps.png' />
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</block>
+<view class="bro-extract-btn">
+  <view class="a button [radius round] red" catchtap='toWithdraw'>申请提现</view>
+</view>

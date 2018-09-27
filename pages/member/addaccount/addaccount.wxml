@@ -1,0 +1,33 @@
+<view class="motify {{prompt==''?'hide':''}}">
+  <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+  <view class="motify-inner">{{prompt}}</view>
+</view>
+<form class="form-info">
+	<view class="div-item">
+		<view class='span'>真实姓名</view>
+		<input type="text" bindinput='inputEvent' placeholder="请输入真实姓名" data-id="realname"/>
+	</view>
+	<view class="div-item">
+		<view class='span'>手机号码</view>
+		<input type="number" bindinput='inputEvent' maxlength='11' placeholder="请输入手机号" data-id="mobile"/>
+	</view>
+	<view class="div-item">
+		<view class='span'>账号类型</view>
+    <picker bindchange="bindAccountTypeChange" mode='selector' range="{{account_type_list}}" value="{{account_type_index}}"  range-key="name">
+      <view>{{account_type_list[account_type_index].name}}</view>
+    </picker>
+	</view>
+	<view class="div-item {{account_type==1?'':'hide'}}" data-flag="branch_bank_name">
+		<view class='span'>支行信息</view>
+		<input type="text" bindinput='inputEvent' placeholder="请输入支行信息" data-id="branch_bank_name"/>
+	</view>
+	<view class="div-item {{account_type==1?'':'hide'}}" data-flag="account_number">
+		<view class='span'>银行账号</view>
+		<input type="number" bindinput='inputEvent' placeholder="请输入银行账号" data-id="account_number" onkeyup="value=value.replace(/[^\d+(\.\d+)?]/g,'')" maxlength='21'/>
+	</view>
+  <view class="div-item {{account_type==3?'':'hide'}}" data-flag="account_number">
+		<view class='span'>提现账号</view>
+		<input type="number" bindinput='inputEvent' placeholder="请输入提现账号" data-id="account_number" maxlength='30'/>
+	</view>
+</form>
+<button class="btn-save" catchtap='addAccount'>保存</button>

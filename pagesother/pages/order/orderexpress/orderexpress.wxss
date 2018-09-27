@@ -1,0 +1,112 @@
+.cf-container{
+  height: 2.26rem;
+  top: 0;
+  width: 100%;
+  z-index: 6;
+  background: #fff;
+  overflow: hidden;
+  font-size: 14px;
+  border-bottom: 1px solid #E2E2E2;
+  max-width: 640px;
+  margin: auto;
+}
+
+.cf-container .cf-content{
+  position: relative;
+  color: #333;
+  top: 0;
+  white-space: nowrap;
+  z-index: 5;
+  -webkit-overflow-scrolling: touch;
+  margin-left: 0.1rem;
+  margin-right: 0.1rem;
+}
+
+.cf-container .cf-tab-item{
+  display: inline;
+  margin-left: 0px;
+  padding: 0px;
+  line-height: 32px;
+  text-align: center;
+}
+
+.cf-container .cf-tab-item .a{
+  padding: 0 5px;
+  padding-bottom: 0px;
+}
+
+.cf-container .cf-tab-item.select .a{
+  color: #707070;
+  border-bottom: 2px solid rgb(245, 183, 8);
+}
+
+.express_goods{
+  line-height: 23px;
+  padding: 7px;
+  font-size: 12px;
+  color: #666;
+}
+
+.status image{
+  width: 60px;
+  height: 60px;
+  margin-top:10px;
+}
+
+.express_info {
+  width: 100%;
+  min-height: 100px;
+  background: #fff;
+  padding: 20px 0;
+}
+
+.express_info .ul {
+  width: 92%;
+  margin: 0 4%;
+  border-left: 1px solid #CCCCCC;
+}
+
+.express_info .ul .li {
+  width: 96%;
+  margin-left: 15px;
+  border-bottom: 1px solid #eee;
+  position: relative;
+}
+
+.express_info .ul .li .Traces, .express_info .ul .li .AcceptTime {
+  min-height: 30px;
+  vertical-align: middle;
+  color: #999999;
+}
+
+.express_info .ul .li .Traces {
+  font-size: 14px;
+}
+
+.express_info .ul .li:first-child .Traces, .express_info .ul .li:first-child .AcceptTime {
+  color: #39C267;
+}
+
+.express_info .ul .li .Dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #CCCCCC;
+  position: absolute;
+  z-index: 5;
+  left: -20px;
+  top: 41%;
+}
+
+.express_info .ul .li:first-child .Dot {
+  background: #39C267;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  border: 2px solid #A1EEC2;
+  left: -21px;
+}
+
+.express_info .ul .li:last-child {
+  border-bottom: none;
+}

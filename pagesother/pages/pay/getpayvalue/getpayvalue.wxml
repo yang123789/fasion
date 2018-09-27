@@ -1,0 +1,38 @@
+<view class="motify {{prompt==''?'hide':''}}">
+  <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+  <view class="motify-inner">{{prompt}}</view>
+</view>
+
+
+<view class="head-info">
+  <view class="head-pay">支付金额</view>
+  <view class="head-pay-value">￥{{use_balance ? pay_money : pay_value.pay_money}}</view>
+</view>
+
+<block wx:if="{{shop_config.is_use == 1 && shop_config.value == '1' && balance_money > 0}}">
+  <view class="available-balance">
+    <view class='span'>可用余额：￥{{balance_money}}元</view>
+    <view class="span balance_checkbox">
+      <checkbox-group bindchange="useBalance">
+        <checkbox class="switch_checkbox" id="is_use_balance" checked="{{use_balance ? 'checked' : ''}}" value="{{balance_money}}"/>
+      </checkbox-group>
+      <label for="is_use_balance" class="{{use_balance ? 'checked' : ''}} switch_label">
+          <view class="span switch_circle"></view>
+      </label>
+    </view>
+  </view>
+</block>
+<view class="pay-type-item">
+	<view class="codes">
+    <view class="wchat-weixin">
+			<image src="/images/pay/weifu.png" class="wchat-photo"/>
+			<view class="span wchat-title">微信支付</view>
+			<view id="wchatpay" class='span'>
+        <icon type='success' size='25' color='#08BC05'></icon>
+      </view>
+		</view>
+  </view>
+</view>
+<view class="section s-btn">
+  <view class="a alipay" catchtap="{{use_balance ? 'bindBalance' : 'payOrder'}}">确认支付</view>
+</view>

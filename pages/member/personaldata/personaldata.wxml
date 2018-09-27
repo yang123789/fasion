@@ -1,0 +1,46 @@
+<scroll-view>
+  <view class="personal-center" id="divInfo">
+    <view class="side-nav" id="list">
+      <view data-url="" class="view-first">
+        <view class="cont-value">
+          <view class="value touxiang" catchtap='listClick' data-url='member/modifyface/modifyface'>
+            <image src='{{user_info.user_headimg!=""?user_info.user_headimg:"/images/member/member_default.png"}}' mode='widthFix' binderror='errorHeadImg'/>
+          </view>
+        </view>
+      </view>
+
+      
+      <view class="view">
+        <view>
+          <view class="title">昵称</view>
+          <view class="cont-value" catchtap='listClick' data-url='member/updatenickname/updatenickname?edit_nick_name=1'>
+            <view class="value">{{user_info.nick_name}}<text>></text></view>
+          </view>
+        </view>
+      </view>
+
+      
+
+      <view isnew="False"  data-url="" class="view">
+        <view>
+          <view class="title">手机</view>
+          <view class="cont-value" catchtap='listClick' data-url='member/updatemobile/updatemobile'>
+            <view class="value {{user_info.user_tel!=''?'':'set_a'}}">{{user_info.user_tel!=''?user_info.user_tel:'绑定手机号码'}}<text>></text></view>
+          </view>
+        </view>
+      </view>
+
+      <view  data-url="" class="view">
+        <view>
+          <view class="title">邮箱</view>
+          <view class="cont-value" catchtap='listClick' data-url='member/updateemail/updateemail'>
+            <view class="value">{{user_info.user_email!=''?user_info.user_email:'　'}}<text> > </text></view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="button-submit">
+			<view class='a' id="logout"><button catchtap="logout">退出登录</button></view>
+		</view>
+  </view>
+</scroll-view>

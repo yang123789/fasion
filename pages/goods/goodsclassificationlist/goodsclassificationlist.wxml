@@ -1,0 +1,97 @@
+<block wx:if='{{is_load == 0}}'>
+  <image class='load_img' src='/images/member/Loading.png'></image>
+  <view class='load_mask'></view>
+</block>
+<view class="head">
+  <view class="head_back a" id="head_back">
+    <view class="icon-back i"> </view>
+  </view>
+  <view class="head-title">
+    <view class='span'>
+      <view class="controlSearch">
+        <view class="control-search-input">
+          <input type="text" class="search-input custom-search-input" bindinput='searchInput' placeholder="搜索商品" value='{{search_text}}' />
+          <image src='/images/goods/search_icon_2.png' class="search-button custom-search-button" catchtap='listClick' data-url='/goods/goodssearchlist/goodssearchlist?search_text={{search_text}}' />
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<block wx:if='{{goods_category_list.length != 0 && goods_category_list.length != undefined}}'>
+  <block wx:if='{{showType == 1}}'>
+    <view class="custom-tag-list">
+      <view class="custom-menu-block">
+        <view class='ul'>
+          <block wx:for='{{goods_category_list}}' wx:key='' wx:for-item='category' wx:for-index='index'>
+            <view class="li {{category_index==index?'current':''}}">
+              <view class='a' data-index="{{index}}" catchtap='selectCategory'>{{category.short_name}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+
+      <view class="custom-list-goods">
+        <view class="content">
+         
+          <block wx:for='{{goods_category_list[category_index].child_list}}' wx:key='' wx:for-item='category_second' wx:for-index='key'>
+            <view class='a' catchtap='listClick' data-url='/goods/goodslist/goodslist?id={{category_second.category_id}}&&alias={{category_second.category_name}}'>
+              <view class="h4 category_title">{{category_second.category_name}}</view>
+            </view>
+            <!-- 三级分类 -->
+            <view class="three_categorty_box">
+              <view class='ul'>
+                <block wx:if='{{category_second.child_list.length == 0}}'>
+                  <view class="li">
+                    <view class="a cate_pic" catchtap='listClick' data-url='/goods/goodslist/goodslist?id={{category_second.category_id}}&&alias={{category_second.category_name}}'>
+                      <image src="{{category_second.category_pic==''?'0':category_second.category_pic}}" mode='widthFix' binderror='imgError' data-hierarchy='2' data-index='{{category_index}}' data-key='{{key}}' data-parm='0' />
+                    </view>
+                    <view class="p cate_name">{{category_second.category_name}}</view>
+                  </view>
+                </block>
+                <block wx:for='{{category_second.child_list}}' wx:key='' wx:for-item='category_third' wx:for-index='parm'>
+                  <view class="li">
+                    <view class="a cate_pic" catchtap='listClick' data-url='/goods/goodslist/goodslist?id={{category_third.category_id}}&&alias={{category_third.category_name}}'>
+                      <image src="{{category_third.category_pic==''?'0':category_third.category_pic}}" mode='widthFix' binderror='imgError' data-hierarchy='3' data-index='{{category_index}}' data-key='{{key}}' data-parm='{{parm}}' />
+                    </view>
+                    <view class="p cate_name">{{category_third.category_name}}</view>
+                  </view>
+                </block>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <block wx:if='{{showType == 2}}'>
+    <view class="goodsCategoryList">
+      <view class="all_goods" catchtap='listClick' data-url='/goods/goodslist/goodslist'>
+        <view class='a'>全部商品</view>
+      </view>
+      <block wx:for='{{goods_category_list}}' wx:key='' wx:for-item='category'>
+        <view class="one_level_category">
+          <view class='span'>{{category.short_name}}</view>
+          <image class="data-line" src='/images/goods/bg_ico.png'></image>
+        </view>
+        <view class="two-level_category">
+          <view class='ul' wx:for='{{category.child_list}}' wx:key='' wx:for-item='child' wx:for-index='k'>
+            <block wx:if='{{k==0}}'>
+              <view class='li'>
+                <view class='a all' catchtap='listClick' data-url='/goods/goodslist/goodslist?id={{category.category_id}}&&alias={{category.category_name}}'>全部</view>
+              </view>
+            </block>
+            <view class='li'>
+              <view class='a' catchtap='{{child.category_id>0?"listClick":""}}' data-url='/goods/goodslist/goodslist?id={{child.category_id}}&&alias={{child.category_name}}'>{{child.category_name}}</view>
+            </view>
+          </view>
+          <view style="clear: both;"></view>
+        </view>
+        <view class='clear'></view>
+      </block>
+    </view>
+  </block>
+</block>
+<block wx:else>
+  <view class='span empty'>暂无分类</view>
+</block>

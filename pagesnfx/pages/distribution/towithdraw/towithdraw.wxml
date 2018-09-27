@@ -1,0 +1,56 @@
+<scroll-view>
+  <view class="motify {{prompt==''?'hide':''}}">
+    <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+    <view class="motify-inner">{{prompt}}</view>
+  </view>
+  <view class="panel extract">
+    <view class="commision-total">
+      <view class="span span-title">可提现金额：</view>
+      <view class="span number" id="Amount">¥{{user_account.commission_cash}}</view>
+    </view>
+    <view class="extract-number">
+      <view class="span span-title">佣金总金额：</view>
+      <view class="span number" id="MaxCashAmount">¥{{user_account.commission}}</view>
+    </view>
+  </view>
+  <view class="panel extract-account" style="border:0px;">
+	  <view class="ul side-nav">
+      <block wx:if='{{account_list[0]==undefined}}'>
+        <view class='li'>
+          <view class='a' catchtap='addAccount'>
+            <view class='span'>请添加提现账号<br/></view>
+            <view class="arrow"></view>
+          </view>
+        </view>
+      </block>
+      <block wx:for='{{account_list}}' wx:key='' wx:for-item='account'>
+        <view class='li'>
+          <view class='a' catchtap='addAccount'>
+            <block wx:if='{{account.account_type == 1}}'>
+              <view class='span'>{{account.branch_bank_name}}<br/>{{account.account_number}}</view>
+            </block>
+            <block wx:if='{{account.account_type == 2}}'>
+              <view class='span'>{{account.account_type_name}}<br/></view>
+            </block>
+            <block wx:if='{{account.account_type == 3}}'>
+              <view class='span'>{{account.account_type_name}}<br/>{{account.account_number}}</view>
+            </block>
+            <view class="arrow"></view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class="row extract-monynumber">
+    <view class="large-12 columns">
+      <input type="text" class="" id="money" placeholder="请输入提取金额" bindinput='inputToWithdraw'/>
+    </view>
+    <view class="tip-text">
+      最低提现金额为<view class='span' id="MinaAmountCash">{{withdraw_info.withdraw_cash_min}}</view>元，必须为<view class='span' id="IntTimes">{{withdraw_info.withdraw_multiple}}</view>的整数倍
+    </view>
+  </view>
+  <view class="btn_all">
+	  <view class="a button red" catchtap='toWithdraw'>立即提取</view>
+		<view class="horn-text"> 注:可提现金额为交易成功后7天且未提现的金额</view>
+	</view>
+</scroll-view>

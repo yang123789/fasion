@@ -1,0 +1,155 @@
+{
+  "pages": [
+    "pages/index/index",
+      "pages/index/question/question",
+      "pages/index/question/qdetails/qdetails",
+     
+      "pages/liangti/liangti",
+      "pages/liangti/newcc/newcc",
+    
+    
+    "pages/index/navdetail/navdetail",
+    "pages/goods/goodslist/goodslist",
+    "pages/goods/cart/cart",
+    
+    "pages/member/member/member",
+    "pages/index/discount/discount",
+    "pages/index/noticelist/noticelist",
+    "pages/index/noticecontent/noticecontent",
+    "pages/goods/goodsclassificationlist/goodsclassificationlist",
+    "pages/goods/goodsdetail/goodsdetail",
+    "pages/goods/brandlist/brandlist",
+    "pages/goods/controlevaluation/controlevaluation",
+    "pages/goods/goodssearchlist/goodssearchlist",
+    "pages/goods/combopackagelist/combopackagelist",
+    "pages/goods/promotionzone/promotionzone",
+    "pages/goods/spellinggroupzone/spellinggroupzone",
+    "pages/goods/grouppurchase/grouppurchase",
+    "pages/goods/integralzone/integralzone",
+    "pages/goods/grouppurchasezone/grouppurchasezone",
+    "pages/goods/promotiontopic/promotiontopic",
+    "pages/goods/promotiontopicgoods/promotiontopicgoods",
+    "pages/goods/goodsbargainlist/goodsbargainlist",
+    "pages/member/newmypath/newmypath",
+    "pages/member/updateaccount/updateaccount",
+    "pages/member/personaldata/personaldata",
+    "pages/member/memberaddress/memberaddress",
+    "pages/member/modifyface/modifyface",
+    "pages/member/membercoupon/membercoupon",
+    "pages/member/mycollection/mycollection",
+    "pages/member/updatememberaddress/updatememberaddress",
+    "pages/member/addmemberaddress/addmemberaddress",
+    "pages/member/updatenickname/updatenickname",
+    "pages/member/updatemobile/updatemobile",
+    "pages/member/updateemail/updateemail",
+    "pages/member/balancewater/balancewater",
+    "pages/member/integralwater/integralwater",
+    "pages/member/balancewithdraw/balancewithdraw",
+    "pages/member/recharge/recharge",
+    "pages/member/towithdraw/towithdraw",
+    "pages/member/accountlist/accountlist",
+    "pages/member/addaccount/addaccount",
+    "pages/member/updatepassword/updatepassword",
+    "pages/logs/logs",
+    "pages/member/getappletqrcode/getappletqrcode"
+  ],
+  "subPackages": [
+    {
+      "root": "pagesother",
+      "pages": [
+        "pages/articlecenter/articlecenter",
+        "pages/articlecenter/articlecontent/articlecontent",
+        "pages/order/myvirtualorderlist/myvirtualorderlist",
+        "pages/order/myorderlist/myorderlist",
+        "pages/order/paymentorder/paymentorder",
+        "pages/order/orderdetail/orderdetail",
+        "pages/order/refunddetail/refunddetail",
+        "pages/order/orderexpress/orderexpress",
+        "pages/order/reviewcommodity/reviewcommodity",
+        "pages/order/reviewagain/reviewagain",
+        "pages/order/virtualorderdetail/virtualorderdetail",
+        "pages/order/customerdetail/customerdetail",
+        "pages/login/login/login",
+        "pages/login/register/register",
+        "pages/login/findpassword/findpassword",
+        "pages/pay/getpayvalue/getpayvalue",
+        "pages/pay/paycallback/paycallback",
+        "pages/verification/verificationplatform/verificationplatform",
+        "pages/verification/verificationgooodstoexamine/verificationgooodstoexamine",
+        "pages/verification/myVirtualCode/myVirtualCode",
+        "pages/verification/virtualgoodsshare/virtualgoodsshare",
+        "pages/verification/verificationorderdetail/verificationorderdetail",
+        "pages/pintuanorder/paymentorder/paymentorder",
+        "pages/pintuanorder/orderdetail/orderdetail",
+        "pages/pintuanorder/myorderlist/myorderlist",
+        "pages/pintuanorder/myspellingorderlist/myspellingorderlist",
+        "pages/pintuanorder/spellgroupshare/spellgroupshare",
+        "pages/presellorder/mypresellorderlist/mypresellorderlist",
+        "pages/presellorder/orderdetail/orderdetail",
+        "pages/bargain/bargainlaunch/bargainlaunch",
+        "pages/bargain/mybargain/mybargain",
+        "pages/bargain/bargainorderdetail/bargainorderdetail",
+        "pages/bargain/myorderlist/myorderlist"
+      ]
+    },
+    {
+      "root": "pagesnfx",
+      "pages": [
+        "pages/distribution/applypromoter/applypromoter",
+        "pages/distribution/distributioncenter/distributioncenter",
+        "pages/distribution/useraccountrecordslist/useraccountrecordslist",
+        "pages/distribution/teamlist/teamlist",
+        "pages/distribution/usershopcommission/usershopcommission",
+        "pages/distribution/useraccountrecordsdetail/useraccountrecordsdetail",
+        "pages/distribution/applypartner/applypartner",
+        "pages/distribution/applyregionalagent/applyregionalagent",
+        "pages/distribution/towithdraw/towithdraw",
+        "pages/distribution/homepartner/homepartner",
+        "pages/distribution/homeregionagent/homeregionagent"
+      ]
+    }
+  ],
+  "tabBar": {
+    "borderStyle": "black",
+    "color": "#666",
+    "selectedColor": "#000",
+    "backgroundColor": "#FFFFFF",
+    "list": [
+      {
+        "iconPath": "images/bottom/home_uncheck.png",
+        "selectedIconPath": "images/bottom/home_check.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "iconPath": "images/bottom/classify_uncheck.png",
+        "selectedIconPath": "images/bottom/classify_check.png",
+        "pagePath": "pages/goods/goodsclassificationlist/goodsclassificationlist",
+        "text": "分类"
+      },
+      {
+        "iconPath": "images/bottom/lt_uncheck.png",
+        "selectedIconPath": "images/bottom/lt_check.png",
+        "pagePath": "pages/liangti/liangti",
+        "text": "AI量体"
+    },
+      {
+        "iconPath": "images/bottom/cart_uncheck.png",
+        "selectedIconPath": "images/bottom/cart_check.png",
+        "pagePath": "pages/goods/cart/cart",
+        "text": "购物车"
+      },
+      {
+        "iconPath": "images/bottom/user_uncheck.png",
+        "selectedIconPath": "images/bottom/user_check.png",
+        "pagePath": "pages/member/member/member",
+        "text": "会员中心"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black"
+  }
+}

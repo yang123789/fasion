@@ -1,0 +1,12 @@
+<scroll-view>
+  <view class="motify {{prompt==''?'hide':''}}">
+    <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+    <view class="motify-inner">{{prompt}}</view>
+  </view>
+  <view class="mt-55 mlr-15" id="edit_nick_name" style="background-color: rgb(255, 255, 255); margin: 8px 0px 0px;">
+    <view><view class='span'>昵称</view>
+      <input type="text" bindinput='inputNickName' id="input_nick_name" placeholder="请输入昵称" value="{{new_nickname}}"/>
+    </view>
+  </view>
+  <button catchtap='saveNickname'>保存</button>
+</scroll-view>

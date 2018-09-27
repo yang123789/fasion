@@ -1,0 +1,349 @@
+.clear{
+  clear: both;
+  zoom: 1;
+}
+
+.order-detail-sum{
+  padding: 10px 15px;
+  border-bottom: 1px solid #FF834C;
+  background: #FF834C;
+  color: #fff;
+}
+
+.clear:before, .clear:after{
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.order-detail .order-detail-r{
+  overflow: hidden;
+}
+
+.order-detail .order-detail-r .ul{
+  margin: 0;
+  list-style: none;
+  font-size: 12px;
+}
+
+.order-detail .order-detail-r .ul view{
+  font-size: 12px;
+}
+
+.order-detail .order-detail-r .ul .li{
+  padding: 0 0 4px 0;
+  position: relative;
+}
+
+.order-detail .order-detail-r .ul .li .a:after{
+  content: '﹀';
+  transform: rotate(-90deg);
+  color: #CCC;
+  font-size: 10px;
+  position: absolute;
+  right: -10px;
+  top:1px ;
+  bottom: 0;
+  margin: auto;
+}
+
+.ul.remark-r-ul .li .a{
+  position: relative;
+  width: 100%;
+}
+
+.order-detail-sum .sum-r-ul .status{
+  line-height: 14px !important;
+  font-size: 14px !important;
+}
+
+.order-detail .order-detail-r .label{
+  padding: 0;
+  background: none;
+  color: #333;
+}
+
+.order-detail-sum .sum-r-ul .label{
+  color: #fff;
+}
+
+.order-detail-address{
+  padding: 0 15px;
+  background: #fff;
+  color: #333;
+}
+
+.order-detail-address .address-out{
+  padding: 10px 0;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.order-detail .order-detail-l{
+  float: left;
+  margin-right: 10px;
+}
+
+.order-detail .order-detail-l .icon-orders-small, .order-detail .order-detail-l .icon-address-small, .order-detail .order-detail-l .icon-double-round, .order-detail .order-detail-l .icon-talks-small{
+  width: 15px;
+  height: 15px;
+  line-height: 22px;
+  text-align: center;
+  font-size: 25px;
+  display: inline-block;
+  top:1px;
+  position:relative;
+}
+
+.order-detail .order-detail-l image.icon-address-small{
+  width:17px;
+  top:2px;
+}
+
+.icon-address-small:before {
+    content: "";
+}
+
+.order-detail .order-detail-r .name, .order-detail .order-detail-r .name .label{
+  line-height: 12px;
+  font-size: 12px;
+  margin-right: 7px;
+}
+
+.order-detail .order-detail-r .ul .li:last-child{
+  padding-bottom: 0;
+}
+
+.order-detail-remark{
+  padding: 0 15px;
+  border-bottom: 1px solid #e3e3e3;
+  background: #fff;
+  color: #333;
+}
+
+.order-detail-remark .remark-out{
+  padding: 10px 0;
+}
+
+.icon-talks-small:before {
+    content: "";
+}
+
+.text view{
+  font-size: 12px;
+}
+
+.list-myorder{
+  margin: 0 0 10px 0;
+  padding-top: 10px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  background: #fff;
+}
+
+.order-detail .list-myorder{
+  margin: 10px 0 0px 0;
+  padding-top: 0px;
+  border-top: 1px solid #e3e3e3;
+  border-bottom: 1px solid #e3e3e3;
+  background: #fff;
+}
+
+.list-myorder .ul-product{
+  margin: 5px 15px;
+  line-height: 1.2;
+}
+
+.list-myorder .li{
+  padding: 10px 0;
+  list-style: none;
+  border-bottom: 1px dotted #ccc;
+  overflow: hidden;
+}
+
+.list-myorder .pic{
+  float: left;
+  width: 70px;
+  height: 70px;
+  margin-right: 10px;
+  padding: 1px;
+}
+
+.list-myorder .pic image{
+  width: 100%;
+  height: 100%;
+}
+
+.list-myorder .text {
+  overflow: hidden;
+  font-size: 14px;
+}
+
+.order-detail .list-myorder .text{
+  font-size: 12px;
+  overflow: hidden;
+}
+
+.order-detail .list-myorder .pro-name{
+  color: #666;
+  font-size: 12px;
+}
+
+.order-detail .list-myorder .pro-pric {
+  margin-top: 5px;
+  color: #333;
+  font-size: 12px;
+}
+
+.order-detail .list-myorder .pro-pric .span {
+  color: #999;
+  font-size: 12px;
+}
+
+.order-detail .money-content {
+  padding: 0 15px 15px 15px;
+}
+
+.order-detail .money-row {
+  line-height: 25px;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+.order-detail .money-content .price{
+  float: right;
+}
+
+.order-tablink {
+  border-top: 1px solid #e3e3e3;
+  border-bottom: 1px solid #e3e3e3;
+  background: #fff;
+  margin: 10px 0 0 0;
+  padding-bottom: 30px;
+}
+
+.order-tablink .tablink-box {
+  display: -webkit-box;
+  padding: 10px 15px;
+}
+
+.order-tablink .tablink-box .tablink {
+  -webkit-box-flex: 1;
+}
+
+.order-tablink .tablink-box .tablink .a {
+  display: block;
+  margin: 0 auto;
+  height: 35px;
+  border: 1px solid #e7e7e7;
+  text-align: center;
+  line-height: 35px;
+  font-size: 14px;
+  border-radius: 2px;
+}
+
+.order-tablink .tablink-box .tablink .a .kefu image {
+  width: 18px;
+  height: 18px;
+  margin: 0 1px;
+  vertical-align: middle;
+  margin-bottom: 3px;
+}
+
+.kefu button{
+  padding: 0;
+  line-height: 35px;
+  font-size: 14px;
+  height: 100%;
+  width: 100%;
+  background: #FFF;
+  border: none;
+  box-shadow: unset;
+  border-radius: 2px;
+  -moz-box-shadow: unset;
+  -webkit-box-shadow: unset;
+  -o-box-shadow: unset;
+  color: #333;
+}
+
+.kefu button::after, .kefu button::before{
+  border: none;
+}
+
+.order-tablink .tablink-box .tablink {
+  -webkit-box-flex: 1;
+}
+
+.order-tablink .tablink-box .tablink .a {
+  display: block;
+  margin: 0 auto;
+  height: 35px;
+  border: 1px solid #e7e7e7;
+  text-align: center;
+  line-height: 35px;
+  font-size: 14px;
+  border-radius: 2px;
+}
+
+.order-tablink .tablink-box .tablink .a .call image{
+  width: 18px;
+  height: 18px;
+  margin: 0 1px;
+  vertical-align: middle;
+  margin-bottom: 3px;
+}
+
+.virtual_code {
+  background: #fff;
+  margin-top: 10px;
+  border-top: 1px solid #e3e3e3;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.virtual_code .ul {
+  padding: 0 10px;
+  margin: 0;
+}
+
+.virtual_code .ul .li {
+  width: 100%;
+  color: #666;
+  line-height: 35px;
+  height: 35px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.virtual_code .ul .li .h5 {
+  font-size: 14px;
+  font-weight: normal;
+  padding: 0;
+  margin: 0;
+  height: 35px;
+  line-height: 35px;
+  display: inline-block;
+}
+
+.virtual_code .ul .a {
+  width: 100%;
+}
+
+.virtual_code .ul .li:last-child {
+    border: none;
+}
+
+.virtual_code .ul .li .span.code {
+  font-size: 13px;
+  float: left;
+}
+
+.virtual_code .ul .li .span.code-right {
+  font-size: 12px;
+  float: right;
+  padding: 0 5px;
+  background: #e5e5e5;
+  height: 20px;
+  line-height: 20px;
+  position: relative;
+  top: 8px;
+}

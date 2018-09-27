@@ -1,0 +1,115 @@
+<view class="motify {{prompt==''?'hide':''}}">
+  <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+  <view class="motify-inner">{{prompt}}</view>
+</view>
+<view class="nk_logo">
+  <block wx:if='{{imgUrls[0] != undefined}}'>
+    <swiper indicator-dots="{{indicatorDots}}" indicator-color='{{indicatorColor}}' indicator-active-color='{{indicatorActiveColor}}' autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular='{{circular}}' style='height:{{swiperHeight}}px'>
+      <block wx:for="{{imgUrls}}" wx:key="">
+        <swiper-item>
+          <image src="{{item.adv_image}}" class="slide-image" mode='widthFix' />
+        </swiper-item>
+      </block>
+    </swiper>
+  </block>
+  <view class="back-home" catchtap='homeIndex'>
+    <image class="span data-home" src='/images/member/home_check.png' />
+  </view>
+</view>
+<view class="nk_top">
+  <view class="nk_cell {{register_type == 1 ? 'active' : ''}}">
+    <view class='span' catchtap='registerType' data-type='1'>账号注册</view>
+  </view>
+  <block wx:if='{{login_config.mobile_config.is_use == 1}}'>
+    <view class="nk_cell {{register_type == 2 ? 'active' : ''}}">
+      <view class='span' catchtap='registerType' data-type='2'>手机号注册</view>
+    </view>
+  </block>
+</view>
+<view class="log-wp">
+  <view class="log-box">
+    <block wx:if='{{register_type == 1}}'>
+      <view id="nk_text1">
+        <view class="nk-cont">
+          <label> 账号 </label>
+          <input type="text" bindinput='inputUsername' placeholder="请输入账号" />
+        </view>
+        <view class="nk-cont">
+          <label> 密码 </label>
+          <input type="password" bindinput='inputPassword' placeholder="请输入密码" />
+        </view>
+        <view class="nk-cont">
+          <label> 确认密码 </label>
+          <input type="password" bindinput='inputConfirmPassword' placeholder="请确认密码" />
+        </view>
+        <block wx:if='{{code_config.value.pc == 1}}'>
+          <view class="nk-cont">
+            <label> 验证码 </label>
+            <input type="number" bindinput='inputVerify' placeholder="请输入验证码" maxlength='4' />
+            <view class="verify" catchtap='switchVerificationCode'>
+              <image src='{{code}}' mode='widthFix'></image>
+            </view>
+          </view>
+        </block>
+        <button id="login-button" class="lang-btn" catchtap='register'>免费注册</button>
+        <view class="nk_loginlogin" catchtap='login'> 已有账号,立即登录 </view>
+      </view>
+    </block>
+    <block wx:if='{{register_type == 2}}'>
+      <view id="nk_text2">
+        <view class="nk-cont">
+          <label> 手机号 </label>
+          <input type="number" bindinput='inputMobile' placeholder="请输入手机号码" maxlength='11' />
+        </view>
+        <view class="nk-cont">
+          <label> 密码 </label>
+          <input type="password" bindinput='inputPassword' placeholder="请输入账户密码" />
+        </view>
+        <view class="nk-cont">
+          <label> 确认密码 </label>
+          <input type="password" bindinput='inputConfirmPassword' placeholder="请确认账户密码" />
+        </view>
+        <block wx:if='{{code_config.value.pc == 1}}'>
+          <view class="nk-cont">
+            <label> 验证码 </label>
+            <input type="number" bindinput='inputVerify' placeholder="请输入验证码" maxlength='4' />
+            <view class="verify" catchtap='switchVerificationCode'>
+              <image src='{{code}}' mode='widthFix'></image>
+            </view>
+          </view>
+        </block>
+        <block wx:if='{{login_config.mobile_config.is_use == 1}}'>
+          <view class="nk-cont">
+            <label> 动态码 </label>
+            <input type="number" placeholder="请输入手机动态码" bindinput='inputOutCode' maxlength='6' />
+            <block wx:if='{{second == 0}}'>
+              <button id="sendOutCode" catchtap="getOutCode">获取动态码</button>
+            </block>
+            <block wx:else>
+              <button id='sendOutCode'>{{second+'s'}}</button>
+            </block>
+          </view>
+        </block>
+        <button id="login-button" class="lang-btn" catchtap='register'>免费注册</button>
+        <view class="nk_loginlogin" catchtap='login'> 已有账号,立即登录 </view>
+      </view>
+    </block>
+  </view>
+</view>
+<block wx:if='{{copyRight.default_logo != "" && copyRight.technical_support != ""}}'>
+  <view class="footer">
+    <view class="copyright" id="bottom_copyright">
+      <view class="ft-copyright">
+        <block wx:if='{{copyRight.default_logo != ""}}'>
+          <image src="{{copyRight.default_logo}}" mode='aspectFit' id="copyright_logo_wap"></image>
+        </block>
+        <block wx:if='{{copyRight.technical_support != ""}}'>
+          <view class='a' id="copyright_companyname">{{copyRight.technical_support}}</view>
+        </block>
+      </view>
+    </view>
+  </view>
+</block>
+<block wx:else>
+  <view style='height:30px;'></view>
+</block>

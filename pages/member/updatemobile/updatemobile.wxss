@@ -1,0 +1,93 @@
+
+.mt-55{
+  background-color: rgb(255, 255, 255);
+  margin: 8px 0px 0px;
+}
+
+.mt-55.mlr-15 view{
+  line-height: 50px;
+  padding-left: 7px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.mt-55.mlr-15 view .span{
+  width: 27%;
+  font-size: 14px;
+  display: block;
+  float: left;
+}
+
+.mt-55.mlr-15 input{
+  box-shadow: none;
+  margin: 0;
+  height: 35px;
+  border: none;
+  max-width: 72%;
+  min-width: 60%;
+  display: inline-block;
+  font-size: 14px;
+  line-height: normal;
+  font: inherit;
+  font-stretch: inherit;
+  color: inherit;
+  overflow: unset;
+}
+
+button{
+  width:90%;
+  color: #FFF;
+  background: #333;
+  font-size: 15px;
+  border: none;
+  line-height: 40px;
+  height: 40px;
+  border-radius: 3px;
+  padding: 0;
+  margin-top: 40px;
+}
+
+#mobile_code{
+  max-width: 32%;
+  min-width:115px;
+}
+
+.mt-55.mlr-15 button{
+  padding: 0;
+  margin: 0;
+  height: 30px;
+  line-height: 30px;
+  margin-left: 10px;
+  display: inline-block;
+  font-size: 14px;
+  border: 1px solid #E03115!important;
+  color: #E03115;
+  width: 30px;
+  background: #fff;
+  border-radius: 4px;
+  min-width: 25% !important;
+  overflow: unset;
+}
+
+.code{
+  position: relative;
+  display: inline-block;
+  height: 50px;
+  width: 30%;
+  background: transparent !important;
+  overflow: unset;
+}
+
+.code image {
+  width: 100%;
+  max-height: 60px;
+  vertical-align: middle;
+}
+
+#verification_code{
+  position:relative;
+  overflow: hidden;
+  top:-8px;
+  max-width:32%;
+  min-width:70px;
+}

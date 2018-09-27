@@ -1,0 +1,52 @@
+<view class="goods-list-grid openList" style='{{promotion_info.background_img == "" || promotion_info.background_img == undefined ? "background-color:"+promotion_info.background_color+";":"background-image:url("+promotion_info.background_img+");"}}'>
+  <view class="topic_scroll">
+    <block wx:if='{{promotion_info.scroll_img != "" && promotion_info.scroll_img != undefined}}'>
+      <image src="{{promotion_info.scroll_img}}" mode='widthFix'/>
+    </block>
+    <block wx:else>
+      <block wx:if='{{promotion_info.picture_img != "" && promotion_info.picture_img != undefined}}'>
+        <image src="{{promotion_info.picture_img}}" mode='widthFix'/>
+      </block>
+    </block>
+  </view>
+	<view id="goods_list">
+		<view class="tablelist-append clearfix">
+      <view class="product single_item info">
+        <block wx:for='{{goods_list}}' wx:key='' wx:for-item='goods' wx:for-index='index'>
+          <view class='li'>
+            <view class="item">
+              <view class="item-tag-box">
+                <!--热卖icon位置为：0px 0px，新品icon位置为：0px -35px，精品icon位置为：0px -70px-->
+              </view>
+              <view class="item-pic">
+                <view class='a' catchtap='goodsDetail' data-id='{{goods.goods_id}}' data-name='{{goods.goods_name}}'>
+                  <image src="{{goods.picture_info.pic_cover_small}}" lazy-load='true' mode='widthFix' binderror='errorImg' data-index='{{index}}'/>
+                </view>
+              </view>
+              <view class='dl'>
+                <view class='dt'>
+                  <view class='a' catchtap='goodsDetail' data-id='{{goods.goods_id}}' data-name='{{goods.goods_name}}'>
+                    <block wx:for='{{goods.group_query}}' wx:key='' wx:for-item='group'>
+                      <view class="i goods_tab">{{group.group_name}}</view>
+                    </block>
+                    {{goods.goods_name}}
+                  </view>
+                </view>
+                <view class='dd'>
+                  <view class='i'>￥{{goods.promotion_price}}</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+	</view>
+</view>
+<block wx:if='{{goods_list[0]==undefined}}'>
+  <view class='p none-goods'>
+    <image src="/images/goods/wap_nodata.png" mode='widthFix'/>
+    <br/>
+    Sorry！没有找到您想要的商品…
+  </view>
+</block>

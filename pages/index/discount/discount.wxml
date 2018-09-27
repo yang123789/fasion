@@ -1,0 +1,51 @@
+<scroll-view>
+  <view class="custom-tag-list clearfix">
+    <view class="group-list-box">
+      <!-- 广告位 -->
+      <block wx:if='{{discount_adv.adv_list[0] != undefined && discount_adv.adv_list[0].adv_image != ""}}'>
+        <view class="slick">
+          <swiper indicator-dots="{{discount_adv.adv_list.length>1?true:false}}" indicator-color='{{indicatorColor}}' indicator-active-color='{{indicatorActiveColor}}' autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular='{{circular}}' style='height:{{swiperHeight}}px'>
+            <block wx:for="{{discount_adv.adv_list}}" wx:key="">
+              <swiper-item>
+                <image src="{{item.adv_image}}" bindload='imgLoad' mode='widthFix' style='background:{{adv.background}};'/>
+              </swiper-item>
+            </block>
+          </swiper>
+        </view>
+      </block>
+      <view class="ul group-list">
+        <block wx:for='{{goods_list}}' wx:key='' wx:for-item='goods' wx:for-index='index'>
+          <view class='li'>
+            <view class="p-img">
+              <view class='a' catchtap='aClick' data-url='/goods/goodsdetail/goodsdetail?goods_id={{goods.goods_id}}&&goods_name={{goods.goods_name}}'>
+                <image src="{{goods.picture.pic_cover_small}}" mode='widthFix' binderror='errorDiscountImg' data-index='{{index}}'/>
+              </view>
+              <view class="brand-time">
+                <image class='i' src='/images/index/icon_timer.png'></image>
+                <view class="span settime">{{timer_array[index].nowtime}}</view>
+              </view>
+            </view>
+            <view class="span brand-name">{{goods.goods_name}}</view>
+            <view class="brand-info">
+              <view class="brand-info-left">
+                <view class="p b-price">￥{{goods.promotion_price}}
+                  <view class='em'>元</view>
+                </view>
+                <view class="p buyer">
+                  <view class='s'>￥{{goods.price}}元</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+        <block wx:if='{{goods_list[0]==undefined}}'>
+          <view class='p none-goods'>
+            <image src="/images/goods/wap_nodata.png" mode='widthFix'/>
+            <br/>
+            Sorry！没有找到您想要的商品…
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+</scroll-view>

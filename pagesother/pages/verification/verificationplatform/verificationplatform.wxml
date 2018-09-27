@@ -1,0 +1,25 @@
+<view class="motify {{prompt==''?'hide':''}}">
+  <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+  <view class="motify-inner">{{prompt}}</view>
+</view>
+<view class="com_content">
+  <view class='ul'>
+    <view class="li verifcationtop-box">
+      <view class="goods_pic">
+        <image src="{{member_info.user_headimg}}" binderror='errorHeadImg' mode='widthFix'/>
+      </view>
+      <view>
+        <view class='p'>{{member_info.nick_name}}</view>
+        <view class='p last-child'>店铺核销员</view>
+      </view>
+    </view>
+    <view class='li'>
+      <view class='h4'>虚拟码</view>
+      <view class="from">
+        <input max-length='16' bindinput='inputVirtualCode' placeholder="请输入虚拟码"/>
+        <button catchtap='chcekVirtualCode'>核 销</button>
+      </view>
+    </view>
+    <view class="li prompt">或者扫描买家的虚拟二维码 !</view>
+  </view>
+</view>

@@ -1,0 +1,32 @@
+<!--pages/liangti/liangti.wxml-->
+<view class="containers">
+   <scroll-view class="matter" scroll-y>
+        <view class="nocc {{hascc?'':'blocks'}}">
+            <image src="/images/liangti/cc.png"></image>
+            <view class="cc-text">还没有您的尺寸</view>
+        </view>
+        <view class="hascc {{hascc?'blocks':''}}" >
+            <view class="hascc-item" wx:for="{{ltlist}}">
+                <image src='/images/goods/{{item.type==1?"cartp2.png":"cartp1.png"}}' class="left" bindtap="swmr" data-id="{{item.id}}" data-index="{{index}}"></image>
+                <view class="right">
+                    <view class="top">
+                        <text class="name">{{item.sizename}}</text>
+                        <view class="btn-list">
+                            <button class="del" bindtap="del" data-id="{{item.id}}" data-index="{{index}}">删除</button>
+                            <button class="edit" bindtap="edit" data-id="{{item.id}}">编辑</button>
+                        </view>
+                    </view>
+                    <view class="bottom">
+                        <view class="b-item"> 身高：{{item.height}}cm</view>
+                        <view class="b-item"> 体重：{{item.height}}kg</view>  
+                        <view class="b-item"> 三围：{{item.other}}</view>  
+                          
+                    </view>
+                    <view class="b-item pd20"> 备注：{{item.notes}}</view>
+                </view>
+            </view>
+           
+        </view>
+   </scroll-view>
+   <view class="new" bindtap="newcc">新建尺寸</view>
+</view>

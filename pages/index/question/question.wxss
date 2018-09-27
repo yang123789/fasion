@@ -1,0 +1,28 @@
+/* pages/index/question/question.wxss */
+.ques-item{
+    width:100%;
+    background:white;
+    position:relative;
+    border-bottom:1rpx solid #eee;
+    border-top:1rpx solid #eee;
+}
+.ques-item view{
+    width:80%;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    font-size:30rpx;
+    color:#666;
+    height:80rpx;
+    line-height: 80rpx;
+    margin-left:20rpx;
+}
+.ques-item  image{
+    width:20rpx;
+    height:38rpx;
+    position: absolute;
+    right:20rpx;
+    top:50%;
+    margin-top:-19rpx;
+    display: block;
+}

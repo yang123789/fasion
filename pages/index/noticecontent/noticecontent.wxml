@@ -1,0 +1,19 @@
+<import src="../../../wxParse/wxParse.wxml"/>
+
+<button class='all' catchtap='allNotice'>全部</button>
+<view class="main_content">
+	<view class='h3'>{{notice_info.notice_title}}</view>
+	<view class="p fu_title">发布时间：{{notice_info.create_time}}</view>
+	<view id="html_content">
+    <template is="wxParse" data="{{wxParseData:notice.nodes}}"/>
+  </view>
+	
+  <view class="location_other_notice">
+    <block wx:if='{{prev_info.id != undefined}}'>
+      <view class="a prev" catchtap='switchnotice' data-id='{{prev_info.id}}'>上一篇：{{prev_info.notice_title}}</view>
+    </block>
+    <block wx:if='{{next_info.id != undefined}}'>
+      <view class="a next" catchtap='switchnotice' data-id='{{next_info.id}}'>下一篇：{{next_info.notice_title}}</view>
+    </block>
+  </view>
+</view>

@@ -1,0 +1,30 @@
+page{
+  background: #FFF;
+  border-top: 1.5px solid #F5F5F5;
+}
+
+.ul {
+  padding: 0 10px;
+}
+
+.ul .li {
+  padding: 5px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.box-title {
+  color: #000;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  margin-bottom: 10px;
+  font-size: 15px;
+}
+
+.a {
+  text-decoration: none;
+  color: #333;
+}
+
+.box-time {
+  font-size: 13px;
+  color: rgb(168, 168, 168);
+}

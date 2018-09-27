@@ -1,0 +1,69 @@
+<view class="motify {{prompt==''?'hide':''}}">
+  <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+  <view class="motify-inner">{{prompt}}</view>
+</view>
+<!-- 广告位 -->
+<block wx:if='{{brand_adv.adv_list[0] != undefined && brand_adv.adv_list[0].adv_image != ""}}'>
+  <view class="slick">
+    <swiper indicator-dots="{{brand_adv.adv_list.length>1?true:false}}" indicator-color='{{indicatorColor}}' indicator-active-color='{{indicatorActiveColor}}' autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular='{{circular}}' style='height:{{swiperHeight}}px'>
+      <block wx:for="{{brand_adv.adv_list}}" wx:key="">
+        <swiper-item>
+          <image src="{{item.adv_image}}" bindload='imgLoad' mode='widthFix' style='background:{{adv.background}};'/>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+</block>
+<block wx:if='{{goods_brand_list[0] != undefined}}'>
+  <view class="sliding">
+    <view class='ul' id="slider">
+      <block wx:for='{{goods_brand_list}}' wx:key='' wx:for-item='brand' wx:for-index='index'>
+        <view class="li {{index==brand_select_index?'selected':''}}" catchtap='selectBrand' data-index='{{index}}' data-id='{{brand.brand_id}}'>{{brand.brand_name}}</view>
+      </block>
+    </view>
+  </view>
+</block>
+<view class="goods-list-grid openList">
+	<view class="blank-div"></view>
+	<view id="goods_list">
+		<view class="tablelist-append clearfix" style="overflow: hidden;">
+      <view class="product single_item info">
+        <block wx:for='{{goods_list}}' wx:key='' wx:for-item='goods' wx:for-index='index'>
+          <view class='li'>
+            <view class="item">
+              <view class="item-tag-box">
+              </view>
+              <view class="item-pic">
+                <view class='a' catchtap='aClick' data-url='/goods/goodsdetail/goodsdetail?goods_id={{goods.goods_id}}&&goods_name={{goods.goods_name}}'>
+                  <image src="{{goods.pic_cover_small}}" data-index='{{index}}' lazy-load="true" mode='widthFix' binderror='goodsImgError'/>
+                </view>
+              </view>
+              <view class='dl'>
+                <view class='dt'>
+                  <view class='a' catchtap='aClick' data-url='/goods/goodsdetail/goodsdetail?goods_id={{goods.goods_id}}&&goods_name={{goods.goods_name}}'>
+                    <block wx:for='{{goods.group_query}}' wx:key='' wx:for-item='group'>
+                      <view class='i goods_tab'>{{group.group_name}}</view>
+                    </block>
+                    {{goods.goods_name}} 浅蓝色
+                  </view>
+                </view>
+                <view class='dd'>
+                  <view class='i'>￥{{goods.promotion_price}}</view>
+                  <block wx:if='{{goods.shipping_fee == 0}}'>
+                    <view class='i shipping_fee'>包邮</view>
+                  </block>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+      <block wx:if='{{goods_list[0] == undefined}}'>
+        <view class="nothing-data" align="center">
+          <image src="/images/goods/wap_nodata.png" mode='widthFix'/>
+          <view class='hit'>Sorry！没有找到您想要的商品…</view>
+        </view>
+      </block>
+    </view>
+	</view>
+</view>

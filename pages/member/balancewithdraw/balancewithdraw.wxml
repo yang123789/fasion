@@ -1,0 +1,24 @@
+<scroll-view>
+  <view id="main" class="detail-main">
+		<view class="table ns-table">
+      <view class='tbody'>
+        <block wx:for='{{withdraw_list}}' wx:key='' wx:for-item='withdraw'>
+          <view class='tr' align="center">
+            <view class='td first'>
+              <view class="span ns-lf">{{withdraw.bank_name}}({{withdraw.status}})</view>
+              <view class="span ns-rg">{{withdraw.cash}}</view>
+            </view>
+            <view class='td second'>
+              <view class="span ns-lf">{{withdraw.account_number}}</view>
+              <view class="span ns-rg-time">{{withdraw.ask_for_date}}</view>
+            </view>
+          </view>
+        </block>
+			</view>
+    </view>
+	</view>
+  <view class="emptyFrame {{withdraw_list[0]==undefined?'':'hide'}}">
+    <image class="user_balance" src='/images/member/point.png'></image>
+    <view class='span'>您暂时还没有提现记录哦！</view>
+  </view>
+</scroll-view>

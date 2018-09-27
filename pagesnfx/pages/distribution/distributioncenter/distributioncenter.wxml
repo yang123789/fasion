@@ -1,0 +1,126 @@
+<view class="motify {{prompt==''?'hide':''}}">
+  <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+  <view class="motify-inner">{{prompt}}</view>
+</view>
+<view class="panel memberhead">
+  <view class="member_head">
+    <view class='a'>
+      <view class='p'>
+        <i class="i face_img">
+          <image src="{{member_img}}" mode='aspectFit' binderror='errorHeadImg'/>
+        </i>
+        <view class="span account_management" catchtap='listClick' data-url='/pagesnfx/pages/distribution/useraccountrecordslist/useraccountrecordslist?shop_id={{promoter_info.shop_id}}'>佣金明细
+        </view>
+      </view>
+    </view>
+    <view class="p info-content-top">
+      <view class='span'>余额</view>
+      <view class='span'>{{nick_name}}</view>
+      <view class='span'>积分</view>
+    </view>
+    <view class="p info-content-bottom">
+      <view class='a' catchtap='listClick' data-url='/pages/member/balancewater/balancewater'>
+        <view class='span'>{{member_info.balance}}</view>
+      </view>
+      <view class='span'>
+        <mark class="mark level">
+          <image src="/pagesnfx/images/store_promote_vip.png" />{{member_info.level_name}}</mark>
+      </view>
+      <view class='a' catchtap='listClick' data-url='/pages/member/integralwater/integralwater'>
+        <view class='span'>{{member_info.point}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="member_foot">
+    <view class="p info-content-top">
+      <view class='span'>总佣金</view>
+      <view class='span'>待审核金额</view>
+      <view class='span'>已提现</view>
+    </view>
+    <view class="p info-content-bottom">
+      <view class='span'>￥{{promoter_info.commission.commission != '' ? promoter_info.commission.commission : 0.00}}</view>
+      <view class='span'>￥{{promoter_info.commission.commission_locked != '' ? promoter_info.commission.commission_locked : 0.00}}</view>
+      <view class='span'>￥{{promoter_info.commission.commission_withdraw != '' ? promoter_info.commission.commission_withdraw : 0.00}}</view>
+    </view>
+  </view>
+</view>
+<view class="hr segmentation-line" />
+<view class="personal-menu">
+  <view class='ul'>
+    <block wx:for='{{store_menu}}' wx:key='' wx:for-item='menu'>
+      <view class='li'>
+        <view class='a' data-url='{{menu.href}}' catchtap='listClick'>
+          <image src="{{menu.src}}" />
+          <view class='h5'>{{menu.title}}</view>
+          <view class='span'>{{menu.value}}</view>
+        </view>
+      </view>
+    </block>
+    <block wx:if="{{store_menu.length == 2 || store_menu.length == 5}}">
+      <view class='li'>
+        <view class='a'>
+          <image src="" />
+          <view class='h5'>　</view>
+          <view class='span'>　</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+<view class="h1 store-personal-title">
+  <i class="i data-yongjin"></i>佣金统计</view>
+<view class="hr segmentation-line" />
+<view class="store-commission-statistics">
+  <view class='ul'>
+    <view class='li'>
+      <view class='a' catchtap='listClick' data-url='/pagesnfx/pages/distribution/useraccountrecordsdetail/useraccountrecordsdetail?shop_id={{promoter_info.shop_id}}&type_id=1'>
+        <strong>￥{{promoter_info.commission.commission_promoter}}</strong>
+        <view calss='span'>分销佣金</view>
+      </view>
+    </view>
+
+    <block wx:if='{{shop_config.is_regional_agent > 0}}'>
+      <view class='li'>
+        <view class='a' catchtap='listClick' data-url='/pagesnfx/pages/distribution/useraccountrecordsdetail/useraccountrecordsdetail?shop_id={{promoter_info.shop_id}}&type_id=2'>
+          <strong>￥{{promoter_info.commission.commission_region_agent}}</strong>
+          <view class='span'>区域代理佣金</view>
+        </view>
+      </view>
+    </block>
+
+    <block wx:if='{{shop_config.is_partner_enable > 0}}'>
+      <view class='li'>
+        <view class='a' catchtap='listClick' data-url='/pagesnfx/pages/distribution/useraccountrecordsdetail/useraccountrecordsdetail?shop_id={{promoter_info.shop_id}}&type_id=4'>
+          <strong>￥{{promoter_info.commission.commission_partner}}</strong>
+          <view class='span'>股东分红</view>
+        </view>
+      </view>
+    </block>
+
+    <block wx:if='{{shop_config.is_global_enable > 0}}'>
+      <view class='li'>
+        <view class='a' catchtap='listClick' data-url='/pagesnfx/pages/distribution/useraccountrecordsdetail/useraccountrecordsdetail?shop_id={{promoter_info.shop_id}}&type_id=5'>
+          <strong>￥{{promoter_info.commission.commission_partner_global}}</strong>
+          <view class='span'>全球分红</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+<block wx:if='{{copyRight.default_logo != "" && copyRight.technical_support != ""}}'>
+  <view class="footer">
+    <view class="copyright" id="bottom_copyright">
+      <view class="ft-copyright">
+        <block wx:if='{{copyRight.default_logo != ""}}'>
+          <image src="{{copyRight.default_logo}}" mode='aspectFit' id="copyright_logo_wap"></image>
+        </block>
+        <block wx:if='{{copyRight.technical_support != ""}}'>
+          <view class='a' id="copyright_companyname">{{copyRight.technical_support}}</view>
+        </block>
+      </view>
+    </view>
+  </view>
+</block>
+<block wx:else>
+  <view style='height:80px;'></view>
+</block>

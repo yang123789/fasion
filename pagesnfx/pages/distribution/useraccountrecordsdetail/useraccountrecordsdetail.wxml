@@ -1,0 +1,34 @@
+<view class="motify {{prompt==''?'hide':''}}">
+  <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+  <view class="motify-inner">{{prompt}}</view>
+</view>
+<view class="tabs-content">
+  <block wx:if='{{account_records_detail[0] == undefined}}'>
+    <view class="content_01"></view>
+  </block>
+  <view id="withdraw">
+    <block wx:if='{{account_records_detail[0] == undefined}}'>
+      <view class="nothing-data" align="center">
+        <image src="/pagesnfx/images/wap_nodata.png" mode='widthFix'></image>
+        <view>您还没有佣金！</view>
+      </view>
+    </block>
+    <block wx:else>
+      <view>
+        <block wx:for='{{account_records_detail}}' wx:key='' wx:for-item='account'>
+          <view class='tr'>
+            <view class='td'>
+              <view class='p'>
+                <view class="span text-name">{{account.type_name}}</view>
+                <view class="span text-money">¥{{account.money}}</view>
+              </view>
+              <view class='p'>
+                <view class="span text-2">{{account.create_time}}</view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </block>
+  </view>
+</view>

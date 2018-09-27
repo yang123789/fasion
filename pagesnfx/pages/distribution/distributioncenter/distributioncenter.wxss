@@ -1,0 +1,239 @@
+.panel.memberhead {
+  background: #333;
+  margin-top: 0px;
+  padding: 0;
+  margin-bottom: 0;
+  overflow: hidden;
+  border: none;
+  background-size: 100% auto;
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+
+.member_head {
+  overflow: hidden;
+  margin: 0px;
+  padding: 0px;
+}
+
+.panel.memberhead .member_head {
+  padding-bottom: 10px;
+}
+
+.panel.memberhead .member_head .a {
+  width: 100%;
+}
+
+.panel.memberhead .member_head .a .p {
+    margin: 20px 0 10px 0;
+    position: relative;
+}
+
+.member_head .p {
+  text-align: center;
+  font-size: 12px;
+  color: #FFFFFF;
+  line-height: 20px;
+  margin-bottom: 0px;
+}
+
+.member_head .p:first-child {
+  height: 70px;
+  margin-top: 6px;
+}
+
+.member_head .p:last-child {
+  margin-bottom: 5px;
+}
+
+.member_head .p:first-child .i.face_img {
+  background: #FFFFFF;
+  border: 2px solid #FFFFFF;
+  top: 6px;
+  height: 60px;
+  border-radius: 50%;
+  width: 60px;
+  margin: auto;
+  display: block;
+  text-align: center;
+  line-height: 60px;
+  overflow: hidden;
+}
+
+.member_head .p:first-child image {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+}
+
+.member_head .a .p .span.account_management {
+  float: right;
+  position: absolute;
+  right: 20px;
+  font-size: 13px;
+  top: 5px;
+}
+
+.member_head .a .p .span.account_management::after {
+  position: absolute;
+  content: '';
+  top: 6.5px;
+  bottom: 0;
+  width: 7px;
+  height: 7px;
+  right: -12px;
+  border-top: 1px solid #FFF;
+  border-right: 1px solid #FFF;
+  transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+}
+
+.member_head .p.info-content-top, .member_head .p.info-content-bottom {
+  width: 90%;
+  margin: 0 5%;
+}
+
+.member_head .p.info-content-top .span {
+  width: 30%;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  display: inline-block;
+  font-size: 13px;
+}
+
+.member_head .p.info-content-bottom .a {
+  width: 32%;
+  text-align: center;
+}
+
+.member_head .p.info-content-bottom .span {
+  font-size: 20px;
+  color: orange;
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+}
+
+.member_head .p.info-content-bottom .span .mark.level {
+  padding: 0 5px;
+  border: 1px solid orange;
+  border-radius: 3px;
+  background: none;
+  color: orange;
+  font-size: 13px;
+}
+
+.member_head .p.info-content-bottom .span .mark.level image {
+  height: 13px;
+  width: 15px;
+  vertical-align:top;
+  margin-top: 11px;
+}
+
+.panel.memberhead .member_foot {
+  width: 100%;
+  height: 50px;
+  background: rgba(255,255,255,0.15);
+  padding: 8px 0;
+}
+
+.member_foot .info-content-top .span {
+  display: inline-block;
+  width: 32.5%;
+  color: #fff;
+  text-align: center;
+  height: 25px;
+  line-height: 25px;
+}
+
+.member_foot .info-content-bottom .span {
+  display: inline-block;
+  width: 32%;
+  color: #fff;
+  text-align: center;
+  font-size: 17px;
+}
+
+.segmentation-line {
+  border: 0;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.personal-menu {
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.personal-menu .li {
+  float: left;
+  width: 33%;
+  text-align: center;
+  padding: 10px 0;
+  border-right: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.personal-menu .li image {
+  width: 50px;
+  height: 50px;
+}
+
+.personal-menu .li .h5 {
+  padding-top: 5px;
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.personal-menu .li .span {
+  color: #999999;
+  font-size: 12px;
+}
+
+.store-personal-title {
+  padding: 10px;
+  border-left: none;
+  margin-top: 10px;
+  font-size: 16px;
+  color: #333333;
+  font-weight: normal;
+  background: #ffffff;
+}
+
+.store-commission-statistics {
+  background: #ffffff;
+  overflow: hidden;
+  padding: 10px 0;
+}
+
+.store-commission-statistics .ul .li {
+  text-align: center;
+  float: left;
+  width: 25%;
+  padding: 10px 0;
+}
+
+strong, b {
+  font-size: 15px;
+  font-weight: bold;
+  margin-left: 5px;
+  line-height: 45px;
+}
+
+.store-commission-statistics .ul .li strong {
+  color: orange;
+  font-size: 14px;
+  display: block;
+  margin: 0;
+  text-align: center;
+}
+
+.store-commission-statistics .ul .li .span {
+  font-size: 12px;
+}
+
+.footer {
+  margin-bottom: 0;
+}

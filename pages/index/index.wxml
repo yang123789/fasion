@@ -1,0 +1,356 @@
+<scroll-view>
+  <view class="motify {{prompt==''?'hide':''}}">
+    <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+    <view class="motify-inner">{{prompt}}</view>
+  </view>
+  <view class="com-content">
+    <!-- 轮播图 -->
+    <block wx:if='{{imgUrls[0] != undefined}}'>
+      <view class="index_slide">
+        <swiper indicator-dots="{{indicatorDots}}" indicator-color='{{indicatorColor}}' indicator-active-color='{{indicatorActiveColor}}' autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular='{{circular}}' style='height:200px'>
+          <block wx:for="{{imgUrls}}" wx:key="">
+            <swiper-item>
+              <image src="{{item.adv_image}}" class="slide-image" mode='aspectFill' />
+            </swiper-item>
+          </block>
+        </swiper>
+        <!-- <image class="shade" src='/images/index/shade.png'></image> -->
+      </view>
+    </block>
+    <!-- 搜索栏 -->
+    <!-- <view class="controlSearch">
+      <view class="control-search-input">
+        <input type="text" class="search-input custom-search-input" bindinput='searchInput' placeholder="搜索商品" />
+        <image class="search-button custom-search-button" src='/images/goods/search_icon_2.png' catchtap='listClick' data-url='/pages/goods/goodssearchlist/goodssearchlist?search_text={{search_text}}'></image>
+      </view>
+    </view> -->
+
+    <!-- 导航 -->
+     <!--<view class="navi">
+      <view class="navi-item">
+        <view class="nav navi-item_row">
+          <view class='a' catchtap='tabBar' data-url='/pages/index/index'>
+            <view class='span div'>
+              <image src="/images/index/index_new.png" mode='widthFix'></image>
+              <view class='span'>首页</view>
+            </view>
+          </view> -->
+          <!-- <view class='a' catchtap='tabBar' data-url='/pages/goods/goodsclassificationlist/goodsclassificationlist'>
+            <view class='span div'>
+              <image src="/images/index/category_new.png" mode='widthFix'></image>
+              <view class='span'>商品分类</view>
+            </view>
+          </view>
+          <view class='a' catchtap='listClick' data-url='/pages/index/discount/discount'>
+            <view class='span div'>
+              <image src="/images/index/discount_new.png" mode='widthFix'></image>
+              <view class='span'>限时折扣</view>
+            </view>
+          </view>
+          <view class='a' catchtap='listClick' data-url='/pages/goods/integralzone/integralzone'>
+            <view class='span div'>
+              <image src="/images/index/integralzone_new.png" mode='widthFix'></image>
+              <view class='span'>积分专区</view>
+            </view>
+          </view>
+          <view class='a' catchtap='listClick' data-url='/pages/goods/promotionzone/promotionzone'>
+            <view class='span div'>
+              <image src="/images/index/promotionzone_new.png" mode='widthFix'></image>
+              <view class='span'>标签专区</view>
+            </view>
+          </view>
+          <view class='a' catchtap='listClick' data-url='/pages/goods/brandlist/brandlist'>
+            <view class='span div'>
+              <image src="/images/index/brand_new.png" mode='widthFix'></image>
+              <view class='span'>品牌专区</view>
+            </view>
+          </view>
+           <block wx:if='{{webSiteInfo.is_support_bargain == 1}}'> 
+            <view class='a' catchtap='listClick' data-url='/pages/goods/goodsbargainlist/goodsbargainlist'>
+              <view class='span div'>
+                <image src="/images/index/bargain_new.png" mode='widthFix'></image>
+                <view class='span'>砍价专区</view>
+              </view>
+            </view>
+           </block> 
+          <view class='a' catchtap='listClick' data-url='/pages/goods/promotiontopic/promotiontopic'>
+            <view class='span div'>
+              <image src="/images/index/integralzone_new.png" mode='widthFix'></image>
+              <view class='span'>专题活动</view>
+            </view>
+          </view>
+          <view class='a' catchtap='listClick' data-url='/pages/goods/grouppurchasezone/grouppurchasezone'>
+            <view class='span div'>
+              <image src="/images/index/grouppurchasezone_new.png" mode='widthFix'></image>
+              <view class='span'>团购专区</view>
+            </view>
+          </view>
+          <block wx:if='{{webSiteInfo.is_support_pintuan == 1}}'>
+            <view class='a' catchtap='listClick' data-url='/pages/goods/spellinggroupzone/spellinggroupzone'>
+              <view class='span div'>
+                <image src="/images/index/spelling_group_new.png" mode='widthFix'></image>
+                <view class='span'>拼团专区</view>
+              </view>
+            </view>
+          </block>
+          <view class='a' catchtap='listClick' data-url='/pagesother/pages/articlecenter/articlecenter'>
+            <view class='span div'>
+              <image src="/images/index/helpcenter_new.png" mode='widthFix'></image>
+              <view class='span'>文章专题</view>
+            </view>
+          </view>
+          <view class='a' catchtap='tabBar' data-url='/pages/member/member/member'>
+            <view class='span div'>
+              <image src="/images/index/usercenter_new.png" mode='widthFix'></image>
+              <view class='span'>会员中心</view>
+            </view>
+          </view> -->
+          <!-- <block wx:for='{{nav_list}}' wx:key='' wx:for-item='nav'>
+            <view class='a' catchtap='{{nav.applet_nav.type == 1 ? "tabBar" : "listClick"}}' data-url='{{nav.applet_nav.url}}'>
+              <view class='span div'>
+                <image src="{{nav.nav_icon}}" mode='widthFix'></image>
+                <view class='span'>{{nav.nav_title}}</view>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view> -->
+
+    <!-- 公告 -->
+    <!-- <view class="hot {{index_notice[0]==undefined?'hide':''}}">
+      <view class="notice-img">
+        <view class='a'>
+          <image src="/images/index/H.png"></image>
+        </view>
+      </view>
+      <view class='swiper'>
+        <swiper class="dowebok str_wrap noStop" vertical='true' autoplay='true' interval='3500' duration='2000' circular='true'>
+          <block wx:if="{{index_notice.length == 1}}">
+            <swiper-item catchtap='noticeContent' data-id='{{index_notice[0].id}}'>
+              <view class="str_move str_origin">{{index_notice[0].notice_title}}</view>
+            </swiper-item>
+            <swiper-item catchtap='noticeContent' data-id='{{index_notice[0].id}}'>
+              <view class="str_move str_origin">{{index_notice[0].notice_title}}</view>
+            </swiper-item>
+          </block>
+          <block wx:else>
+            <block wx:for='{{index_notice}}' wx:key='sort' wx:for-item='notice'>
+              <swiper-item catchtap='noticeContent' data-id='{{notice.id}}'>
+                <view class="str_move str_origin">{{notice.notice_title}}</view>
+              </swiper-item>
+            </block>
+          </block>
+        </swiper>
+      </view>
+    </view>
+    <!-- 优惠券领取 -->
+    <!-- <view class="coupon-container {{coupon_list[0]==undefined?'hide':''}}">
+      <view class="coupon-title">
+        <image src="/images/index/coupon_title_bg.png" mode='widthFix' />
+      </view>
+      <view class="coupon-all">
+        <block wx:for='{{coupon_list}}' wx:key='' wx:for-item='coupon' wx:for-index='index'>
+          <view class="receive-coupons {{coupon.status==0?'gray':''}}" catchtap='toReceivePopup' data-id='{{coupon.coupon_type_id}}' data-index='{{index}}'>
+            <image src='/images/index/index_coupon_bg.png' />
+            <view class="big money-number">￥{{coupon.money}}</view>
+            <view class="p explanation">满{{coupon.at_least}}可用</view>
+            <view class="span get">领取</view>
+          </view>
+        </block>
+      </view>
+    </view> --> 
+    <!-- 限时折扣 -->
+    
+    <!-- 拼团推荐 -->
+    <!-- <block wx:if="{{pintuan_list[0] != undefined && webSiteInfo.is_support_pintuan == 1}}">
+      <view class="spelling-block">
+        <view class='header'>
+          <view class='h3'>拼团推荐</view>
+          <view class='a' catchtap='listClick' data-url='/pages/goods/spellinggroupzone/spellinggroupzone'>查看更多</view>
+        </view>
+        <view class='ul'>
+          <block wx:for='{{pintuan_list}}' wx:key='' wx:for-item='pintuan' wx:for-index='index'>
+            <view class='li' catchtap='listClick' data-url='/pages/goods/goodsdetail/goodsdetail?goods_id={{pintuan.goods_id}}&&goods_name={{pintuan.goods_name}}'>
+              <view class='goods-img'>
+                <image src="{{pintuan.pic_cover_mid}}" lazy-load='true' mode='widthFix' data-index='{{index}}' binderror='errorPintuanImg' />
+              </view>
+              <view class='footer'>
+                <view class='p'>{{pintuan.goods_name}}</view>
+                <view>
+                  <view class="span tuangou-money">￥{{pintuan.tuangou_money}}</view>
+                  <view class="span original-money">单买价 {{pintuan.promotion_price}}元</view>
+                </view>
+                <button>去拼单 ></button>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </block> -->
+    <!--list-->
+    <view class="c-list">
+        <view class="c-title">LIST</view>
+        <view class="c-matter">
+            <view class="c-mitem" wx:for="{{block_list}}">
+                <view class="{{bgcolor[index]}}" catchtap='listClick' data-url='/pages/goods/goodslist/goodslist?id={{item.category_id}}&&alias={{item.category_alias}}'>{{item.category_alias}}</view>
+            </view>
+        </view>
+    </view>
+    <!--list-->
+    <!--文章-->
+     <view class="a-list">
+        <view class="a-title">不一样的夏天，不一样的潮流</view>
+        <view class="a-matter">
+           <view class="a-item" data-classid="1" bindtap="godetail" data-NavigationBarTitle="中式美学">
+                <image src="/images/index/n1.jpg"></image>
+                <view>中式美学</view>
+           </view>
+           <view class="a-item"  data-classid="2" bindtap="godetail" data-NavigationBarTitle="欧式美学">
+                <image src="/images/index/n2.jpg"></image>
+                <view>欧式美学</view>
+           </view>
+           <view class="a-item"  data-classid="3" bindtap="godetail" data-NavigationBarTitle="潮流时尚">
+                <image src="/images/index/n3.jpg"></image>
+                <view>潮流时尚</view>
+           </view>
+           <view class="a-item"  data-classid="4" bindtap="godetail" data-NavigationBarTitle="会员权益">
+                <image src="/images/index/n4.jpg"></image>
+                <view>会员权益</view>
+           </view>
+        </view>
+    </view>
+    <!--文章-->
+    
+    <!--轮播-->
+    <view class="lunbo">
+        <swiper indicator-dots="{{indicatorDotss}}"
+  autoplay="{{autoplays}}" interval="{{intervals}}" duration="{{durations}}">
+  <block wx:for="{{imgUrlss}}">
+    <swiper-item>
+      <image src="{{item.adv_image}}" class="slide-image" mode='aspectFill'/>
+    </swiper-item>
+  </block>
+</swiper>
+    </view>
+     <!--轮播-->
+     
+     <!--视频-->
+     <view class="s-video">
+        <view class="sv-title">DZshop视频</view>
+        <video src="{{vsrc}}"   controls ></video>
+        
+     </view>
+     <!--视频-->
+<view class="group-list-box {{discount_list[0]==undefined?'hide':''}}">
+      <view class="controltype" catchtap='listClick' data-url='/pages/index/discount/discount'>
+        <view class="sv-title">限时折扣</view>
+      </view>
+      <view class="discount-list">
+        <view class='ul'>
+          <block wx:for='{{discount_list}}' wx:key='' wx:for-item='discount' wx:for-index='index'>
+            <view class='li {{index==discount_list.length-1&&(index+1)%2>0&&index!=0?"one":""}} {{index==discount_list.length-1&&index==0?"one":""}}' catchtap='listClick' data-url='/pages/goods/goodsdetail/goodsdetail?goods_id={{discount.goods_id}}&&goods_name={{discount.goods_name}}'>
+              <view class='a'>
+                <view class="goods_info">
+                  <view class="p discount-title">
+                    <image src='/images/index/discount_icon.png' /> 限时折扣
+                  </view>
+                  <view class="time remaining_time">
+                    <block wx:if="{{timer_array[index].end == 0}}">
+                      <view class="span day">{{timer_array[index].day}}天</view>
+                      <view class="span hours">{{timer_array[index].hour}}</view>
+                      <view class='em'>:</view>
+                      <view class="span min">{{timer_array[index].minute}}</view>
+                      <view class='em'>:</view>
+                      <view class="span seconds">{{timer_array[index].second}}</view>
+                    </block>
+                    <block wx:else>
+                      <view class="span">活动已结束！</view>
+                    </block>
+                  </view>
+                  <view class="p goods_name">{{discount.goods_name}}</view>
+                  <view class="span goods_price">
+                    <view class='i'>￥{{discount.promotion_price}}</view>
+                  </view>
+                </view>
+              </view>
+              <view class="goods_pic">
+                <view class='a'></view>
+                <view class='a'>
+                  <image binderror='errorDiscountImg' data-index='{{index}}' src="{{discount.picture.pic_cover_small}}" lazy-load='true' mode='widthFix' />
+                </view>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+    <view class="list-title">DZshop商品</view>
+    <!-- 楼层版块 -->
+    <block wx:for='{{block_list}}' wx:key='' wx:for-item='list' wx:for-index='index'>
+      <block wx:if='{{list.goods_list.length > 0}}'>
+        <view class="floor">
+          <view class="category_name" catchtap='listClick' data-url='/pages/goods/goodslist/goodslist?id={{list.category_id}}&&alias={{list.category_alias}}'>
+            <image src="{{list.category_pic}}" mode="aspectFill"></image>
+            <view class="floor-left-nav">
+             {{list.category_alias}}
+            </view>
+           
+          </view>
+          <view class="section members_goodspic">
+            <view class='ul' wx:for='{{list.goods_list}}' wx:key='' wx:for-item='goods' wx:for-index='key'>
+              <view class="li gooditem">
+                <view class="imgs">
+                  <view class='a' catchtap='listClick' data-url='/pages/goods/goodsdetail/goodsdetail?goods_id={{goods.goods_id}}&&goods_name={{goods.goods_name}}'>
+                    <image class="lazy" lazy-load="true" data-index='{{index}}' data-key='{{key}}' binderror='errorBlockImg' src="{{goods.pic_cover_small}}" mode='widthFix'></image>
+                  </view>
+                </view>
+                <view class="info">
+                  <view class="p goods-title">
+                    <view class='a' catchtap='listClick' data-url='/pages/goods/goodsdetail/goodsdetail?goods_id={{goods.goods_id}}&&goods_name={{goods.goods_name}}'>
+                      <!-- <block wx:for='{{goods.group_list}}' wx:key='' wx:for-item='vo'>
+                        <i class="goods_tab">{{vo.group_name}}</i>
+                      </block> -->
+                      {{goods.goods_name}}
+                    </view>
+                  </view>
+                  <view class="goods-info">
+                    <view class="goods_price">
+                      <view class='em'>￥{{goods.promotion_price}}</view>
+                      <block wx:if='{{goods.shipping_fee==0}}'>
+                        <!-- <view class='i shipping_fee'>包邮</view> -->
+                      </block>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </block>
+    <view class="foot-list">
+        <view class="foot-item" data-classid="4" bindtap="godetail" data-NavigationBarTitle="会员权益">会员权益</view>
+        <view class="foot-item" data-classid="5" bindtap="godetail" data-NavigationBarTitle="关于我们">关于我们</view>
+        <view class="foot-item" bindtap="goques" data-NavigationBarTitle="常见问题">常见问题</view>
+    </view>
+  </view>
+
+  <block wx:if='{{copyRight.default_logo != "" && copyRight.technical_support != ""}}'>
+    <!-- <view class="footer">
+      <view class="copyright" id="bottom_copyright">
+        <view class="ft-copyright">
+          <block wx:if='{{copyRight.default_logo != ""}}'>
+            <image src="{{copyRight.default_logo}}" mode='aspectFit' id="copyright_logo_wap"></image>
+          </block>
+          <block wx:if='{{copyRight.technical_support != ""}}'>
+            <view class='a' id="copyright_companyname">{{copyRight.technical_support}}</view>
+          </block>
+        </view>
+      </view>
+    </view> -->
+  </block>
+  <block wx:else>
+    <view style='height:30px;'></view>
+  </block>
+</scroll-view>

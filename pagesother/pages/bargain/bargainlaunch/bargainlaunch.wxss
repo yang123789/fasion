@@ -1,0 +1,299 @@
+page {
+  height: 100%;
+}
+
+.body {
+  height: 100%;
+  width: 100%;
+}
+
+.bargain_bg {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  vertical-align: middle;
+  width: 100%;
+  height: 100%;
+  z-index: -3;
+}
+
+.bargain_header {
+  position: relative;
+  padding-top: 30px;
+}
+
+.bargain_header .bargain_content {
+  padding: 10px;
+  background: #fff;
+  width: 88%;
+  margin: 0 auto;
+  position: relative;
+  border-radius: 8px;
+}
+
+.bargain_header .activi_rule {
+  position: absolute;
+  right: 15px;
+  top: -30px;
+  background: rgba(255, 255, 255, 0.7);
+  display: block;
+  width: 72px;
+  text-align: center;
+  border-radius: 15px;
+  color: #333;
+  font-size: 12px;
+}
+
+.bargain_header .bargain_content .user_headimg {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -25px;
+}
+
+.bargain_header .bargain_content .user_headimg .img {
+  width: 45px;
+  max-width: 100%;
+  max-height: 100%;
+  vertical-align: middle;
+  border-radius: 50%;
+}
+
+.bargain_header .bargain_content .user_name {
+  text-align: center;
+  margin-top: 12px;
+}
+
+.bargain_header .bargain_content .propaganda {
+  text-align: center;
+  font-size: 15px;
+  color: #000;
+  line-height: 22px;
+  overflow: hidden;
+}
+
+.bargain_header .bargain_content .goods_info {
+  background: #f7f7f7;
+  margin: 7px 0;
+  padding-bottom: 10px;
+}
+
+.bargain_header .bargain_content .goods_info .goods_left {
+  display: inline-block;
+  width: 20%;
+  height: 65px;
+  line-height: 65px;
+  padding: 7px;
+  text-align: center;
+}
+
+.bargain_header .bargain_content .goods_info .goods_left .img {
+  max-width: 100%;
+  max-height: 100%;
+  vertical-align: middle;
+}
+
+.bargain_header .bargain_content .goods_info .goods_right {
+  width: 73%;
+  float: right;
+  padding-right: 2%;
+  margin: 0px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  height: 65px;
+  position: relative;
+}
+
+.bargain_header .bargain_content .goods_info .goods_right .goods_name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  white-space: normal;
+}
+
+.bargain_header .bargain_content .goods_info .goods_right .goods_price {
+  display: block;
+  font-size: 14px;
+  color: red;
+  font-weight: bold;
+  left: 0;
+}
+
+.bargain_info {
+  margin-top: 15px;
+}
+
+.bargain_info .h3 {
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  font-size: 16px;
+}
+
+.bargain_info .h3 .span {
+  color: #fed866;
+  font-size: 18px;
+}
+
+.bargain_info .h3 .span:last-child {
+  font-size: 16px;
+}
+
+#share_friends {
+  display: block;
+  width: 94%;
+  margin: 0 auto;
+  background: #fff700;
+  border: none;
+  height: 38px;
+  line-height: 38px;
+  color: red;
+  border-radius: 5px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.friend_brafain {
+  display: block;
+  width: 94%;
+  margin: 0 auto;
+  background: #fff700;
+  border: none;
+  height: 38px;
+  line-height: 38px;
+  color: red;
+  border-radius: 5px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.bargain_info h3:last-child {
+  font-size: 14px;
+  font-weight: normal;
+  margin: 10px 0;
+}
+
+.bargain_list {
+  width: 94%;
+  margin: 15px auto;
+  background: rgba(255, 255, 255, 0.19);
+}
+
+.bargain_list .h3 {
+  height: 35px;
+  line-height: 35px;
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+  font-weight: normal;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.33);
+  margin: 0 10px;
+}
+
+.bargain_list .ul {
+  padding-bottom: 10px;
+  max-height: 255px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.bargain_list .ul .li {
+  margin: 0 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.33);
+  clear: both;
+}
+
+.bargain_list .ul .li:last-child {
+  border-bottom: none;
+}
+
+.bargain_list .ul .li .user_headimg {
+  display: inline-block;
+  max-width: 12%;
+  height: 40px;
+  line-height: 40px;
+  padding: 7px;
+}
+
+.bargain_list .ul .li .user_headimg .img {
+  max-width: 100%;
+  max-height: 100%;
+  vertical-align: middle;
+  border-radius: 50%;
+}
+
+.bargain_list .ul .li .user_info {
+  width: 82%;
+  float: right;
+  position: relative;
+}
+
+.bargain_list .ul .li .user_info .bargain_price {
+  position: absolute;
+  right: 3px;
+  top: 20px;
+  color: #fed866;
+  font-weight: bold;
+}
+
+.bargain_header .idnex {
+  position: absolute;
+  left: 15px;
+  top: -30px;
+  background: rgba(255, 255, 255, 0.7);
+  display: block;
+  width: 50px;
+  text-align: center;
+  border-radius: 15px;
+}
+
+.partake_number {
+  float: right;
+  margin-right: 10px;
+  font-size: 12px;
+  color: #9e9e9e;
+}
+
+.mask-layer-bg {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+}
+
+.mask-layer-invite-friends {
+  z-index: 1001;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 10%;
+  left: 0;
+}
+
+.mask-layer-invite-friends view:first-child {
+  text-align: right;
+  margin: 10px 10px 30px;
+}
+
+.mask-layer-invite-friends view image {
+  width: 50px;
+  margin-right: 15%;
+}
+
+.mask-layer-invite-friends .h4 {
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.mask-layer-invite-friends .h4 strong {
+  color: #e02e24;
+}

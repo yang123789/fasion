@@ -1,0 +1,20 @@
+<view class="motify {{prompt==''?'hide':''}}">
+  <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+  <view class="motify-inner">{{prompt}}</view>
+</view>
+<view class="team">
+  <block wx:for='{{team_list}}' wx:key='' wx:for-item='team' wx:for-index='index'>
+    <view class="team-item">
+      <image src="{{team.user_info.user_headimg}}" binderror='errorHeadImg' data-index='{{index}}'/>
+      <view class="team-info">
+        <strong>{{team.user_info.nick_name}}</strong>
+        <strong class="role_name">({{team.role_name}})</strong>
+        <br/>
+        <view class='time'>注册时间：{{team.create_time}}</view>
+      </view>
+    </view>
+  </block>
+  <block wx:if='{{team_list[0] == undefined}}'>
+    <text class='empty-hint'>您当前还没有团队哦</text>
+  </block>
+</view>

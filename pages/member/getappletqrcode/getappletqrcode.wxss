@@ -1,0 +1,32 @@
+.qrcode-box image {
+  width: 100%;
+}
+
+#change_qrcode {
+  position: fixed;
+  top: 20px;
+  right: 15px;
+  width: 30px;
+  height: 30px;
+  padding: 3px;
+  z-index: 20;
+  border-radius: 30px;
+  background: #FFF;
+}
+
+.save-button {
+  height: 40px;
+  line-height: 40px;
+  width: 70%;
+  text-align: center;
+  background: #FFF;
+  border-radius: 2px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 1000;
+  font-size: 14px;
+}

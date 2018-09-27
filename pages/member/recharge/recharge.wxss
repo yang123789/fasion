@@ -1,0 +1,54 @@
+.payment {
+  margin-top: 15px;
+  overflow: hidden;
+  line-height: 50px;
+  padding-left: 15px;
+  background: #fff;
+}
+
+.payment .span {
+  width: 28%;
+  font-size: 14px;
+  display: block;
+  float: left;
+  height: 50px;
+  line-height: 50px;
+}
+
+.pay-money {
+  width: 72%;
+  box-shadow: none;
+  margin: 0;
+  height: 35px;
+  border: none;
+  display: inline-block;
+}
+
+.section{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 50px;
+  padding: 0;
+  z-index: 5;
+}
+
+.s-btn button{
+  width: 100%;
+  border: 0;
+  height: 50px;
+  line-height: 50px;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  font-size: 16px;
+  color: #FFF;
+  background: #FF6600;
+  outline: none;
+  border-radius:0;
+}
+
+.s-btn button.alipay{
+  background: #FF6600;
+}

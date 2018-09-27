@@ -1,0 +1,26 @@
+    <block wx:if='{{goods_list[0]==undefined}}'>
+  <view class='p none-goods'>
+    <image src="/images/goods/wap_nodata.png" mode='widthFix'/>
+    <br/>
+    Sorry！没有找到您想要的商品…
+  </view>
+</block>
+<view class="spelling-block">
+  <view class='ul'>
+    <block wx:for='{{goods_list}}' wx:key='' wx:for-item='goods' wx:for-index='index'>
+      <view class='li' catchtap='goodsDetail' data-id='{{goods.goods_id}}' data-name='{{goods.goods_name}}' data-bargainid='{{goods.bargain_id}}'>
+        <view class='goods-img'>
+          <image src="{{goods.pic_cover_mid}}" lazy-load='true' binderror='errorImg' data-index='{{index}}' mode='widthFix'/>
+        </view>
+        <view class='footer'>
+          <view class='p'>{{goods.goods_name}}</view>
+          <view class='money_block'>
+            <view class="span tuangou-money">￥{{goods.promotion_price}}</view>
+             <view class="span original-money">单买价 {{goods.promotion_price}}元</view>
+          </view>
+          <button>去砍价 ></button>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

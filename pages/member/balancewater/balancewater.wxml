@@ -1,0 +1,39 @@
+<scroll-view>
+  <view class="motify {{prompt==''?'hide':''}}">
+    <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+    <view class="motify-inner">{{prompt}}</view>
+  </view>
+  <view class="my-account">
+		<view class="account-box">
+			<view class="p balace">{{account_info.data[0].balance==undefined?0.00:account_info.data[0].balance}}</view>
+			<view class='balance-label'>余额</view>
+			<view class="a account-title bottom" catchtap='listClick' data-url='/member/recharge/recharge'>充值</view>
+			<view class="account-option">
+        <view class='ul'>
+          <view class='a'>
+            <view class="li account-option-left" catchtap='listClick' data-url='/member/balancewithdraw/balancewithdraw'>提现记录</view>
+          </view>
+          <view class='a'>
+            <view class="li account-option-right" catchtap='listClick' data-url='/member/towithdraw/towithdraw'>余额提现</view>
+          </view>
+        </view>
+		  </view>
+		</view>
+	</view>
+  <view class="table ns-table">
+    <view class='tbody'>
+      <block wx:for='{{records_list}}' wx:key='' wx:for-item='records'>
+        <view align="center" class='tr'>
+          <view class='td'>
+            <view class="span ns-lf" style="color: #444">{{records.type_name}}</view>
+            <view class="span ns-rg">{{records.number}}</view>
+          </view>
+          <view class='td bottom-td'>
+            <view class="span ns-lf">{{records.text}}</view>
+            <view class="span ns-rg-time">{{records.create_time}}</view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</scroll-view>

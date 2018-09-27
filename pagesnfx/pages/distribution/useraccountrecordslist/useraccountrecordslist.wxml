@@ -1,0 +1,68 @@
+<view class="motify {{prompt==''?'hide':''}}">
+  <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+  <view class="motify-inner">{{prompt}}</view>
+</view>
+<view class="dl tabs tab-title2">
+  <view class="dd {{show_type == 'brokerge' ? 'active' : ''}}" id="brokeragetab">
+    <view class='a' catchtap="changeShowType" data-type='brokerge'>本店佣金明细</view>
+  </view>
+  <view class="dd {{show_type == 'widthdraw' ? 'active' : ''}}" id="extracttab">
+    <view class='a' catchtap="changeShowType" data-type='widthdraw'>提现记录</view>
+  </view>
+</view>
+<view class="tabs-content">
+  <block wx:if='{{show_type == "brokerge"}}'>
+    <block wx:if='{{user_commission_list[0] == undefined}}'>
+      <view class="content_01">
+        <view class="nothing-data" align="center">
+          <image src="/pagesnfx/images/wap_nodata.png" mode='widthFix' />
+          <view>您还没有佣金！</view>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view>
+        <block wx:for='{{user_commission_list}}' wx:key='' wx:for-item='commission'>
+          <view class='tr'>
+            <view class='td'>
+              <view class='p'>
+                <view class="span text-name">{{commission.type_name}}</view>
+                <view class="span text-money">¥{{commission.money}}</view>
+              </view>
+              <view class='p'>
+                <view class="span text-2">{{commission.create_time}}</view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </block>
+  </block>
+  <block wx:if='{{show_type == "widthdraw"}}'>
+    <block wx:if='{{towithdraw_list[0] == undefined}}'>
+      <view class="content_02">
+        <view id="withdraw">
+          <view class="nothing-data" align="center">
+            <image src="/pagesnfx/images/wap_nodata.png" mode='widthFix' />
+            <view>您还没有提现记录！</view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <block wx:for='{{towithdraw_list}}' wx:key='' wx:for-item='towithdraw'>
+          <view class='tr'>
+            <view class='td'>
+              <view class='p'>
+                <view class="span text-name">{{towithdraw.bank_name}}</view>
+                <view class="span text-money">¥{{towithdraw.cash}}</view>
+              </view>
+              <view class='p'>
+                <view class="span text-2">{{towithdraw.ask_for_date}}</view>
+              </view>
+            </view>
+          </view>
+        </block>
+    </block>
+  </block>
+</view>

@@ -1,0 +1,29 @@
+<scroll-view>
+  <view class="motify {{prompt==''?'hide':''}}">
+    <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+    <view class="motify-inner">{{prompt}}</view>
+  </view>
+  <view class="mt-55 mlr-15" id="edit_mobile" style="background-color: rgb(255, 255, 255); margin: 8px 0px 0px;">
+	  <view>
+		  <view class='span'>邮箱</view>
+		  <input type="text" id="email" bindinput='inputEmail' placeholder="请输入邮箱" value="{{user_info.user_email}}" maxlength='40'/>
+	  </view>
+    <block wx:if='{{codeEmail == 1}}'>
+      <view style='height:50px;'>
+        <view class='span'>验证码</view>
+        <input type="number" id="verification_code" bindinput='verification_code' placeholder="请输入验证码"  maxlength='4'/>
+        <view class='code' catchtap='switchVerificationCode'>
+          <image src='{{code}}' mode='widthFix'></image>
+        </view>
+      </view>
+    </block>
+    <block wx:if='{{noticeEmail == 1}}'>
+      <view>
+        <view class='span'>邮箱验证码</view>
+        <input type="number" id="email_code" bindinput='notice_code' placeholder="请输入邮箱验证码"  maxlength='6'/>
+        <button type="button" class="sendOutCode" catchtap='{{second==0?"sendCode":""}}'>{{second==0?'获取验证码':second+'s'}}</button>
+      </view>
+    </block>
+	</view>
+  <button catchtap='saveEmail'>保存</button>
+</scroll-view>

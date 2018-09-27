@@ -1,0 +1,18 @@
+<import src="../../../../wxParse/wxParse.wxml"/>
+
+<view class="main_content">
+	<view class='h3'>{{article_detail.title}}</view>
+	<view class="p fu_title">作者：{{article_detail.author}}</view>
+	<view class="p fu_title">发布时间：{{article_detail.public_time}}</view>
+	<view id='html_content'>
+    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+  </view>
+	<view class="location_other_article">
+    <block wx:if='{{prev_info.length == undefined}}'>
+      <view class='a prev' catchtap='aClick' data-id='{{prev_info.article_id}}'>上一篇: {{prev_info.title}}</view>
+    </block>
+    <block wx:if='{{next_info.length == undefined}}'>
+      <view class='a next' catchtap='aClick' data-id='{{next_info.article_id}}'>下一篇: {{next_info.title}}</view>
+    </block>
+  </view>
+</view>

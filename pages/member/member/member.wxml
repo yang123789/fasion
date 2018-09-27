@@ -1,0 +1,171 @@
+<scroll-view>
+  <view class="motify {{prompt==''?'hide':''}}">
+    <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+    <view class="motify-inner">{{prompt}}</view>
+  </view>
+  <block wx:if='{{mask_status == 1}}'>
+    <view class='mask-layer'></view>
+  </block>
+  <view class='member_top'>
+    <block wx:if='{{is_login == 0}}'>
+      <button id='login_button' open-type='getUserInfo' bindgetuserinfo='getwechatUserInfo'>立即登录</button>
+    </block>
+    <block wx:else>
+      <view class='member_head'>
+        <view class="member_info_head">
+          <!-- <block wx:if='{{integralConfig.sign_integral == 1}}'>
+            <view class="span signin {{isSign==1?'yes':'no'}}" catchtap="{{isSign==1?'':'signIn'}}">{{isSign==1?'已签到':'签到'}}</view>
+          </block> -->
+          <view class="member_info_face">
+            <image id='user_head_img' src="{{member_info.user_info.user_headimg == '' ? 1 : member_info.user_info.user_headimg}}" mode='widthFix' catchtap='listClick' data-url="/pages/member/personaldata/personaldata" binderror='errorHeadImg'>
+            </image>
+          </view>
+          
+        </view>
+      </view>
+      <view class='info-content-top'>
+        <text>{{member_info.user_info.nick_name}}</text>
+      </view>
+      <view class='info-content-bottom'>
+       <view ></view>
+        <view>
+          <view class="level">{{member_info.level_name}}</view>
+        </view>
+        <view ></view>
+      </view>
+    </block>
+  </view>
+  <block wx:if='{{is_login == 1 && promoter_info != undefined}}'>
+    <block wx:if='{{promoter_info.promoter_center == ""}}'>
+      <view class='control' catchtap='listClick' data-url="/pagesnfx/pages/distribution/distributioncenter/distributioncenter" data-flag="promoter">
+        <view class='control_l_content'>
+          推广中心
+        </view>
+        <view class="control_all_order">
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class='control' catchtap='listClick' data-url="/pagesnfx/pages/{{promoter_info.promoter_center}}" data-flag="promoter">
+        <view class='control_l_content'>
+          推广中心
+        </view>
+        <view class="control_all_order">
+        </view>
+      </view>
+    </block>
+    <block wx:if='{{promoter_info.apply_promoter_menu != ""}}'>
+      <view class='control' catchtap='listClick' data-url="/pagesnfx/pages/{{promoter_info.apply_promoter_menu}}" data-flag="promoter">
+        <view class='control_l_content'>
+          申请推广员
+        </view>
+        <view class="control_all_order">
+        </view>
+      </view>
+    </block>
+    <block wx:else>
+      <view class='a promoter_detail' catchtap='listClick' data-url="/pagesnfx/pages/distribution/teamlist/teamlist?promoter_id={{promoter_info.promoter_detail.promoter_id}}">
+        <view>
+          <image src="/images/nfx/store_my_team.png"/>
+          <view class='span'>
+            <view class='span'>{{promoter_info.promoter_detail.team_count}}人</view>
+            <br/>
+            <view class='span title'>我的团队</view>
+          </view>
+        </view>
+      </view>
+      <view class='a promoter_detail' catchtap='listClick' data-url="/pagesnfx/pages/distribution/usershopcommission/usershopcommission?shop_id=0">
+        <view>
+          <image src="/images/nfx/store_my_commission.png"/>
+          <view class='span'>
+            <view class='span'>{{promoter_info.promoter_detail.commission.commission_cash == '' ? 0.00 : promoter_info.promoter_detail.commission.commission_cash}}</view>
+            <br/>
+            <view class='span title'>我的佣金</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </block>
+    <!-- <view class='member_middle_spac'></view> -->
+  <view class='control'>
+    <view class='control_l_content'>
+      普通订单
+    </view>
+    <view class="control_all_order" catchtap='listClick' data-url="/pagesother/pages/order/myorderlist/myorderlist">
+      查看全部订单
+    </view>
+  </view>
+  <view class='member-nav'>
+    <view class="member-nav_item" catchtap='listClick' data-url='/pagesother/pages/order/myorderlist/myorderlist?status=1'>
+      <image src='/images/member/pay.png' />
+      <view class="tips {{unpaidOrder>0?'':'hide'}}">{{unpaidOrder}}</view>
+      <text>待付款</text>
+    </view>
+    <view class="member-nav_item" catchtap='listClick' data-url='/pagesother/pages/order/myorderlist/myorderlist?status=2'>
+      <image src='/images/member/send.png' />
+      <view class="tips {{shipmentPendingOrder>0?'':'hide'}}">{{shipmentPendingOrder}}</view>
+      <text>待发货</text>
+    </view>
+    <view class="member-nav_item" catchtap='listClick' data-url='/pagesother/pages/order/myorderlist/myorderlist?status=3'>
+      <image src='/images/member/recieve.png' />
+      <view class="tips {{goodsNotReceivedOrder>0?'':'hide'}}">{{goodsNotReceivedOrder}}</view>
+      <text>待收货</text>
+    </view>
+    <view class="member-nav_item" catchtap='listClick' data-url='/pagesother/pages/order/myorderlist/myorderlist?status=4'>
+      <image src='/images/member/received.png' />
+      <view class="tips hide">1</view>
+      <text>已收货</text>
+    </view>
+    <view class="member-nav_item" catchtap='listClick' data-url='/pagesother/pages/order/myorderlist/myorderlist?status=5'>
+      <image src='/images/member/reback.png' />
+      <view class="tips {{refundOrder>0?'':'hide'}}">{{refundOrder}}</view>
+      <text>退款/售后</text>
+    </view>
+  </view>
+  
+  <view class='member_middle_spac'></view>
+  
+  <view class='member_list'>
+    <view class='ul'>
+     
+      
+
+      <view class='li'>
+        <view class="a member_list_item" catchtap='listClick' data-url="/pages/member/memberaddress/memberaddress?flag=1      ">
+          <image src='/images/member/icon_address.png' />
+          <view class='span'>收货地址</view>
+        </view>
+      </view>
+
+      <view class='li'>
+        <view class="a member_list_item" catchtap='listClick' data-url="/pages/member/getappletqrcode/getappletqrcode">
+          <image src='/images/member/icon_qr_code.png' />
+          <view class='span'>推广二维码</view>
+        </view>
+      </view>
+
+     
+
+
+    
+
+      <view class='li'>
+        <view class="a member_list_item" catchtap='listClick' data-url="/pages/member/mycollection/mycollection">
+          <image src='/images/member/icon_myCollection.png' />
+          <view class='span'>我的收藏</view>
+        </view>
+      </view>
+
+     
+
+      <view class='li'>
+        <view class="a member_list_item" catchtap='listClick' data-url="/pages/member/newmypath/newmypath">
+          <image src='/images/member/icon_newMyPath.png' />
+          <view class='span'>我的足迹</view>
+        </view>
+      </view>
+    </view>
+    
+  </view>
+  
+</scroll-view>

@@ -1,0 +1,55 @@
+<!-- 广告位 -->
+<block wx:if='{{group_purchase_adv.adv_list[0] != undefined && group_purchase_adv.adv_list[0].adv_image != ""}}'>
+  <view class="slick">
+    <swiper indicator-dots="{{group_purchase_adv.adv_list.length>1?true:false}}" indicator-color='{{indicatorColor}}' indicator-active-color='{{indicatorActiveColor}}' autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular='{{circular}}' style='height:{{swiperHeight}}px'>
+      <block wx:for="{{group_purchase_adv.adv_list}}" wx:key="">
+        <swiper-item>
+          <image src="{{item.adv_image}}" bindload='imgLoad' mode='widthFix' style='background:{{adv.background}};'/>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+</block>
+<view class="goods-list-grid openList">
+	<view id="goods_list">
+		<view class="tablelist-append clearfix">
+      <view class="product single_item info">
+        <block wx:for='{{goods_list}}' wx:key='' wx:for-item='goods' wx:for-index='index'>
+          <view class='li'>
+            <view class="item">
+              <view class="item-tag-box">
+                <!--热卖icon位置为：0px 0px，新品icon位置为：0px -35px，精品icon位置为：0px -70px-->
+              </view>
+              <view class="item-pic">
+                <view class='a' catchtap='goodsDetail' data-id='{{goods.goods_id}}' data-name='{{goods.goods_name}}'>
+                  <image src="{{goods.picture.pic_cover_small}}" lazy-load='true' mode='widthFix' binderror='errorImg' data-index='{{index}}'/>
+                </view>
+              </view>
+              <view class='dl'>
+                <view class='dt'>
+                  <view class='a' catchtap='goodsDetail' data-id='{{goods.goods_id}}' data-name='{{goods.goods_name}}'>
+                    <block wx:for='{{goods.group_query}}' wx:key='' wx:for-item='group'>
+                      <view class="i goods_tab">{{group.group_name}}</view>
+                    </block>
+                    {{goods.goods_name}}
+                  </view>
+                </view>
+                <view class='dd'>
+                  <view class='i'>￥{{goods.group_price}}</view>
+                  <view class="i shipping_fee">团购价</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+	</view>
+</view>
+<block wx:if='{{goods_list[0]==undefined}}'>
+  <view class='p none-goods'>
+    <image src="/images/goods/wap_nodata.png" mode='widthFix'/>
+    <br/>
+    Sorry！没有找到您想要的商品…
+  </view>
+</block>

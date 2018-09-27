@@ -1,0 +1,179 @@
+.sliding {
+  overflow-y: auto;
+  background: #ffffff;
+  border-top: 1.5px solid #F5F5F5;
+}
+
+.slick .a{
+  display: block;
+}
+
+.slick image{
+  width: 100%;
+}
+
+.article_class {
+  overflow-x: scroll;
+  height: 32px;
+  white-space: nowrap;
+  margin-top: 5px;
+  border-bottom: 1px solid #ddd;
+}
+
+.sliding .ul {
+  white-space: nowrap;
+  height: 51px;
+  line-height: 50px;
+  text-align: left;
+}
+
+.selected {
+  color: red;
+}
+
+.sliding .ul .li {
+  white-space: pre-line;
+  padding: 0 10px 0 10px;
+  display: inline-block;
+  background: #ffffff;
+  border-right: 2px solid #f8f8f8;
+}
+
+.goods-list-grid {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 5px;
+  background: #f3f5f7;
+  -webkit-overflow-scrolling: touch;
+}
+
+.openList .li {
+  width: 50%;
+  overflow: hidden;
+  float: left;
+  padding: 0px;
+  margin-bottom: 5px;
+  position: relative;
+}
+
+.openList .li .item {
+  display: block;
+  width: 98%;
+  overflow: hidden;
+  margin: auto;
+  background: #fff;
+  position: relative;
+}
+
+.goods-list-grid .li .item-tag-box {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  left: 0px;
+  z-index: 2;
+}
+
+.openList .li .item-pic {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  float: left;
+  position: relative;
+}
+
+.goods-list-grid .li .item-pic .a {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding-top: 100%;
+}
+
+.goods-list-grid .li .item-pic image {
+  display: block;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.openList .li .dl {
+  width: 96%;
+  margin: auto;
+  margin-top: 8px;
+  overflow: hidden;
+  padding-left: 2%;
+  padding-right: 2%;
+  float: right;
+}
+
+.openList .li .dl .dt {
+  font-size: 14px;
+  width: 100%;
+  height: 40px;
+  margin: auto;
+  text-align: left;
+  line-height: 20px;
+  overflow: hidden;
+}
+
+.openList .li .dl .dt .a {
+  font-size: 14px;
+  line-height: 20px;
+  color: #222;
+}
+
+.i.goods_tab {
+  font-style: normal;
+  font-size: 12px !important;
+  background: #f44;
+  color: #fff;
+  padding: 1px 3px;
+  margin-right: 2px;
+  border-radius: 2px;
+  font-weight: normal !important;
+}
+
+.openList .li .dd {
+  width: 100%;
+  margin: auto;
+  overflow: hidden;
+}
+
+.openList .li .dd .i {
+  display: block;
+  float: left;
+  font-size: 16px;
+  line-height: 30px;
+  color: #f23030;
+  font-weight: bold;
+}
+
+.i.shipping_fee {
+  font-style: normal;
+  font-size: 12px !important;
+  background: #fff;
+  color: #f23030;
+  display: block;
+  float: left;
+  padding: 1px 3px;
+  margin-left: 5px;
+  border-radius: 2px;
+  border: 1px solid #f44;
+  margin-top: 7px;
+  line-height: 1 !important;
+  font-weight: normal !important;
+}
+
+.none-goods{
+  color: #939393;
+  text-align: center;
+  margin-top: 100px;
+}
+
+.none-goods image{
+  margin-bottom: 20px;
+  width: 60px;
+  height: 58.6364px;
+}

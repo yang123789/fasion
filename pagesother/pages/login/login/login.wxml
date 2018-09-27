@@ -1,0 +1,124 @@
+<view class="motify {{prompt==''?'hide':''}}">
+  <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+  <view class="motify-inner">{{prompt}}</view>
+</view>
+<view class="nk_logo">
+  <block wx:if='{{imgUrls[0] != undefined}}'>
+    <swiper indicator-dots="{{indicatorDots}}" indicator-color='{{indicatorColor}}' indicator-active-color='{{indicatorActiveColor}}' autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular='{{circular}}' style='height:{{swiperHeight}}px'>
+      <block wx:for="{{imgUrls}}" wx:key="">
+        <swiper-item>
+          <image src="{{item.adv_image}}" class="slide-image" mode='widthFix' />
+        </swiper-item>
+      </block>
+    </swiper>
+  </block>
+  <view class="back-home" catchtap='homeIndex'>
+    <image class="span data-home" src='/images/member/home_check.png' />
+  </view>
+</view>
+<view class="nk_top">
+  <view class="nk_cell {{login_type == 1 ? 'active' : ''}}">
+    <view class='span' catchtap='loginType' data-type='1'>账号登录</view>
+  </view>
+  <block wx:if='{{login_config.mobile_config.is_use == 1}}'>
+    <view class="nk_cell {{login_type == 2 ? 'active' : ''}}">
+      <view class='span' catchtap='loginType' data-type='2'>手机动态码登录</view>
+    </view>
+  </block>
+</view>
+<view class="log-wp">
+  <view class="log-box">
+    <block wx:if='{{login_type == 1}}'>
+      <view id="nk_text1">
+        <view class="log-cont">
+          <label class="log-txt">
+            <image class="span username" src='/images/member/username.png'>账号</image>
+            <input type="text" bindinput='inputUsername' placeholder="请输入账号" />
+          </label>
+        </view>
+        <view class="log-cont">
+          <label>
+            <image class="span password" src='/images/member/password.png'>密码</image>
+            <input type="password" bindinput='inputPassword' placeholder="请输入密码" />
+          </label>
+        </view>
+        <block wx:if='{{code_config.value.pc == 1}}'>
+          <view class="log-cont">
+            <label>
+              <image class="span password" src='/images/member/code.png'>验证码</image>
+              <input type="number" bindinput='inputVerify' placeholder="请输入验证码" style='width: 6rem;' maxlength='4' />
+              <view class="verify" catchtap='switchVerificationCode'>
+                <image src='{{code}}' mode='widthFix'></image>
+              </view>
+            </label>
+          </view>
+        </block>
+        <button id="login-button" class="lang-btn" catchtap='login'>登录</button>
+        <button class="lang-btn register_immediately" catchtap='register'>立即注册</button>
+        <view class="msg cl">
+          <view class='a' id="msgback" catchtap='forgetPassword'>忘记密码？</view>
+        </view>
+      </view>
+    </block>
+    <block wx:if='{{login_type == 2}}'>
+      <view id="nk_text2">
+        <view class="nk-cont">
+          <label> 手机号 </label>
+          <input type="number" bindinput='inputMobile' placeholder="请输入手机号码" placeholder-class="input-placeholder" maxlength='11' />
+        </view>
+        <block wx:if='{{code_config.value.pc == 1}}'>
+          <view class="nk-cont">
+            <label> 验证码 </label>
+            <input class="" type="number" bindinput='inputVerify' placeholder="请输入验证码" maxlength='4' />
+            <view class="verify" catchtap='switchVerificationCode'>
+              <image src='{{code}}' mode='widthFix'></image>
+            </view>
+          </view>
+        </block>
+        <view class="nk-cont">
+          <label> 动态码 </label>
+          <input type="number" bindinput='inputOutCode' placeholder="请输入动态码" maxlength='6' />
+          <block wx:if='{{second == 0}}'>
+            <button id="sendOutCode" catchtap="getOutCode">获取动态码</button>
+          </block>
+          <block wx:else>
+            <button id='sendOutCode'>{{second+'s'}}</button>
+          </block>
+        </view>
+        <button id="login-button" class="lang-btn" catchtap="login">登录</button>
+        <view class="a lang-btn register_immediately" catchtap='register'>立即注册</view>
+      </view>
+    </block>
+  </view>
+</view>
+<block wx:if='{{forget_show == 1}}'>
+  <view id="mask-layer-login" catchtap='closeMask'></view>
+  <view class='findback' animation="{{animationData}}">
+    <view class='a' catchtap='findPassword' data-type='1'>
+      <image src="/images/member/phone.png" mode='widthFix' />
+      <view class='p'>手机找回</view>
+    </view>
+    <view class='a' catchtap='findPassword' data-type='2'>
+      <image src="/images/member/email.png" mode='widthFix' />
+      <view class='p'>邮箱找回</view>
+    </view>
+    <view class="clear"></view>
+  </view>
+</block>
+<block wx:if='{{copyRight.default_logo != "" && copyRight.technical_support != ""}}'>
+  <view class="footer">
+    <view class="copyright" id="bottom_copyright">
+      <view class="ft-copyright">
+        <block wx:if='{{copyRight.default_logo != ""}}'>
+          <image src="{{copyRight.default_logo}}" mode='aspectFit' id="copyright_logo_wap"></image>
+        </block>
+        <block wx:if='{{copyRight.technical_support != ""}}'>
+          <view class='a' id="copyright_companyname">{{copyRight.technical_support}}</view>
+        </block>
+      </view>
+    </view>
+  </view>
+</block>
+<block wx:else>
+  <view style='height:30px;'></view>
+</block>

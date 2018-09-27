@@ -1,0 +1,59 @@
+<view class="user-info">
+	<view>
+    <image src="{{member_info.user_info.user_headimg}}" binderror='errorHeadImg' mode='widthFix'/>
+  </view>
+	<view class='h4'>{{member_info.member_name}}</view>
+</view>
+<view class="spelling-order-list">
+  <view class='ul'>
+    <block wx:for='{{order_list}}' wx:key='' wx:for-item='order' wx:for-index='index'>
+      <view class='li'>
+        <view class='header'>
+          <view class='label'>
+            <view class='span'>发起了拼单</view>
+            <block wx:if='{{order.status == -1}}'>
+              <view class='failed a'>拼单失败</view>
+            </block>
+            <block wx:if='{{timers_array[index].end == 1}}'>
+              <view class='failed a'>拼单失败</view>
+            </block>
+            <block wx:if='{{order.status == 2}}'>
+              <view class='a'>拼单成功</view>
+            </block>
+          </view>
+          <view class='time'>{{order.create_time}}</view>
+        </view>
+        <view class='article' catchtap='goodsDetail' data-id='{{order.goods_id}}' data-name='{{order.goods_name}}'>
+          <view class="goods-img"><image src="{{order.picture_info.pic_cover_micro}}" binderror='errorGoodsImg' data-index='{{index}}' mode='widthFix'/></view>
+          <view class="goods-info">
+            <view class='label'>{{order.goods_name}}</view>
+            <view class="span money">￥{{order.tuangou_money}}
+              <view class="span num">{{order.real_num}}人拼单</view>
+            </view>
+          </view>
+        </view>
+        <view class='footer'>
+          <block wx:if='{{order.status == 2}}'>
+            <view class='ul'>
+              <view class='li'>
+                <view>
+                  <image src="{{order.group_user_head_img}}" mode='widthFix'/>
+                </view>
+              </view>
+            </view>
+            <button class="btn-order-info" catchtap='orderDetail' data-id='{{order.order_id}}'>查看订单详情</button>
+          </block>
+          <block wx:if='{{order.status == 1}}'>
+            <block wx:if='{{timers_array[index].end != 1}}'>
+            <view class='span'>还剩
+              <strong>{{order.tuangou_num - order.real_num}}</strong>人，
+                <view class='time'>剩余{{timers_array[index].hour + ':' + timers_array[index].minute + ':' + timers_array[index].second}}</view>
+              </view>
+              <button class="btn-invitation-friend" catchtap='inviteFriends' data-id="{{order.goods_id}}" data-group="{{order.group_id}}">邀请好友拼单</button>
+            </block>
+          </block>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

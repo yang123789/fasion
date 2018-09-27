@@ -1,0 +1,55 @@
+<scroll-view>
+  <view class="cf-container" data-reactid="2">
+    <view class="cf-edge" data-reactid="3"></view>
+    <view class="ul cf-content" data-reactid="4">
+      <block wx:for='{{express_info}}' wx:key='express_id' wx:for-item='packet' wx:for-index='index'>
+        <view class="li cf-tab-item {{packet.status==1?'select':''}}">
+          <view class='a' catchtap='navClick' data-index="{{index}}">{{packet.packet_name}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class="status status-0">
+    <view style="height:80px;line-height:80px;">
+      <block wx:for='{{packet_info.order_goods_list}}' wx:key='goods_id' wx:for-item='goods' wx:for-index='index'>
+        <image src="{{goods.picture_info.pic_cover_micro==''?0:goods.picture_info.pic_cover_micro}}" data-index='{{index}}' style="margin-left: 10px;" binderror='errorImg'/>
+      </block>
+    </view>
+    <view style="background:#fff;" class="express_goods">
+      <block wx:if='{{packet_info.express_id==0}}'>
+        <view class='span'>共{{packet_info.order_goods_list.length}}个商品,无需物流</view>
+        <view></view>
+        <view class='span'>运单编号：--</view>
+      </block>
+      <block wx:else>
+        <view class='span'>共{{packet_info.order_goods_list.length}}个商品,由{{packet_info.express_name}}承运</view>
+        <view></view>
+        <view class='span'>运单编号：{{packet_info.express_code}}</view>
+      </block>
+    </view>
+    <view style="background:#fff;margin-top:10px;color:rgb(245, 183, 8);font-size:13px;" class="express_goods">
+      <view>物流跟踪：</view>
+      <block wx:if='{{express == -1}}'>
+        <view>无需物流</view>
+      </block>
+      <block wx:if='{{express.Reason != undefined}}'>
+        <view class='express_info'>
+          <block wx:if='{{express.Reason != ""}}'>
+            <view>{{express.Reason}}</view>
+          </block>
+          <block wx:else>
+            <view class='ul'>
+              <block wx:for='{{express.Traces}}' wx:key='' wx:for-item='vo'>
+                <view class='li'>
+                  <view class="Traces">{{vo.AcceptStation}}</view>
+                  <view class="AcceptTime">{{vo.AcceptTime}}</view>
+                  <view class="Dot"></view>
+                </view>
+              </block>
+            </view>
+          </block>
+        </view>
+      </block>
+    </view>
+  </view>
+</scroll-view>

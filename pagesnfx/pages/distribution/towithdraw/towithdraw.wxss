@@ -1,0 +1,198 @@
+view{
+  font-size:100%;
+}
+
+.panel {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #d8d8d8;
+  margin-bottom: 1.25rem;
+  padding: 1.25rem;
+  background: #f2f2f2;
+}
+
+.extract {
+  margin: 5px 0px 0px 0px;
+  padding: 20px 15px;
+  border: none;
+  background: #FFF;
+}
+
+
+.commision-total{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.commision-total .span-title{
+  color: #000000;
+  padding-top: 1px;
+  padding-bottom: 2px;
+}
+
+.commision-total .number{
+  font-size: 18px;
+  color: orange;
+}
+
+.extract-account{
+  margin: 11px 0;
+  padding: 0;
+  background: #fff;
+  overflow: hidden;
+}
+
+.side-nav{
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  list-style-position: inside;
+  font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+}
+
+.side-nav .li{
+  position: relative;
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.side-nav .li .a:not(.button) {
+  display: block;
+  color: #45a5cf;
+}
+
+.extract-account .side-nav .li .a:not(.button){
+  padding: 6px 15px;
+  color: #333;
+  font-size: 16px;
+  overflow: hidden;
+}
+
+.extract-account .side-nav .li .span {
+  float: left;
+}
+
+.arrow{
+  display: inline-block;
+  width:6px;
+  height:16px;
+}
+
+.arrow:after{
+  content: '>';
+  position: absolute;
+  right: 20px;
+  top:4px;
+  width: 6px;
+  height: 11px;
+  font-size: 20px;
+  font-weight: 100;
+  color: #999;
+}
+
+.row {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  margin-bottom: 0;
+  max-width: none;
+}
+
+.extract-monynumber {
+  margin-bottom: 20px;
+}
+
+.extract-monynumber, .extract-monynumber .column, .extract-monynumber .columns {
+  padding: 0;
+}
+
+.row:before, .row:after {
+  content: " ";
+  display: table;
+}
+
+.column, .columns {
+  position: relative;
+  padding-left: 0.9375em;
+  padding-right: 0.9375em;
+  float: left;
+  width: 100%;
+}
+
+.extract-monynumber .columns {
+  padding: 10px;
+  background: #fff;
+}
+
+.tip-text {
+  color: orange;
+  margin-top: 45px;
+  padding: 10px;
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+.row:before, .row:after {
+  content: " ";
+  display: table;
+}
+
+.row:after {
+  clear: both;
+}
+
+.btn_all {
+  width: 100%;
+  text-align: center;
+}
+
+.button.red {
+border-radius:3px;
+background:#333;
+margin:auto;
+border-color:#333;
+width:95%;
+border:1px solid #333;
+color:#FFF;
+height:42px;
+font-size:17px;
+line-height:42px;
+}
+
+.horn-text {
+  margin: 5px 0;
+  padding: 10px;
+  background: #ffffe1;
+  border-radius: 3px;
+  font-size: 14px;
+  background: none;
+  color: #000000;
+  border: none;
+}
+
+.panel view :last-child {
+  margin-bottom: 0;
+}
+
+.extract-number {
+  margin-top: 15px;
+  overflow: hidden;
+}
+
+.extract-number .span-title {
+  color: #000000;
+  float: left;
+  font-size:17px;
+}
+
+.extract-number .number {
+  float: left;
+  color: #333;
+  font-size: 18px;
+}
+
+.extract-number .number {
+  font-size: 16px;
+}

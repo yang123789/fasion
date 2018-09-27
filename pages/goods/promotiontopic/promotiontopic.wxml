@@ -1,0 +1,48 @@
+<import src="../../../wxParse/wxParse.wxml"/>
+
+<!-- 广告位 -->
+<block wx:if='{{promotion_adv.adv_list[0] != undefined && promotion_adv.adv_list[0].adv_image != ""}}'>
+  <view class="slick">
+    <swiper indicator-dots="{{promotion_adv.adv_list.length>1?true:false}}" indicator-color='{{indicatorColor}}' indicator-active-color='{{indicatorActiveColor}}' autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular='{{circular}}' style='height:{{swiperHeight}}px'>
+      <block wx:for="{{promotion_adv.adv_list}}" wx:key="">
+        <swiper-item>
+          <image src="{{item.adv_image}}" bindload='imgLoad' mode='widthFix' style='background:{{adv.background}};'/>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+</block>
+<view class="topic-list-grid">
+	<view class="blank-div"></view>
+	<view id="topic_list">
+		<view class="tablelist-append clearfix" style="overflow: hidden;">
+			<view class='ul'>
+        <block wx:for='{{promotion_list.data}}' wx:key='' wx:for-item='promotion' wx:for-index='index'>
+          <view class='li'>
+            <view calss='a' catchtap='promotionTopicGoods' data-id='{{promotion.topic_id}}' data-name='{{promotion.topic_name}}'>
+              <image src="{{promotion.picture_img}}" class="topic_img" mode='widthFix'/>
+              <view class="span topic_name">{{promotion.topic_name}}</view>
+              <view class="topic_detail">
+                <block wx:if='{{promotion.desc != ""}}'>
+                  <view class="topic_desc block">{{promotion.desc}}</view>
+                </block>
+                <block wx:if='{{promotion.introduce != ""}}'>
+                  <view class="span topic_introduce block">
+                    <template is="wxParse" data="{{wxParseData:topic[index].nodes}}"/>
+                  </view>
+                </block>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>
+<block wx:if='{{promotion_list.data[0]==undefined}}'>
+  <view class='p none-goods'>
+    <image src="/images/goods/wap_nodata.png" mode='widthFix'/>
+    <br/>
+    Sorry！没有找到您想要的专题…
+  </view>
+</block>

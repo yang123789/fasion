@@ -1,0 +1,135 @@
+.my-account .account-box {
+  border-top: 1px solid #f77c52;
+  background: -webkit-linear-gradient(#FE4445, #FF8458);
+  background: -o-linear-gradient(#FE4445, #FF8458);
+  background: -moz-linear-gradient(#FE4445, #FF8458);
+  background: linear-gradient(#FE4445, #FF8458);
+  padding: 15px 0;
+  text-align: center;
+}
+
+.my-account .account-box .balace {
+  font-size: 42px;
+  color: #fff;
+}
+
+.point-label{
+  font-size: 15px;
+  color: #fff;
+}
+
+.integral-declaration {
+  margin-bottom: 20px;
+}
+
+.integral-declaration .declaration-title {
+  height: 35px;
+  line-height: 35px;
+  border-left: 3px solid #626262;
+  padding-left: 8px;
+  background: #fff;
+  font-size: 16px;
+  border-bottom: 1px solid #eee;
+}
+
+.integral-declaration .declaration-content {
+  padding: 10px;
+  color: #5B5B5A;
+  background: #fff;
+}
+
+.table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.table {
+    width: 100%;
+    border: none;
+    margin-bottom: 54px;
+}
+
+.table .tr {
+  overflow: hidden;
+  border-bottom: 1px solid #ddd;
+  float: left;
+  width: 100%;
+  background: #FFFFFF;
+}
+
+.table .tr .td{
+  padding-bottom: 0.2rem;
+  padding-left: 0;
+  padding-right: 0;
+  font-size: 16px;
+  float: left;
+  width: 100%;
+}
+
+.table .tr .th, .table .tr .td {
+  padding-top:0.5625rem;
+  color: #222;
+}
+
+.ns-lf{
+  font-size: 16px;
+  float: left;
+  color: #444;
+  margin-left: 0.625rem;
+}
+
+.ns-rg {
+  color: red;
+  font-size: 14px;
+  float: right;
+  margin-right: 0.625rem;
+}
+
+.bottom-td{
+  padding-top: 0.2rem;
+  font-size: 14px;
+  color: #888;
+  width: 100%;
+}
+
+.bottom-td .span{
+  color: #888;
+}
+
+.bottom-td .ns-lf{
+  font-size: 14px;
+}
+
+.ns-rg-time{
+  font-size: 14px;
+  float: right;
+  margin-right: 0.625rem;
+}
+
+.emptyFrame {
+  width: 100%;
+  margin: 60px auto 0;
+  text-align: center;
+}
+
+.emptyFrame .user_balance {
+  width: 110px;
+  height: 68px;
+  display: inline-block;
+}
+
+.emptyFrame .span{
+  width: 100%;
+  text-align: center;
+  color: #DD997F;
+  font-size: 14px;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.my-account .account-box .account-title {
+  font-size: 16px;
+  font-weight: 200;
+  line-height: 22px;
+  color: #fff;
+}

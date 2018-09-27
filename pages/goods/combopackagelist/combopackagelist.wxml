@@ -1,0 +1,135 @@
+<view class="motify {{prompt==''?'hide':''}}">
+  <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+  <view class="motify-inner">{{prompt}}</view>
+</view>
+<view class="combo_package_list {{sBuy==1?'none-scroll':''}}">
+  <block wx:for='{{comboPackageGoodsArray}}' wx:key='' wx:for-item='combo' wx:for-index='index'>
+    <view class="combo_package_content">
+      <view class="combo_package_name">
+        <view class="label checkbox">
+          <image class='label' src='/images/goods/cartp{{combo_index==index?2:1}}.png' catchtap='selectComboPackage' data-index='{{index}}'/>
+          <view class='span'>{{combo.combo_package_name}}</view>
+          <view class='span span-right'>套餐价：{{combo.combo_package_price}}</view>
+        </view>
+      </view>
+      <view class="goods_info">
+        <view class="goods_img">
+          <view class='a' catchtap='goodsDetail' data-id='{{combo.main_goods.goods_id}}' data-name='{{combo.main_goods.goods_name}}'>
+            <image src="{{combo.main_goods.pic_cover_small}}" lazy-load='true' class="pic" mode='widthFix' binderror='errorImg' data-index='{{index}}'/>
+          </view>
+        </view>
+        <view class="data_info">
+          <view class="p goods_name">{{combo.main_goods.goods_name}}</view>
+          <view class="price_share">
+            <view class="span price">￥{{combo.main_goods.promotion_price}}</view>
+          </view>
+          <block wx:if='{{combo.main_goods.sku_list[0].sku_name != "" && combo.main_goods.sku_list[0].sku_name != undefined}}'>
+            <view class="p select_sku" catchtap='skuShow' data-index='{{index}}' data-key='0' data-id='{{combo.main_goods.goods_id}}' data-type='main'>
+              <view class="span select_sku_28">已选规格：
+                <block wx:if="{{combo.main_goods.sku_id == undefined || combo.main_goods.sku_id == ''}}">
+                  {{combo.main_goods.sku_list[0].sku_name}}
+                </block>
+                <block wx:else>
+                  <block wx:for='{{combo.main_goods.sku_list}}' wx:key='' wx:for-item='sku'>
+                    {{sku.sku_id==combo.main_goods.sku_id?sku.sku_name:''}}
+                  </block>
+                </block>
+              </view>
+              <view class="i fa fa-angle-right fa-lg"></view>
+            </view>
+          </block>
+        </view>
+      </view>
+      <block wx:for='{{combo.goods_array}}' wx:key='' wx:for-item='goods' wx:for-index='key'>
+        <view class="goods_info">
+          <view class="goods_img">
+            <view class='a' catchtap='goodsDetail' data-id='{{goods.goods_id}}' data-name='{{goods.goods_name}}'>>
+              <image src="{{goods.pic_cover_small}}" lazy-load='true' class="pic" mode='widthFix' binderror='comboErrorImg' data-index='{{index}}' data-key='{{key}}'/>
+            </view>
+          </view>
+          <view class="data_info">
+            <view class="p goods_name">{{goods.goods_name}}</view>
+            <view class="price_share">
+              <view class="span price">￥{{goods.promotion_price}}</view>
+            </view>
+            <block wx:if='{{goods.sku_list[0].sku_name != "" && goods.sku_list[0].sku_name != undefined}}'>
+              <view class="p select_sku" catchtap='skuShow' data-index='{{index}}' data-key='{{key}}' data-id='{{goods.goods_id}}' data-type='combo'>
+                <view class="span select_sku_28">已选规格：
+                  <block wx:if="{{goods.sku_id == undefined || goods.sku_id == ''}}">
+                    {{goods.sku_list[0].sku_name}}
+                  </block>
+                  <block wx:else>
+                    <block wx:for='{{goods.sku_list}}' wx:key='' wx:for-item='sku'>
+                      {{sku.sku_id==goods.sku_id?sku.sku_name:''}}
+                    </block>
+                  </block>
+                </view>
+                <view class="i fa fa-angle-right fa-lg"></view>
+              </view>
+            </block>
+          </view>
+        </view>
+      </block>
+    </view>
+	  <view class="hr divider-line"/>
+  </block>
+</view>
+<view class='blank_view'></view>
+<view class="combo_package_buttom">
+	<view class="combo_package_info">
+		<view class='p'>
+      <view class="span package_price">套餐价
+        <view class='b'>￥<view class='span' id="package_price">{{combo_package_price}}</view></view>
+      </view>
+    </view>
+		<view class='p'>
+			<view class="span original_price">原价
+        <view class='s'>￥<view class='span' id="original_price">{{original_price}}</view></view>
+        <view class="span save_the_price">已节省￥
+          <view class='span' id="save_the_price">{{save_the_price}}</view>
+        </view>
+      </view>
+		</view>
+	</view>
+	<view class="btn-jiesuan" id="js-immediate-purchase" catchtap='buy'>立即购买</view>
+  <view class="mask {{sBuy==1?'':'hide'}}" id="mask"></view>
+  <view animation="{{animationData}}" class="s-buy {{sBuy==1?'':'hide'}}" id="s_buy">
+    <view class="popup hide" id="popup"></view>
+    <view class="ul s-buy-ul">
+      <view class="li s-buy-pro">
+        <view class="span pro-img">
+          <!-- 商品SKU图片 -->
+          <image src='{{goods_info.img_list[0].pic_cover_micro}}' class="js-thumbnail"></image>
+        </view>
+        <view class="pro-info">
+          <view class="p name">{{goods_info.goods_name}}</view>
+          <view class="p pro-price" id="price">￥{{promote_price}}</view>
+        </view>
+        <view class="i icon-close" id="icon_close" catchtap='sBuyClose'></view>
+      </view>
+    </view>
+    <view class="hr with-margin-l"></view>
+    <view class="ul s-buy-ul specification" id="specification">
+      <block  wx:for='{{spec_list}}' wx:key='' wx:for-index='key' wx:for-item='spec'>
+        <view class="li s-buy-li">
+          <view class="left">{{spec.spec_name}}：</view>
+          <view class="right" name="specvals">
+            <block wx:for='{{spec.value}}' wx:for-item='sku' wx:for-index='k' wx:key=''>
+              <view class="span select {{sku.status==1?'current':''}}" catchtap='skuSelect' data-key="{{key}}" data-k='{{k}}' data-picture-id="0">{{sku.spec_value_name}}</view>
+            </block>
+          </view>
+        </view>
+        <view class="hr with-margin-l {{key==spec_list.length-1?'hide':''}}"></view>
+      </block>
+      <view class="hr with-margin-l"></view>
+      <view class="li s-buy-li">
+        <view class='span last-goods' id="Stock">剩余{{stock}}件</view>
+      </view>
+    </view>
+    <view class="ul s-buy-ul">
+      <view class="s-buy-btn">
+        <view class="a btn {{stock==0?'disabled':''}}" id="submit_ok" catchtap="{{stock==0?'nullStock':'confirm'}}" data-type='{{goods_type}}'>确定</view>
+      </view>
+    </view>
+  </view>
+</view>

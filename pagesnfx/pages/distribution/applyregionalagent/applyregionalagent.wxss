@@ -1,0 +1,220 @@
+.step-process {
+  background: #f7f7f7;
+  border-bottom: 1px dashed #ccc;
+}
+
+.step-process .ul {
+  list-style: none;
+  margin: 0px auto 20px;
+  width: 300px;
+  overflow: hidden;
+}
+
+.step-process .li {
+  float: left;
+  margin-top: 20px;
+}
+
+.step-process .name {
+  margin: 0;
+  color: #999;
+  font-size: 12px;
+  text-align: center;
+}
+
+.step-process .current .name {
+  color: #f37872;
+}
+
+.step-process .step01 .name {
+  text-align: left;
+}
+
+.step-process .number {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  border-radius: 50%;
+  background: #ccc;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.step-process .prcess-line {
+  display: inline-block;
+  height: 2px;
+  width: 60px;
+  background: #ccc;
+  vertical-align: middle;
+}
+
+.step-process .current .number, .step-process .current .prcess-line {
+  background: #f37872;
+}
+
+.step-process .step03 .name {
+  text-align: right;
+}
+
+.apply {
+  background-color: #f7f7f7;
+  overflow: hidden;
+  text-align: center;
+  padding: 5px 10px;
+}
+
+.agent_type {
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.apply .p {
+  font-size: 14px;
+  text-align: left;
+  margin-top: 10px;
+  margin-bottom: 11px;
+}
+
+.apply .agent_type {
+  margin-top: 0;
+  margin-bottom: 0;
+  height: 40px;
+  line-height: 40px;
+}
+
+.apply-money {
+  color: #f23c3c;
+  font-size: 15px;
+}
+
+.apply_input {
+  width: 60%;
+  padding: 0 5px;
+  height: 30px;
+  line-height: 30px;
+  background: #FFF;
+  border: 1px solid #CCC;
+}
+
+.apply .apply_address {
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
+  height: 40px;
+  line-height: 40px;
+}
+
+.apply .apply_address::after {
+  content: '';
+  clear: both;
+}
+
+.apply-p {
+  color: #ff5400;
+}
+
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  padding-left: 20px;
+}
+
+.fa-info-circle:before {
+  position: absolute;
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  line-height: 14px;
+  border-radius: 12px;
+  font-size: 10px;
+  color: #FFF;
+  text-align: center;
+  content: "i";
+  background: #ff5400;
+  left: 0;
+}
+
+.a_button {
+  width: 54%;
+  height: 36px;
+  display: inherit;
+  margin: auto;
+  background: #ff6e6e;
+  text-align: center;
+  line-height: 36px;
+  color: #fff;
+  border-radius: 4px;
+  margin-top: 15px;
+  font-size: 15px;
+}
+
+.agent_type picker {
+  display: inline-block;
+  background: #FFF;
+  width: 62%;
+  padding-right: 3px;
+  border: 1px solid #CCC;
+  height: 30px;
+  line-height: 30px;
+  text-indent: 7px;
+}
+
+.apply_address picker {
+  display: block;
+  float: left;
+  background: #FFF;
+  width: 20%;
+  border: 1px solid #CCC;
+  margin: 5px 3px 0 0;
+  height: 30px;
+  line-height: 30px;
+  text-indent: 2px;
+  font-size: 12px;
+  overflow: hidden;
+}
+
+.apply_address .span {
+  display: block;
+  float: left;
+  width: 35%;
+  text-align: right;
+}
+
+.agent_type .span {
+  display: block;
+  float: left;
+  width: 35%;
+  text-align: right;
+}
+
+page {
+  background: #EEE;
+}
+
+.apply-money {
+  text-align: left !important;
+}
+
+.frog {
+  margin: 70px 20px 0 20px;
+  text-align: center;
+  color: #999;
+  font-size: 15px;
+}
+
+.frog image {
+  width: 107px;
+  height: 50.4px;
+  display: block;
+  margin: 40px auto 10px;
+}

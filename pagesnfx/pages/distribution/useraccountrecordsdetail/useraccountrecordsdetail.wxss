@@ -1,0 +1,66 @@
+.tabs-content {
+  border-top: 1px solid #EEE;
+  margin-bottom: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.tabs-content:before, .tabs-content:after {
+  content: " ";
+  display: table;
+}
+
+.content_01 {
+  overflow: hidden;
+}
+
+.nothing-data {
+  margin-top: 150px;
+}
+
+.nothing-data image {
+  text-align: center;
+  display: inline-block;
+  margin-bottom: 10px;
+  width: 33%;
+  max-height: 200px;
+}
+
+.tr {
+  overflow: hidden;
+  border-bottom: 1px solid #ddd;
+  float: left;
+  width: 100%;
+  background: #FFFFFF;
+}
+
+.tr .td{
+  display: block;
+  padding: 0.3625rem 0.625rem;
+  font-size: 0.875rem;
+  color: #222222;
+}
+
+.tr .td .p {
+  display: block;
+  height: 20px;
+  line-height: 20px;
+}
+
+.tr .td:last-child .text-name {
+  float: left;
+  color: #2d2d2d;
+  font-size: 14px;
+}
+
+.tr .td:last-child .text-money {
+  float: right;
+  font-size: 14px;
+  color: #FF7C56;
+}
+
+.tr .td:last-child .text-2 {
+  color: #909090;
+  font-size: 12px;
+  float:left;
+}

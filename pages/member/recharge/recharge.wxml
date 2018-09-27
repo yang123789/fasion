@@ -1,0 +1,15 @@
+<scroll-view>
+  <view class="motify {{prompt==''?'hide':''}}">
+    <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+    <view class="motify-inner">{{prompt}}</view>
+  </view>
+  <view id="main" class="detail-main">
+    <view class="payment">
+      <view class='span'>金额</view>
+      <input class="pay-money" type="digit" bindinput='inputMoney' placeholder="请输入充值金额"/>
+    </view>
+    <view class="section s-btn">
+      <button class="alipay" type="button" catchtap='confirmPay'>确认支付</button>
+    </view>
+  </view>
+</scroll-view>

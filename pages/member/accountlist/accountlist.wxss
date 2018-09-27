@@ -1,0 +1,147 @@
+.img{
+  margin: 10px auto 0;
+  width: 64px;
+  height: 64px;
+  display: block;
+}
+
+.addr-box{
+  padding-top: 0px;
+  text-align: center;
+}
+
+.addr-tip {
+  font-size: 14px;
+  color: #8f8f8f;
+  margin-top: 10px;
+}
+.a{
+    width:100%;
+}
+.btn-save {
+  display: block;
+  height: 35px;
+  line-height: 35px;
+  background: #333;
+  text-align: center;
+  color: #fff;
+  width: 85%;
+  border: 0;
+  font-size: 15px;
+  margin: auto;
+  border-radius: 5px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+
+scroll-view{
+  font-size: 14px;
+}
+.side-nav.address{
+  margin: 0px 0 0 0;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  background: #eee;
+  padding: 0;
+}
+
+.address.side-nav .li{
+  clear: both;
+  overflow: hidden;
+  margin: 0;
+  border-bottom: 1px solid #e9e9e9;
+  margin-bottom: 5px;
+  background: #fff;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.address.side-nav .last-li{
+  margin-bottom:0;
+}
+
+.address.side-nav .last-child{
+  border-bottom: 0 !important;
+  padding: 5px;
+  color: #333;
+  overflow: hidden;
+}
+
+.address.side-nav .li .color-border{
+  width: 100%;
+  height: 2px;
+}
+
+.address.side-nav .li .div-simply{
+  display: inline-block;
+  width: 100%;
+  padding: 5px;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.address .payStatus{
+  float: left;
+}
+
+.right{
+  float: right !important;
+  margin-right: 15px;
+}
+
+.address.side-nav .li .div-simply .child-div{
+  display: block;
+  float: right;
+  margin-right:5px;
+}
+
+.address.side-nav .li .div-simply .a{
+  display: block;
+  float: right;
+  color: #333;
+  overflow: hidden;
+}
+
+.btn-save{
+  display: block;
+  height: 35px;
+  line-height: 35px;
+  background: #333;
+  text-align: center;
+  color: #fff;
+  width: 85%;
+  border: 0;
+  font-size: 15px;
+  margin: auto;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  margin-top: 40px;
+  padding: 0;
+}
+
+.expresse{
+  display: flex;
+  height: 2px;
+  width: 20%;
+  float: left;
+}
+
+.no-address{
+  margin: 0 auto;
+  display: block;
+  margin-top: 10px;
+  width: 64px;
+  height: 64px;
+}
+
+.addr-box{
+  padding-top: 0px;
+  text-align: center;
+}
+
+.addr-tip{
+  font-size: 14px;
+  color: #8f8f8f;
+  margin-top: 10px;
+}

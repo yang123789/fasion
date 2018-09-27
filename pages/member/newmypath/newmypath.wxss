@@ -1,0 +1,82 @@
+.new-my-path{
+  border-top: 1.5px solid #F5F5F5;
+}
+
+.new-my-path .nav {
+  background: #ffffff;
+  padding: 10px;
+  overflow: scroll;
+}
+
+.new-my-path .nav .ul {
+  white-space: nowrap;
+}
+
+.nav::-webkit-scrollbar {
+  display: none;
+}
+
+.new-my-path .nav .ul .li {
+  padding: 0 10px;
+  border-radius: 10px;
+  border: 1px solid #EEE;
+  margin: 0 5px;
+  font-size: 13px;
+  white-space: pre-line;
+  display: inline-block;
+}
+
+.new-my-path .nav .ul .li.selected {
+  border: 1px solid #ff5000;
+  color: #ff5000;
+  background: #FFF1EB;
+}
+
+.new-my-path .list .li .date {
+  background: #F4F4F4;
+  padding-left: 20px;
+  padding: 5px 5px 5px 20px;
+}
+
+.new-my-path .list .li .right {
+  overflow: hidden;
+  background: #ffffff;
+  position: relative;
+  border-bottom: 1px solid #eee;
+  padding: 5px 0;
+}
+
+.new-my-path .list .li .right .img-block {
+  width: 30%;
+  float: left;
+}
+
+.new-my-path .list .li .right .img-block image {
+  width: 100%;
+}
+
+.new-my-path .list .li .right .content-block {
+  float: left;
+  width: 68%;
+  padding: 10px 0 0 5px;
+}
+
+.new-my-path .list .li .right .content-block .goods-name {
+  display: block;
+  padding-bottom: 25px;
+}
+
+.new-my-path .list .li .right .content-block .price {
+  position: absolute;
+  bottom: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 50%;
+}
+
+.new-my-path .list .li .right .content-block .del {
+  position: absolute;
+  bottom: 5px;
+  right: 15px;
+  color: #ff5000;
+}

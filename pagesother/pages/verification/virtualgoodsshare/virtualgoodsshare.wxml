@@ -1,0 +1,61 @@
+<view class="share-box">
+  <view class="share-box-middle">
+    <view class="share-box-middle-qrcode">
+      <image style='{{qrcode==""?"width:42px;height:42px;vertical-align:middle;":""}}' src="{{qrcode==''?'/images/member/5-121204193R0-50.gif':qrcode}}" mode='widthFix'/>
+    </view>
+  </view>
+  <view class="share-box-bottom">
+    <view class='span'>{{goods_detail.virtual_code}}</view>
+  </view>
+  <view class="share-box-top">
+      注: 请将二维码出示给核销员
+  </view>
+</view>
+<view class="share-info">
+  <view class="share-info-nav">
+    <view class="share-info-nav-top">
+      核销详情
+    </view>
+  </view>
+  <block wx:if='{{goods_detail.confine_use_number != undefined}}'>
+    <view class="share-info-content">
+      <view class="share-info-content-box">
+        <view class="span share-info-title">核销总次数：</view>
+        <view class="span share-info-text">{{goods_detail.confine_use_number}}</view>
+      </view>
+      <view class="share-info-content-box">
+        <view class="span share-info-title">剩余次数：</view>
+        <view class="span share-info-text">{{goods_detail.confine_use_number-goods_detail.use_number}}</view>
+      </view>
+      <view class="share-info-content-box">
+        <view class="span share-info-title">有效日期：</view>
+        <view class="span share-info-text">{{goods_detail.time}}</view>
+      </view>
+    </view>
+  </block>
+</view>
+<block wx:if='{{virtual_detail[0] != undefined}}'>
+  <view class="share-info">
+    <view class="share-info-nav">
+      <view class="share-info-nav-top">
+        核销记录
+      </view>
+    </view>
+    <block wx:for='{{virtual_detail}}' wx:key='' wx:for-item='virtual'>
+      <view class="share-info-content">
+        <view class="share-info-content-box">
+          <view class="span share-info-title">核销员：</view>
+          <view class="span share-info-text">{{virtual.user_name}}</view>
+        </view>
+        <view class="share-info-content-box">
+          <view class="span share-info-title">核销次数：</view>
+          <view class="span share-info-text">{{virtual.num}}</view>
+        </view>
+        <view class="share-info-content-box">
+          <view class="span share-info-title">核销日期：</view>
+          <view class="span share-info-text">{{virtual.create_time}}</view>
+        </view>
+      </view>
+    </block>
+  </view>
+</block>

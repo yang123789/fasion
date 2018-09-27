@@ -1,0 +1,59 @@
+<view class="user-info">
+	<view>
+    <image src="{{member_info.user_info.user_headimg}}" class='headimg' binderror='errorHeadImg' mode='widthFix'/>
+  </view>
+	<view class='h4'>{{member_info.member_name}}</view>
+</view>
+<view class="spelling-order-list">
+  <view class='ul'>
+    <block wx:for='{{bargain_list}}' wx:key='' wx:for-item='bargain' wx:for-index='index'>
+      <view class='li'>
+        <view class='header'>
+          <view class='label'>
+            <view class='span'>发起了砍价</view>
+            <block wx:if='{{bargain.status == -1}}'>
+              <view class='failed a'>砍价失败</view>
+            </block>
+            <block wx:if='{{timers_array[index].end == 1}}'>
+              <view class='failed a'>砍价失败</view>
+            </block>
+            <block wx:if='{{bargain.status == 2}}'>
+              <view class='a'>砍价成功</view>
+            </block>
+          </view>
+          <view class='time'>{{bargain.start_time}}</view>
+        </view>
+        <view class='article' catchtap='goodsDetail' data-id='{{bargain.goods_info.goods_id}}' data-name='{{bargain.goods_info.goods_name}}' data-bargain_id='{{bargain.bargain_id}}'>
+          <view class="goods-img"><image src="{{bargain.goods_info.pic.pic_cover_micro}}" binderror='errorGoodsImg' data-index='{{index}}' mode='widthFix'/></view>
+          <view class="goods-info">
+            <view class='label'>{{bargain.goods_info.goods_name}}</view>
+            <view class="span money">￥{{bargain.goods_info.price}}
+              <!-- <view class="span num">{{order.real_num}}已参与</view> -->
+            </view>
+          </view>
+        </view>
+        <view class='footer'>
+          <block wx:if='{{bargain.status == 2}}'>
+            <view class='ul'>
+              <view class='li'>
+                <view>
+                  <image src="{{user_info.user_head_img}}" mode='widthFix'/>
+                </view>
+              </view>
+            </view>
+            <button class="btn-order-info" catchtap='orderDetail' data-id='{{bargain.order_id}}'>查看订单详情</button>
+          </block>
+          <block wx:if='{{bargain.status == 1}}'>
+            <block wx:if='{{timers_array[index].end != 1}}'>
+            <view class='span'>还剩
+              <strong>{{bargain.surplus}}</strong>元，
+                <view class='time'>剩余{{timers_array[index].hour + ':' + timers_array[index].minute + ':' + timers_array[index].second}}</view>
+              </view>
+              <button class="btn-invitation-friend" catchtap='inviteFriends' data-launch_id="{{bargain.launch_id}}">邀请好友砍价</button>
+            </block>
+          </block>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

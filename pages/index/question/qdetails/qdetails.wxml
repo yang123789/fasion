@@ -1,0 +1,8 @@
+<!--pages/index/question/qdetails/qdetails.wxml-->
+<import src="../../../../wxParse/wxParse.wxml" />
+<view class="containernav">
+    <view class="title">{{article.title}}</view>
+    <view class="margin0">
+        <template is="wxParse" data="{{wxParseData:description.nodes}}" />
+    </view>
+</view>

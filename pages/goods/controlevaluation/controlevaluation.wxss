@@ -1,0 +1,142 @@
+.evaluation-shade{
+  background: #fff;
+  border-top:1px solid #DEDEDE;
+  height: 100%;
+  width: 100%;
+}
+
+.em{
+  display: inline;
+  font-size: 12px;
+}
+
+.evaluation-container {
+  padding: 6px;
+  padding-bottom: 0;
+  background: #fff;
+}
+
+.evaluation-container .evaluation-type {
+  margin: 10px 0;
+  overflow: hidden;
+}
+
+.evaluation-container .evaluation-type .li {
+  float: left;
+  background-color: #FEE;
+  color: #666;
+  margin: 6px 3px;
+  padding: 5px 5px;
+  text-align: center;
+  border-radius: 8px;
+  -moz-border-radius: 10px;
+  font-size: 12px;
+}
+
+.evaluation-container .evaluation-type .li.current {
+  background-color: #FF0036;
+  color: #FFF;
+}
+
+.evaluation-shade .body .evaluation-list .li.item {
+  border-bottom: 1px solid #e5e5e5;
+  padding: 20px 0;
+}
+
+.evaluation-container .evaluation-comments {
+  margin: 6px;
+}
+
+.evaluation-container .evaluation-comments .evaluation-userinfo {
+  line-height: 16px;
+  font-size: 12px;
+  margin: 10px 0;
+  position: relative;
+}
+
+.evaluation-container .evaluation-comments .evaluation-userinfo .headimg {
+  width: 24px;
+  height: 24px;
+  border-radius: 20px;
+  vertical-align: middle;
+}
+
+.evaluation-container .evaluation-comments .evaluation-userinfo .nickname {
+  vertical-align: middle;
+  padding: 5px;
+  line-height: 22px;
+  color: #999;
+  font-size: 12px;
+}
+
+.evaluation-container .evaluation-comments .evaluation-userinfo .evaluation-time {
+  overflow: hidden;
+  color: #999;
+  margin-top: 5px;
+  float: right;
+  font-size: 12px;
+}
+
+.evaluation-container .evaluation-comments .evaluation-content {
+  font-size: 13px;
+  line-height: 16px;
+  text-align: justify;
+  color: #051b28;
+  word-break:break-all;
+}
+
+.evaluation-container .evaluation-comments .evaluation-pics {
+  overflow: hidden;
+  margin-top: 5px;
+  list-style: none;
+  padding: 0;
+}
+
+.evaluation-container .evaluation-comments .evaluation-pics .li {
+  width: 55px;
+  height: 55px;
+  float: left;
+  margin: 0 5px 5px 0;
+  background-color: #fff;
+  display: -webkit-box;
+  -webkit-box-align: center;
+  -webkit-box-pack: center;
+}
+
+.evaluation-container .evaluation-comments .evaluation-pics .li .comment-pic {
+  max-width: 55px;
+  max-height: 55px;
+  vertical-align: top;
+}
+
+.evaluation-container .evaluation-comments .review-evaluation {
+  color: #FF0036;
+  font-size: 14px;
+}
+
+.evaluation-container .evaluation-comments .review-evaluation .review-time {
+  overflow: hidden;
+  color: #999;
+  float: right;
+  font-size: 12px;
+}
+
+.evaluation-container .evaluation-comments .review{
+  color: #666;
+}
+
+.evaluation-shade .body .evaluation-list .li.empty {
+  text-align: center;
+  color: #666;
+  border-top: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5!important;
+}
+
+.evaluation-container .evaluation-comments .evaluation-reply{
+  position: relative;
+  margin-top: 5px;
+  background-color: #f0f0f0;
+  padding: 8px;
+  font-size: 13px;
+  border-radius: 5px;
+}

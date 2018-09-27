@@ -1,0 +1,7 @@
+<!--pages/index/question/question.wxml-->
+<view class="qes">
+    <view class="ques-item" wx:for="{{ques}}" bindtap="goqd" data-id="{{item.id}}" wx:key="{{index}}">
+        <view class="title">{{item.title}}</view>
+        <image src="/images/goods/assistant_right.png"></image>
+    </view>
+</view>

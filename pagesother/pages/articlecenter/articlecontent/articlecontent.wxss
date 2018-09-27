@@ -1,0 +1,38 @@
+page{
+  background: #FFF;
+}
+
+.h3 {
+  line-height: 30px;
+  text-align: center;
+  font-size: 16px;
+  padding: 10px 0;
+  -webkit-margin-before:0;
+  -webkit-margin-after:0;
+}
+
+.p.fu_title {
+  padding-left: 10px;
+}
+
+#html_content {
+  margin-top: 10px;
+  padding: 0 10px;
+}
+
+image{
+  width: 100% !important;
+}
+
+.location_other_article {
+  padding: 0 10px;
+  margin-top: 30px;
+}
+
+.location_other_article .a.prev {
+  float: left;
+}
+
+.location_other_article .a.next {
+  float: right;
+}

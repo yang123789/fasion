@@ -1,0 +1,57 @@
+<view class="motify {{prompt==''?'hide':''}}">
+  <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+  <view class="motify-inner">{{prompt}}</view>
+</view>
+<view class="step-process">
+  <view class="ul clear" id="ul">
+    <view class="li step01 current">
+      <view class="p name">申请股东</view>
+      <view class="span number">1</view>
+      <view class="span prcess-line prcess-line-r"></view>
+    </view>
+    <!-- 待审核 -->
+    <view class='li {{apply_partner_info.agent_type == 2 ? "" : "current"}}'>
+      <view class="p name">待审核</view>
+      <view class="span prcess-line prcess-line-l"></view>
+      <view class="span number">2</view>
+      <view class="span prcess-line prcess-line-r"></view>
+    </view>
+    <view class='li step03 {{apply_partner_info.agent_type == 1 ? "current" : ""}}'>
+      <view class="p name">申请成功</view>
+      <view class="span prcess-line prcess-line-l"></view>
+      <view class="span number">3</view>
+    </view>
+  </view>
+</view>
+<!-- 从未申请过 -->
+<block wx:if='{{apply_partner_info.agent_type == 2}}'>
+  <view class="apply">
+    <view class='h4'>股东协议</view>
+    <view class='hr' />
+    <view class='p'>在成为股东期间，所有股东应该根据总店的政策和决意走。</view>
+    <view class="p apply-p">
+      <view class="i fa fa-info-circle">用户消费金额：
+        <view class="apply-money">{{apply_partner_info.shop_user_account}}元</view>
+      </view>
+    </view>
+    <view class="p apply-p">
+      <view class="i fa fa-info-circle">最低消费
+        <view class='span'>{{apply_partner_info.shop_sale_money}}</view>元，才能申请股东</view>
+    </view>
+  </view>
+  <view catchtap="applyPartner" class="a a_button">申请</view>
+</block>
+<!-- 审核中 -->
+<block wx:if='{{apply_partner_info.agent_type == 0}}'>
+  <view class="frog">
+    <image src="/pagesnfx/images/agent_apply.png" />申请正在审核中......
+  </view>
+  <view catchtap="distributionCenter" class="a a_button">返回推广中心</view>
+</block>
+<!-- 审请被拒绝 -->
+<block wx:if='{{apply_partner_info.agent_type == -1}}'>
+  <view class="frog">
+    <image src="/pagesnfx/images/agent_apply.png" />申请已被拒绝......
+  </view>
+  <view catchtap="applyPartner" class="a a_button">重新申请</view>
+</block>

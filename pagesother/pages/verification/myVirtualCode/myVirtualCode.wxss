@@ -1,0 +1,158 @@
+.cf-container {
+  max-width: 640px;
+  height: 2.26rem;
+  top: 2px;
+  width: 100%;
+  z-index: 6;
+  background: #fff;
+  overflow: hidden;
+  font-size: 14px;
+  border-bottom: 1px solid #dddddd;
+  border-top: 1.5px solid #EEE;
+}
+
+.cf-container .cf-content {
+  position: relative;
+  height: 3.35rem;
+  color: #333;
+  text-align: center;
+  top: 0;
+  white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  z-index: 5;
+  -webkit-overflow-scrolling: touch;
+  margin-left: 0.1rem;
+  margin-right: 0.1rem;
+}
+
+.cf-container .cf-tab-item {
+  display: block;
+  padding: 0px;
+  line-height: 2.1rem;
+  text-align: center;
+  width: 33%;
+  float: left;
+}
+
+.cf-tab-item .a {
+  padding-right: 3px;
+  padding-left: 3px;
+  color: #707070;
+  font-size: 14px;
+  display: inline-block;
+  width: 100%;
+}
+
+.cf-container .cf-tab-item.select .a {
+  border-bottom: 2px solid #FF6600;
+  padding-bottom: 0px;
+  color: #F15050;
+}
+
+.com_content .li {
+  width: 96%;
+  position: relative;
+  float: left;
+  margin-top: 10px;
+  background: #fff;
+  padding: 5px 2%;
+  list-style: none;
+}
+
+.com_content .li .a{
+  width: 100%;
+}
+
+.not_use image{
+  width: 100%;
+}
+
+.coupon-price {
+  position: absolute;
+  width: 65vw;
+  height: 20vw;
+  top: 4vw;
+  left: 5vw;
+  font-size: 4vw;
+  color: #fff;
+  padding-left: 15vw;
+  vertical-align: middle;
+}
+
+.coupon-price .i {
+  width: 12vw;
+  height: 12vw;
+  display: block;
+  border-radius: 50%;
+  background: #ffffff;
+  position: absolute;
+  left: 0;
+}
+
+.coupon-price .i image {
+  vertical-align: middle;
+  width: 100%;
+  border-radius: 50%;
+}
+
+.coupon-price .p {
+  padding-top: 3vw;
+  overflow:hidden;
+  max-height:37px;
+  width:51vw;
+}
+
+.coupon-lose {
+  position: absolute;
+  top: 67%;
+  left: 10%;
+  font-size: 3.5vw;
+  color: #fff;
+}
+
+.coupon-lose .span{
+  font-size: 3.5vw;
+  color: #fff;
+}
+
+.coupon-price-right {
+  position: absolute;
+  color: #fff;
+  top: 7vw;
+  right: 5vw;
+  width: 20vw;
+  padding-left: 0;
+  text-align: center;
+  font-size: 4vw;
+}
+
+.coupon-price-right .p{
+  font-size: 4vw;
+  color: #fff;
+}
+
+.coupon-price-right .p.last-child {
+  margin-top: 2vw;
+  font-size: 12px;
+}
+
+.null_default .i {
+  display: block;
+  margin: 0 auto;
+}
+
+.null_default .icon-nocontent-youhuiquan {
+  display: block;
+  background-position: -325px -180px;
+  margin-top: 30px;
+  width: 100px;
+  height: 120px;
+}
+
+.null_default .span.nulltext {
+  display: block;
+  text-align: center;
+  font-size: 14px;
+  color: #999;
+}

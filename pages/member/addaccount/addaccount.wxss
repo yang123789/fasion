@@ -1,0 +1,44 @@
+.form-info {
+  margin: 1.5px 0px 15px;
+}
+
+.div-item {
+  padding: 10px;
+  background: #fff;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.div-item .span {
+  width: 20%;
+  text-align: center;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.div-item input, .div-item picker {
+  display: inline-block;
+  width: 75%;
+  line-height: 30px;
+  height: 29px;
+  margin: 0;
+  background: #fff;
+  border: 0;
+  vertical-align: middle;
+  margin-left:3%;
+}
+
+.btn-save {
+  display: block;
+  height: 35px;
+  line-height: 35px;
+  background: #333;
+  text-align: center;
+  color: #fff;
+  width: 85%;
+  border: 0;
+  font-size: 15px;
+  margin: auto;
+  border-radius: 5px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}

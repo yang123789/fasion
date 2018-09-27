@@ -1,0 +1,132 @@
+<scroll-view>
+  <view class="motify {{prompt==''?'hide':''}}">
+    <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+    <view class="motify-inner">{{prompt}}</view>
+  </view>
+  <view class="cf-container" data-reactid="2">
+    <view class="cf-edge" data-reactid="3"></view>
+    <view class="cf-content" data-reactid="4">
+      <view class="cf-tab-item {{_no=='0'?'select':''}}" catchtap='topNav' data-id="0">
+        <view class='a'>全部</view>
+      </view>
+      <view class="cf-tab-item {{_no=='1'?'select':''}}" catchtap='topNav' data-id="1">
+        <view class='a'>待付款</view>
+      </view>
+      <view class="cf-tab-item {{_no=='2'?'select':''}}" catchtap='topNav' data-id="2">
+        <view class='a'>待发货</view>
+      </view>
+      <view class="cf-tab-item {{_no=='3'?'select':''}}" catchtap='topNav' data-id="3">
+        <view class='a'>待收货</view>
+      </view>
+      <view class="cf-tab-item {{_no=='4'?'select':''}}" catchtap='topNav' data-id="4">
+        <view class='a'>已收货</view>
+      </view>
+      <view class="cf-tab-item {{_no=='5'?'select':''}}" catchtap='topNav' data-id="5">
+        <view class='a last-child'>退款/售后</view>
+      </view>
+    </view>
+  </view>
+  <view class="tabs-content ">
+    <view class="content active" id="list_content">
+      <block wx:for='{{order_list}}' wx:key='order_id' wx:for-item='order' wx:for-index='index'>
+        <view class="list-myorder">
+          <view class="ordernumber">
+            <view class="order-num span">{{order.order_no}}</view>
+            <view class="order-date span">{{order.create_time}}</view>
+          </view>
+          <view class="ul-product ul">
+            <block wx:for='{{order.order_item_list}}' wx:key='' wx:for-item='goods' wx:for-index='key'>
+              <view class='li'>
+                <view class='a' catchtap='aClick' data-url='/pagesother/pages/order/orderdetail/orderdetail?id={{order.order_id}}'>
+                  <view class="pic span">
+                    <image src="{{goods.picture.pic_cover_small==''?0:goods.picture.pic_cover_small}}" binderror='errorImg' data-index='{{index}}' data-key='{{key}}' />
+                  </view>
+                  <view class="text">
+                    <view class="pro-name span">{{goods.goods_name}}</view>
+                    <view class="pro-pric">
+                      <view class='span'>价格:</view>
+                      <view class='b'>￥{{goods.goods_money}}</view>
+                      <block wx:if='{{goods.gift_flag == 1}}'>
+                        <view class='i gift'>赠品</view>
+                      </block>
+                    </view>
+                    <view class="pro-pric">
+                      <view class='span'>规格:</view>
+                      <view class='b'>{{goods.sku_name}}</view>
+                    </view>
+                    <view class="pro-pric">
+                      <view class='span'>数量:</view>
+                      <view class='b'>{{goods.num}}件</view>
+                    </view>
+                  </view>
+                </view>
+                <view class="bottom-div">
+                  <view class='bottom-div-child'>
+                    <view style="width:20%;float:left;height:26px;line-height:26px;">
+                      <block wx:if='{{goods.refund_status==-3}}'>{{order.status_name}}</block>
+                      <block wx:if='{{goods.refund_status==-1}}'>{{order.status_name}}</block>
+                      <block wx:if='{{goods.refund_status==0}}'>{{order.status_name}}</block>
+                      <block wx:if='{{goods.refund_status==1}}'>退款中</block>
+                      <block wx:if='{{goods.refund_status==4}}'>退款中</block>
+                      <block wx:if='{{goods.refund_status==5}}'>已退款</block>
+                    </view>
+                    <block wx:if='{{order.order_status != 5 && order.order_status !=0 && order.order_status !=3 && goods.gift_flag == 0}}'>
+                      <block wx:if='{{order.order_status == 4 && goods.customer_info == ""}}'>
+                        <view type='button' class='child-button' catchtap='customer' data-id='{{goods.order_goods_id}}'>
+                          <block wx:if='{{goods.refund_status==0}}'>申请售后</block>
+                          <block wx:else>{{goods.status_name}}</block>
+                        </view>
+                      </block>
+                      <block wx:if='{{order.order_status == 4 && goods.customer_info != ""}}'>
+                        <view type='button' class='child-button' catchtap='customer' data-id='{{goods.order_goods_id}}'>
+                          <block wx:if='{{goods.refund_status==0}}'>查看售后</block>
+                          <block wx:else>{{goods.status_name}}</block>
+                        </view>
+                      </block>
+                      <block wx:if='{{order.order_status != 4}}'>
+                        <view type='button' class='child-button' catchtap='refund' data-id='{{goods.order_goods_id}}'>
+                          <block wx:if='{{goods.refund_status==0}}'>退款/退货</block>
+                          <block wx:else>{{goods.status_name}}</block>
+                        </view>
+                      </block>
+                    </block>
+                    <block wx:if='{{goods.refund_status==5}}'>
+                      <view type='button' class='child-button' catchtap='refund' data-id='{{goods.order_goods_id}}'>
+                        退款成功
+                      </view>
+                    </block>
+                    <block wx:if='{{order.order_status == 3 || order.order_status == 4 && order.is_evaluate != 2}}'>
+                      <view type='button' class='child-button' catchtap='{{order.is_evaluate==0?"evaluation":"evaluationAgain"}}' data-id='{{order.order_id}}'>
+                        <block wx:if='{{order.is_evaluate==0}}'>我要评价</block>
+                        <block wx:if='{{order.is_evaluate==1}}'>追加评价</block>
+                      </view>
+                    </block>
+                  </view>
+                </view>
+              </view>
+            </block>
+          </view>
+          <view class="totle">
+            <view class="status span">{{order.status_name}}</view>
+            <view class="price span">￥{{order.order_money}}</view>
+            <view class="pric-lable span">总价</view>
+            <view class="prc-num span"></view>
+          </view>
+          <view class="div-button">
+            <block wx:for='{{order.member_operation}}' wx:key='' wx:for-item='button'>
+              <view class="button [radius round] a" catchtap='{{button.no}}' data-id='{{order.order_id}}' data-no='{{order.out_trade_no}}' style='background-color:{{button.color}};border-color:{{button.color}}'>{{button.name}}</view>
+            </block>
+          </view>
+        </view>
+      </block>
+      <view class="myorder-none {{order_list.length==0?'':'hide'}}">
+        <image class="icon-none" src='/images/order/distribution.png' mode="aspectFit"></image>
+        <view class="none_01 span">您还没有相关的订单</view>
+        <view class="none_02 span">去看看大家都在买什么吧</view>
+        <view class="none_03 span">
+          <view class="a" catchtap='aClick' data-url='/pages/goods/goodslist/goodslist'>随便逛逛</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

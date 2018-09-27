@@ -1,0 +1,80 @@
+<view class="evaluation-shade">
+	<view class="body">
+		<view class="evaluation-container">
+      <view class="ul evaluation-type js-product-evaluation">
+        <view class='li {{comments_type==0?"current":""}}' catchtap='evaluationType' data-type='0'>
+          全部
+          <view class='em'>({{evaluates_count.evaluate_count}})</view>
+        </view>
+        <view class='li {{comments_type==4?"current":""}}' catchtap='evaluationType' data-type='4'>
+          图片
+          <view class='em'>({{evaluates_count.imgs_count}})</view>
+        </view>
+        <view class='li {{comments_type==1?"current":""}}' catchtap='evaluationType' data-type='1'>
+          好评
+          <view class='em'>({{evaluates_count.praise_count}})</view>
+        </view>
+        <view class='li {{comments_type==2?"current":""}}' catchtap='evaluationType' data-type='2'>
+          中评
+          <view class='em'>({{evaluates_count.center_count}})</view>
+        </view>
+        <view class='li {{comments_type==3?"current":""}}' catchtap='evaluationType' data-type='3'>
+          差评
+          <view class='em'>({{evaluates_count.bad_count}})</view>
+        </view>
+      </view>
+
+			<view class="ul evaluation-list">
+        <block wx:if='{{comments_list[0]==undefined}}'>
+          <view class="li item empty">暂无评论！</view>
+        </block>
+        <block wx:for='{{comments_list}}' wx:key='' wx:for-item='evaluates' wx:for-index='index'>
+          <view class="li item">
+            <view class="evaluation-comments">
+              <!-- 评价人信息 -->
+              <view class="evaluation-userinfo">
+                <image src="{{evaluates.user_img}}" class="headimg" lazy-load='true' binderror='errorHeadImg' data-index='{{index}}'></image>
+                <view class="span nickname">{{evaluates.member_name}}</view>
+                <view class="time evaluation-time">{{evaluates.addtime}}</view>
+              </view>
+              <!-- 初次评价 -->
+              <view class="evaluation-content">{{evaluates.content}}</view>
+              <!-- 店家回复 -->
+              <block wx:if="{{evaluates.explain_first != ''}}">
+                <view class="evaluation-reply">店家回复:{{evaluates.explain_first}}</view>
+              </block>
+              <!-- 评价图片 -->
+              <view class="ul evaluation-pics">
+                <block wx:for='{{evaluates.image}}' wx:key='' wx:for-item='img'>
+                  <view class='li'>
+                    <image src="{{img}}" class="comment-pic" mode='aspectFit'/>
+                  </view>
+                </block>
+              </view>
+              <!-- 追评 -->
+              <block wx:if='{{evaluates.again_addtime != 0}}'>
+                <view class="p review-evaluation">
+                  追加评价
+                  <view class="time review-time">{{evaluates.again_addtime}}</view>
+                </view>
+                <view class="evaluation-content review">{{evaluates.again_content}}</view>
+              </block>
+              <!-- 追评店家回复 -->
+              <block wx:if="{{evaluates.again_explain != ''}}">
+                <view class="evaluation-reply">店家回复:{{evaluates.again_explain}}</view>
+              </block>
+              <!-- 追评图片 -->
+              <view class="ul evaluation-pics">
+                <block wx:for='{{evaluates.again_image}}' wx:key='' wx:for-item='img'>
+                  <view class='li'>
+                    <image src="{{img}}" class="comment-pic" mode='aspectFit'/>
+                  </view>
+                </block>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+		</view>
+	</view>
+</view>

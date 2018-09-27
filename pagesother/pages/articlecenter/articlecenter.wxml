@@ -1,0 +1,40 @@
+<view class="articel-container">
+  <view class="ul article_class">
+    <view class="li {{select_index==-1?'active':''}}" catchtap='selectNav' data-index='{{-1}}' data-id='0'>
+      <view class='a'>全部</view>
+    </view>
+    <block wx:for='{{article_class}}' wx:key='' wx:for-item='article' wx:for-index='index'>
+      <view class="li {{select_index==index?'active':''}}" catchtap='selectNav' data-index='{{index}}' data-id='{{article.class_id}}'>
+        <view class='a'>{{article.name}}</view>
+      </view>
+    </block>
+  </view>
+  <view class="article_list_content">
+    <view class='ul article_list_container'>
+      <block wx:if='{{article_list[0] == undefined}}'>
+        <view class='p none'>
+          <image src="/images/goods/wap_nodata.png"/>
+          <br/>
+          该分类下暂时没有文章！
+        </view>
+      </block>
+      <block wx:for='{{article_list}}' wx:key='' wx:for-item='article'>
+        <view class='a' catchtap='articleDetail' data-id='{{article.article_id}}'>
+          <view class='li article-item'>
+            <view class="item-thumbnail">
+              <image src="{{article.image}}" mode='aspectFit'/>
+            </view>
+            <view class="item-container">
+              <view class="h3 item-title">{{article.title}}</view>
+              <view class="p item-respondent">{{article.publisher_name}}</view>
+              <view>
+                <view class="span speech-item-tag">{{article.name}}</view>
+                <view class="span participation">{{article.click}}人(阅)</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

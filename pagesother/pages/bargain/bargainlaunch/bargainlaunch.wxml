@@ -1,0 +1,85 @@
+  <image class='bargain_bg' src='/images/member/bargain_bg.png' mode="scaleToFill"></image>
+<view class="motify {{prompt==''?'hide':''}}">
+  <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+  <view class="motify-inner">{{prompt}}</view>
+</view>
+<view class="body">
+
+
+  <view class='bargain_header'>
+    <view class='a idnex'>首页</view>
+    <view class='bargain_content'>
+      <view class='user_headimg'>
+        <image class='img' src='{{user_info.user_headimg}}' lazy-load='true' mode='widthFix' binderror='errorHeadImg'></image>
+      </view>
+      <view class='user_name'>{{user_info.user_name == ''?user_info.nick_name:user_info.user_name}}</view>
+      <view class='propaganda'>{{partake_info.propaganda}}</view>
+      <view class='goods_info' catchtap='goodsDetail' data-id="{{goods_info.goods_id}}" data-name="{{goods_info.goods_name}}" data-bargain_id="{{goods_info.bargain_id}}">
+        <view class='goods_left'>
+          <image class='img' src='{{goods_info.pic.pic_cover}}' lazy-load='true' mode='widthFix' binderror='errorGoodsImg'></image>
+        </view>
+        <view class='goods_right'>
+          <view class='span goods_name'>{{goods_info.goods_name}}</view>
+          <view class='span goods_price'>{{goods_info.price}}</view>
+          <view class='span' style='font-size:12px;color:#999'>最低可砍至
+            <view class='span' style='color:red;'>{{launch_info.bargain_min_money}}</view>元</view>
+          <view class='span partake_number'>{{bargain_goods_info.sales + bargain_goods_info.fictitious_sales}}人已参与</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class='bargain_info'>
+    <view class='h3'>已砍
+      <view class='span'>{{launch_info.bargain_money}}</view>元,还差
+      <view class='span'>{{launch_info.surplus}}</view>元 </view>
+    <block wx:if="{{is_self == 1}}">
+      <button id="share_friends" open-type="share" data-name="{{goods_info.goods_name}}" data-img="{{goods_info.pic.pic_cover}}">喊好友砍一刀</button>
+    </block>
+    <block wx:if="{{is_self == 0}}">
+      <block wx:if="{{is_max_partake == 1}}">
+        <view class="friend_brafain " catchtap="jump_bargain" data-launch_id="{{launch_id}}">我也要去砍价</view>
+      </block>
+      <block wx:else>
+        <block wx:if="{{launch_info.status != 1}}">
+          <view class="friend_brafain " catchtap="jump_bargain" data-launch_id="{{launch_id}}">去砍价商品</view>
+        </block>
+        <block wx:else>
+          <view class="friend_brafain " catchtap="friend_brafain" data-launch_id="{{launch_id}}">帮他砍一刀</view>
+        </block>
+
+      </block>
+
+    </block>
+
+    <block wx:if="{{launch_info.status == 1}}">
+      <view class="h3">
+        <view class='time' data-end-time="">还差{{timers_array[0].hour + ':' + timers_array[0].minute + ':' + timers_array[0].second}}结束，快来砍价吧~</view>
+      </view>
+    </block>
+    <block wx:if="{{launch_info.status != 1}}">
+      <view class='h3'>{{launch_info.status == 2 ? '砍价已结束' : '砍价已取消'}}</view>
+    </block>
+  </view>
+
+  <view class='bargain_list'>
+    <view class='h3'>砍价帮</view>
+    <view class='ul'>
+      <block wx:for="{{partake_list}}" wx:key="" wx:for-item="partake" wx:for-index='index'>
+        <view class='li'>
+          <view class='user_headimg'>
+            <image class='img' src='{{partake.user_info.user_headimg}}' lazy-load='true' mode='widthFix' binderror='errorHeadListImg' data-index="{{index}}"></image>
+          </view>
+          <view class='user_info'>
+            <view class='p' style='padding: 6px 0;color: #fff;line-height:23px;'>{{partake.user_info.user_name == ""?partake.user_info.nick_name:partake.user_info.user_name}}
+              <view class='span' style='display:block;white-space: nowrap;text-overflow: ellipsis;  overflow: hidden;width:65%;'>{{partake.remark}}</view>
+            </view>
+            <view class='bargain_price'>砍掉{{partake.bargain_money}}元</view>
+          </view>
+        </view>
+      </block>
+
+    </view>
+  </view>
+
+</view>

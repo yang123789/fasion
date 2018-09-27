@@ -1,0 +1,152 @@
+/* pages/liangti/newcc/newcc.wxss */
+.info-list{
+    margin-top:30rpx;
+}
+.info-item{
+    width:100%;
+    overflow: hidden;
+    background:white;
+    border-bottom:1rpx solid #eee;
+    position:relative;
+    padding-top:20rpx;
+    padding-bottom: 20rpx;
+    
+}
+.info-item .text{
+    width:25%;
+    float: left;
+    text-align: right;
+    height:80rpx;
+    line-height:80rpx;
+    font-size:28rpx;
+    color:#333;
+}
+.info-item .int{
+    width:70%;
+    float: right;
+    
+}
+.info-item .int input{
+    padding:0rpx 5%;
+    height:80rpx;
+    width:70%;
+    border:1rpx solid #eee;
+}
+.info-item .int textarea{
+    padding:20rpx 5%; 
+    height:200rpx;
+    line-height:40rpx;
+    width:70%;
+    border:1rpx solid #eee;
+}
+.info-item .req{
+    position:absolute;
+    right:30rpx;
+    top:50%;
+    font-size:60rpx;
+    line-height: 24rpx;
+    color:#666;
+}
+.mb20{
+    margin-bottom:20rpx;
+}
+.ex-list{
+    width:700rpx;
+    margin:0 auto;
+    overflow: hidden;
+    text-align: center;
+}
+.ex-list .ex-item{
+   width:33.33%;
+    float: left;
+}
+.ex-list image{
+    width:220rpx;
+    height:220rpx;
+    display: block;
+    margin:0 auto;
+}
+.ex-list text{
+    line-height: 80rpx;
+    color:#666;
+    font-size:28rpx;
+}
+
+.file-img{
+    background:white;
+    padding-top:30rpx;
+    padding-bottom:30rpx;
+}
+.file-img .intro{
+    font-size:28rpx;
+    color:#999;
+    padding-left:30rpx;
+    margin-bottom:20rpx;
+}
+.file-img .words{
+    font-size:30rpx;
+    padding-left:30rpx;
+    color:#333;
+     margin-bottom:20rpx;
+}
+.example{
+    border-bottom: 1rpx solid #eee;
+}
+.file_num{
+    padding-left:30rpx;
+    font-size:28rpx;
+    color:#999;
+    padding-top:30rpx;
+    padding-bottom:20rpx;
+}
+.fileimg-list{
+    overflow: hidden;
+    width:700rpx;
+    margin:0 auto;
+}
+.fileimg-item{
+   width:33.33%;
+    float: left;
+}
+.fileimg-item .fimg{
+    width:220rpx;
+    height:220rpx;
+    display: block;
+    margin:0 auto;
+}
+.numnone{
+    display: none;
+}
+.delimg{
+    width:50rpx;
+    height:50rpx;
+    margin-top:20rpx;
+    margin-left: auto;
+    margin-right:auto;
+    display: block;
+}
+.subtn{
+    width:80%;
+    height:80rpx;
+    line-height: 80rpx;
+    background:#333;
+    color:#fff;
+    margin-top:60rpx;
+    margin-bottom:60rpx;
+}
+.more{
+    width:100%;
+    text-align: center;
+    margin-top:60rpx;
+}
+.more image{
+    width:40rpx;
+    height:40rpx;
+    vertical-align: middle;
+}
+.more  text{
+    font-size:28rpx;
+    color:#333;
+    vertical-align: middle;
+    margin-left:10rpx;
+}

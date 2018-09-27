@@ -1,0 +1,296 @@
+.evaluate{
+  width: 100%;
+}
+
+.order-detail-remark {
+  padding: 0 15px;
+  border-bottom: 1px solid #e3e3e3;
+  background: #fff;
+  color: #333;
+}
+
+.order-detail-remark .remark-out {
+  padding: 10px 0;
+}
+
+.clear:before, .clear:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.order-detail .order-detail-r {
+  overflow: hidden;
+}
+
+.remark-r-ul {
+  width: 100%;
+  content: '';
+  clear: both;
+  display: inline-block;
+}
+
+.order-detail .order-detail-r .ul {
+  margin: 0;
+  list-style: none;
+  font-size: 12px;
+}
+
+.order-detail .order-detail-r .ul .li{
+  padding: 0 0 4px 0;
+}
+
+.evaluate_right_imgs .li {
+  float: left;
+  display: block;
+  height: 30px;
+  width: 30px;
+  background: no-repeat center center;
+  background-size: cover;
+  margin-right: 0;
+}
+
+.evaluate_right_imgs .li .span {
+  cursor: pointer;
+  text-align: center;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  z-index: 3;
+  font-size: 12px;
+  background-color: #000;
+  opacity: .8;
+  filter: alpha(opacity = 80);
+  color: #FFF;
+  text-decoration: none;
+  display: none;
+}
+
+.order-detail .order-detail-r .name, .order-detail .order-detail-r .name .label {
+  line-height: 12px;
+  font-size: 12px;
+}
+
+.remark-r-ul .name{
+  width: 25%;
+  float: left;
+  height: 110px;
+  text-align: center;
+  line-height: 110px;
+  display: block;
+}
+
+.remark-r-ul .name image{
+  width: 100%;
+  max-height: 87px;
+  border: 1px solid #e5e5e5;
+}
+
+.remark-r-ul .li-text{
+  width: 70%;
+  height: 110px;
+  float: right;
+  display: block;
+  padding-bottom: 0;
+}
+
+.remark-r-ul .li-text textarea{
+  width: 96%;
+  border: 0;
+  padding-top: 5px;
+  padding-left: 2%;
+  padding-right:2%;
+  outline: none;
+  overflow: auto;
+  font-size: 12px;
+  height: 105px;
+  line-height: 1.5;
+}
+
+.evaluate_right {
+  float: left;
+  width: 100%;
+  height: 100%;
+}
+
+.evaluate_right .rate_content {
+  border: 0;
+  background: #fff;
+  padding: 3px;
+  zoom: 1;
+  position: relative;
+  padding-bottom: 70px;
+}
+
+.evaluate_right_two {
+  position: absolute;
+  z-index: 2;
+  bottom:0px;
+  left:2px;
+}
+
+.evaluate_right .input-file {
+  width: 65px;
+  height: 65px;
+  padding: 0;
+  margin: 0;
+  border: none 0;
+  opacity: 0;
+  filter: alpha(opacity = 0);
+  cursor: pointer;
+  line-height: 20px;
+  background-color: #FBFBFB;
+}
+
+.evaluate_right_three {
+  position: relative;
+  top: 6px;
+  z-index: 1;
+  text-align: center;
+  color: #666;
+  border: solid 1px;
+  border-color: #DCDCDC #DCDCDC #B3B3B3 #DCDCDC;
+  display: block;
+  float: left;
+  margin-right: 5px;
+  cursor: pointer;
+  height: 60px;
+  width: 60px;
+  line-height: 55px;
+  background: #fff;
+}
+
+.evaluate_right_three image{
+  width: 28px;
+  max-height: 25px;
+  vertical-align:middle;
+}
+
+.evaluate_right_three.send{
+  border: 0;
+  width: 37px;
+  line-height: 60px;
+}
+
+.evaluate_right_imgs {
+  margin-top: 17px;
+}
+
+.evaluate_right .rate_content .evaluate_right_imgs {
+  float: left;
+}
+
+.evaluate_right_four {
+  float: left;
+  display: block;
+  margin-top: 5px;
+  margin-left: 2px;
+  line-height: 60px;
+}
+
+.list-myorder {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 5px;
+  margin: 0 0 10px 0;
+  padding-top: 10px;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  background: #fff;
+}
+
+.shop_count {
+  height: 50px;
+  line-height: 50px;
+  border-bottom: 2px solid #e5e5e5;
+}
+
+.shop_count image{
+  width: 16px;
+  margin-right: 10px;
+  vertical-align:middle;
+  margin-bottom:3px;
+}
+
+.shop_count .hint{
+  float: right;
+  color: #A9A9A9;
+}
+
+.evaluate_right_one {
+  height: 30px;
+  line-height: 30px;
+  margin: 20px 0;
+}
+
+.star .stars{
+  float: right;
+}
+
+.stars .a{
+  width: 20px;
+}
+
+.stars .a image{
+  width: 18px;
+}
+
+.a image{
+  max-width: 30px;
+  max-height: 30px;
+}
+
+.evaluation{
+  background: #fff;
+  margin-top: 6px;
+  height: 45px;
+  line-height: 45px;
+  padding: 0 10px 0 10px;
+}
+
+.submit{
+  margin: unset;
+  height: unset;
+  width: unset;
+  line-height: 1.5;
+}
+
+.right{
+  float: right;
+}
+
+#btn_submit{
+  background: red;
+  border: 0;
+  color: #fff;
+  padding: 5px;
+  font-size: 13px;
+  border-radius: 3px;
+  display: inline;
+}
+
+.checkbox{
+  position: absolute;
+  top:-22.7px;
+  left: 0;
+  zoom:0.6;
+}
+
+.checkbox::before{
+  height: 20px;
+  width: 20px;
+  background: #666;
+}
+
+.evaluate_right_isni label{
+  position: relative;
+  padding-left: 20px;
+}
+
+.evaluate_right view{
+  font-size: 12px;
+}

@@ -1,0 +1,51 @@
+<scroll-view>
+
+  <view class="cf-container" data-reactid="2">
+    <view class="cf-edge" data-reactid="3"></view>
+    <view class="cf-content" data-reactid="4">
+      <view class="cf-tab-item {{status==1?'select':''}}" data-status="1" catchtap='topNav'>
+        <view class="a">未使用</view>
+      </view>
+      <view class="cf-tab-item {{status==2?'select':''}}" data-status="2" catchtap='topNav'>
+        <view class="a">已使用</view>
+      </view>
+      <view class="cf-tab-item {{status==3?'select':''}}" data-status="3" catchtap='topNav'>
+        <view class="a">已过期</view>
+      </view>
+    </view>
+  </view>
+  <view class="com_content">
+    <view class="coupon-contianer">
+      <block wx:for='{{coupon_list}}' wx:key='' wx:for-item='coupon'> 
+        <view class="coupon-item {{status>1?'used':''}}">
+          <image class='item' src='/images/member/coupon_item.png' mode='widthFix'/>
+          <image class="coupon-type" src='/images/member/coupon_type_item.png' mode='wdithFix'/>
+          <view class='section'>
+            <view class="coupon-title">
+              <view class='i'>￥</view>
+              <view class='em'>{{coupon.money}}</view>
+            </view>
+            <view class="coupon-time">{{coupon.start_time}} 至 {{coupon.end_time}}</view>
+          </view>
+        </view>
+        <view class="coupon-desc">满{{coupon.at_least}}元可用</view>
+      </block>
+      <view class="null_default {{coupon_list[0]==undefined?'':'hide'}}">
+        <view class="icon-nocontent-coupon">
+          <image src='/images/order/distribution.png' mode='widthFix'/>
+        </view>
+        <view class="nulltext span">
+          <block wx:if='{{status == 1}}'>
+            你还没有未使用优惠券！
+          </block>
+          <block wx:if='{{status == 2}}'>
+            你还没有已使用优惠券！
+          </block>
+          <block wx:if='{{status == 3}}'>
+            你还没有已过期优惠券！
+          </block>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

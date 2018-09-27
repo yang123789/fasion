@@ -1,0 +1,81 @@
+.ul{
+  width: 100%;
+}
+
+.com_content .li {
+  width: 90%;
+  float: left;
+  margin-top: 10px;
+  background: #fff;
+  padding: 10px 5vw;
+}
+
+.com_content .ul .li .goods_pic {
+  width: 18vw;
+  height: 18vw;
+  position: absolute;
+  left: 3vw;
+  float: left;
+}
+
+image {
+  vertical-align: middle;
+  width: 100%;
+  height: 100%;
+}
+
+.com_content .ul .li .p {
+  float: left;
+  margin-left: 23vw;
+  width: 85vw;
+  height: 9vw;
+  line-height: 9vw;
+}
+
+.com_content .ul .li .p.last-child {
+  color: #cccccc;
+  font-size: 3.5vw;
+}
+
+.com_content .ul .li .h4 {
+  font-size: 4vw;
+  line-height: 10vw;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.com_content .ul .li .from {
+  line-height: 10vw;
+  height: 10vw;
+}
+
+.com_content .ul .li .from input {
+  border: 0;
+  height: 7vw;
+  font-size: 12px;
+}
+
+button{
+  display:inline;
+  padding: 0;
+  line-height: 1.5;
+}
+
+.com_content .ul .li .from button {
+  vertical-align: middle;
+  float: right;
+  margin: 2vw 0 0 0;
+  border: 1px solid red;
+  background: red;
+  color: #fff;
+  border-radius: 2px;
+  font-size: 3.8vw;
+  padding: 3px 10px;
+  -webkit-tap-highlight-color: transparent;
+  outline: 0;
+}
+
+.com_content .ul .prompt {
+  background: transparent;
+  color: #999999;
+  font-size: 3.7vw;
+}

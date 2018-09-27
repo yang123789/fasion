@@ -1,0 +1,83 @@
+<!--pages/liangti/newcc/newcc.wxml-->
+<view class="containers">
+<form bindsubmit="formSubmit">
+    <view class="info-list">
+        <view class="info-item mb20">
+            <view class="text">姓名：</view>
+            <view class="int">
+                <input type="text" placeholder='请输入姓名' name="name" value="{{info.sizename}}"></input>
+            </view>
+            <view class="req">*</view>
+        </view>
+         <view class="info-item">
+            <view class="text">身高(CM)：</view>
+            <view class="int">
+                <input type="number" placeholder='例如170' name="cm" value="{{info.height}}"></input>
+            </view>
+            <view class="req">*</view>
+        </view>
+        <view class="info-item">
+            <view class="text">体重(KG)：</view>
+            <view class="int">
+                <input type="number" placeholder='例如70' name="kg" value="{{info.weight}}"></input>
+            </view>
+            <view class="req">*</view>
+        </view>
+        <view class="info-item">
+            <view class="text">三围：</view>
+            <view class="int">
+                <input type="text" placeholder='请输入三围' name="sw" value="{{info.other}}"></input>
+            </view>
+            <!-- <view class="req">*</view> -->
+        </view>
+        <view class="info-item mb20">
+            <view class="text">备注：</view>
+            <view class="int">
+                <textarea type="text" placeholder='您还有什么要告诉我们的吗？例如您的身体特征' name="bz" value="{{info.notes}}"></textarea>
+            </view>
+            <!-- <view class="req">*</view> -->
+        </view>
+        <view class="file-img">
+            <view class="example">
+                <view class="intro">上传您的全身照或半身照</view>
+                <view class="words">图例</view>
+                <view class="ex-list">
+                    <view class="ex-item">
+                        <image src="/images/goods/l1.png"></image>
+                        <text>正面照</text>
+                    </view>
+                    <view class="ex-item">
+                        <image src="/images/goods/l2.png"></image>
+                        <text>侧面照</text>
+                    </view>
+                    <view class="ex-item">
+                        <image src="/images/goods/l3.jpg"></image>
+                        <text>背面照</text>
+                    </view>
+                    
+                </view>
+                
+            </view>
+            <view class="file_num">请上传文件(最多3个)</view>
+            <view class="fileimg-list">
+                <view class="fileimg-item " wx:for="{{fileimgurl}}">
+                    <image src="{{item}}" class="fimg"></image>
+                    <image src="/images/liangti/del.png" class="delimg" data-upurl="{{item}}" bindtap="delimg" data-index="{{index}}"></image>
+                </view>
+                <view class="file-btn fileimg-item {{numnone?'numnone':''}}" bindtap="filebtn">
+                    <image src="/images/liangti/fileimg.png" mode="aspectFit" class="fimg"></image>
+                    
+                </view>
+                
+            </view>
+        </view>
+        
+    </view>
+    <view class="more" data-value="{{mrvalue}}" bindtap="swmr">
+        <image src="{{sel?'/images/goods/cartp2.png':'/images/goods/cartp1.png'}}" ></image>
+        <text>设置为默认尺寸</text>
+    </view>
+    <button form-type="submit" class="subtn" wx:if="{{updata}}">更新</button>
+     <button form-type="submit" class="subtn" wx:else>保存</button>
+    </form>
+</view>

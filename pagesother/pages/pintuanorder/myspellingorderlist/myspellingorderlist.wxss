@@ -1,0 +1,161 @@
+.user-info {
+  background: #f44;
+  padding: 10px;
+}
+
+.user-info view:first-child{
+  width: 50px;
+  margin: 10px auto;
+  text-align: center;
+}
+
+.user-info image {
+  border-radius: 50%;
+  width: 100%;
+  max-height: 60px;
+  vertical-align: middle;
+}
+
+.user-info .h4 {
+  color: #ffffff;
+  text-align: center;
+  font-weight: normal;
+}
+
+.spelling-order-list .ul .li {
+  background: #ffffff;
+  margin-bottom: 10px;
+}
+
+.spelling-order-list .ul .li .header {
+  padding: 10px;
+}
+
+.spelling-order-list .ul .li .header .label .a {
+  float: right;
+  color: #f44;
+}
+
+.spelling-order-list .ul .li .header .label .a.failed {
+  float: right;
+  color: #AAA;
+}
+
+.spelling-order-list .ul .li .header .time {
+  color: #999999;
+  font-size: 12px;
+}
+
+.spelling-order-list .ul .li .article {
+  padding: 10px;
+  background: #f3f3f3;
+  overflow: hidden;
+}
+
+.spelling-order-list .ul .li .article .goods-img {
+  width: 50px;
+  float: left;
+  margin-right: 10px;
+}
+
+.spelling-order-list .ul .li .article .goods-img image {
+  width: 100%;
+  max-height: 50px;
+  vertical-align: middle;
+}
+
+.spelling-order-list .ul .li .article .goods-info {
+  float: left;
+  width: 76%;
+  height: 50px;
+  position: relative;
+}
+
+.spelling-order-list .ul .li .article .goods-info .label {
+  font-size: 12px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.spelling-order-list .ul .li .article .goods-info .money {
+  position: absolute;
+  bottom: 0;
+}
+
+.spelling-order-list .ul .li .article .goods-info .num {
+  color: #999999;
+  font-size: 12px;
+  margin-left: 5px;
+}
+
+.spelling-order-list .ul .li .footer {
+  display: block;
+  padding: 10px;
+  margin: 0;
+  border: 0;
+  text-align: left;
+  overflow: hidden;
+  min-height: unset;
+  background: #FFF;
+}
+
+.spelling-order-list .ul .li .footer .ul {
+  position: relative;
+}
+
+.spelling-order-list .ul .li .footer .ul .li {
+  position: absolute;
+}
+
+.spelling-order-list .ul .li .footer .ul .li view {
+  width: 30px;
+}
+
+.spelling-order-list .ul .li .footer .ul .li view image {
+  border-radius: 50%;
+  width: 100%;
+  max-height: 50px;
+  vertical-align: middle;
+}
+
+.btn-order-info {
+  border: 1px solid #e5e5e5;
+  padding: 5px 8px;
+  background: #ffffff;
+  border-radius: 3px;
+  float: right;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.spelling-order-list .ul .li .footer .span {
+  vertical-align: middle;
+  line-height: 35px;
+}
+
+.spelling-order-list .ul .li .footer .span strong {
+  color: #f44;
+  font-weight: normal;
+}
+
+.spelling-order-list .ul .li .footer .span .time{
+  display: inline;
+}
+
+button{
+  padding: 0;
+}
+
+.btn-invitation-friend {
+  color: #ffffff;
+  background: #f44;
+  border: 0;
+  float: right;
+  padding: 5px 8px !important;
+  border-radius: 3px;
+  font-size: 12px;
+  margin-top: 2.5px;
+  line-height: 1.5;
+}

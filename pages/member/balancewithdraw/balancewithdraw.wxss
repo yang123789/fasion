@@ -1,0 +1,87 @@
+.table .tr .th, .table .tr .td {
+  padding: 0.5625rem 0;
+  font-size: 0.875rem;
+  color: #222222;
+}
+
+.emptyFrame {
+  width: 100%;
+  margin: 60px auto 0;
+  text-align: center;
+}
+
+.emptyFrame .user_balance {
+  width: 110px;
+  height: 68px;
+  display: inline-block;
+}
+
+.emptyFrame .span{
+  width: 100%;
+  text-align: center;
+  color: #DD997F;
+  font-size: 14px;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.detail-main .table {
+  width: 100%;
+  border: none;
+  margin-bottom: 54px;
+}
+
+.detail-main .table .tr {
+  overflow: hidden;
+  border-bottom: 1px solid #ddd;
+  float: left;
+  width: 100%;
+  background: #FFFFFF;
+}
+
+.ns-table .td {
+  width: 100%;
+}
+
+.detail-main .table .tr .td {
+  float: left;
+}
+
+.first{
+  padding-bottom: 0.2rem !important;
+  font-size: 16px;
+}
+
+.ns-lf {
+  float: left;
+  margin-left:0.625rem;
+}
+
+.first .ns-lf{
+  font-size: 16px;
+  color: #444;
+}
+
+.ns-rg {
+  color: red;
+  font-size: 14px;
+  float: right;
+  margin-right:0.625rem;
+}
+
+.second{
+  padding-top: 0.2rem;
+  font-size: 14px;
+  color: #888;
+}
+
+.second .span{
+  color: #888;
+  font-size:13px;
+}
+
+.ns-rg-time {
+  font-size: 14px;
+  float: right;
+  margin-right:0.625rem;
+}

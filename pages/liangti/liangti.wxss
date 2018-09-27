@@ -1,0 +1,111 @@
+/* pages/liangti/liangti.wxss */
+.containers{
+    width:100%;
+    height:100%;
+    position:relative;
+}
+.containers .new{
+    position:absolute;
+    bottom:30rpx;
+    width:100%;
+    height:100rpx;
+    line-height:100rpx;
+    background:#333;
+    color:#fff;
+    text-align: center;
+    font-size:32rpx;
+}
+.nocc{
+    padding-top:30%;
+    text-align: center;
+    display: none;
+}
+.nocc image{
+    width:150rpx;
+    height:150rpx;
+}
+.nocc view{
+    font-size: 32rpx;
+    color:#999;
+    margin-top:40rpx;
+}
+.matter{
+    width:100%;
+    height:870rpx;
+}
+.hascc{
+    display: none;
+    padding-top: 20rpx;
+}
+.blocks{
+    display: block;
+}
+.hascc-item{
+    width:100%;
+    background:white;
+    position:relative;
+    overflow: hidden;
+    border-top:1px solid #eee;
+    border-bottom:1px solid #eee;
+    margin-bottom:20rpx;
+}
+.hascc-item .left{
+    width:50rpx;
+    height:50rpx;
+    position:absolute;
+    left:46rpx;
+    top:50%;
+    margin-top:-25rpx;
+}
+.hascc-item .right{
+    width:600rpx;
+    float: right;
+    padding-bottom:20rpx;
+}
+.hascc-item .right .top{
+    width:100%;
+    border-bottom: 1rpx solid #eee;
+    position: relative;
+    height:100rpx;
+    line-height:100rpx;
+}
+.hascc-item .right .top .name{
+    font-size:34rpx;
+    color:#000;
+}
+.hascc-item .right .top .btn-list{
+    position:absolute;
+    right:0;
+    top:20rpx;
+}
+.hascc-item .right .top .btn-list button{
+    width:100rpx;
+    height:60rpx;
+    display:inline-block;
+    line-height: 60rpx;
+    padding:0;
+    margin-right:20rpx;
+    font-size:28rpx;
+}
+.hascc-item .right .top .btn-list .del{
+    border:1rpx solid #333;
+    background:white;
+}
+.hascc-item .right .top .btn-list .edit{
+    background:#333;
+    color:#fff;
+}
+.hascc-item .right .bottom{
+    padding-top:20rpx;
+    
+    overflow: hidden;
+}
+.hascc-item .right .bottom .b-item{
+    width:50%;
+    float: left;
+    
+}
+.b-item{
+line-height: 60rpx;
+    font-size:28rpx;
+}

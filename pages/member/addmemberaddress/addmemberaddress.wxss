@@ -1,0 +1,55 @@
+.form-info{
+  margin: 2px 0px 15px;
+}
+
+.div-item{
+  padding: 10px;
+  background: #fff;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.div-item .span{
+  width: 22%;
+  text-align: center;
+  height: 30px;
+  line-height: 30px;
+  display: inline-block;
+  font-size: 14px;
+}
+
+.div-item input{
+  padding-left: 5px;
+}
+
+.div-item input, .div-item picker{
+  display: inline-block;
+  width: 75%;
+  line-height: 30px;
+  height: 30px;
+  margin: 0;
+  background: #fff;
+  border: 0;
+  overflow: unset !important;
+  font-size: 100%;
+}
+
+.picker{
+  height: 30px;
+  line-height: 30px;
+  padding-left: 5px;
+}
+
+.btn-save{
+  display: block;
+  height: 35px;
+  line-height: 35px;
+  background: #F15353;
+  text-align: center;
+  color: #fff;
+  width: 85%;
+  border: 0;
+  font-size: 15px;
+  margin: auto;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}

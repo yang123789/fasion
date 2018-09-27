@@ -1,0 +1,132 @@
+button{
+  width:90%;
+  color: #FFF;
+  background: #E03115;
+  font-size: 15px;
+  border: none;
+  line-height: 40px;
+  height: 40px;
+  border-radius: 3px;
+  padding: 0;
+  margin-top: 40px;
+}
+
+.personal-center{
+  margin: 0;
+  border-top: 2px solid #EEE;
+}
+
+.personal-center .side-nav{
+  padding-top: 7px; 
+  background: #FFF;
+  margin: 0;
+  font-family: "Helvetica Neue","Helvetica", Helvetica, Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+#divInfo .side-nav .view-first{
+  margin: 0 7px 0 5px;
+  margin-top: 0;
+  padding: 0;
+  height: 44px;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+#divInfo .side-nav .view{
+  margin: 0 7px 0 5px;
+  padding: 0 0 0 0px;
+  height: 35px;
+  line-height: 35px;
+  min-height: 35px;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.personal-center .cont-value{
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+}
+
+.personal-center .value{
+  position: relative;
+  float: right;
+  font-size: 12px;
+  color: #999;
+  margin-right: 0px;
+  padding-right: 20px;
+}
+
+.value.touxiang{
+  float: left;
+  padding-right: 0;
+}
+
+.personal-center .value.touxiang{
+  width: 39px !important;
+  height: 39px !important;
+  line-height: 39px;
+  text-align: center;
+  border-radius: 50%;
+  border: 1px solid #e6e6e6;
+  overflow: hidden;
+}
+
+.personal-center .value image{
+  width: 100%;
+  line-height: 39px;
+  vertical-align: middle;
+}
+
+.personal-center .title{
+  float: left;
+  font-size: 13px;
+  padding-left: 8px;
+}
+
+.value-first{
+  padding-right: 10px;
+}
+
+.personal-center .set_a{
+    color: #29afe4;
+}
+
+.personal-center text{
+  position:absolute;
+  top:-1px;
+  right: 2px;
+  font-size: 16px;
+  font-weight: 100;
+  color: #999;
+}
+
+.view-last{
+  border-bottom: none !important;
+}
+
+#divInfo .side-nav .view-last image{
+  display: flex;
+  margin-top: 2px;
+  width: 32px;
+  height: 32px;
+}
+
+.button-submit {
+  width: 90%;
+  margin: 50px auto 0;
+}
+
+.button-submit .a{
+  width: 100%;
+}
+
+.button-submit button {
+  color: #FFF;
+  background-color: #333;
+  font-size: 15px;
+  border: none;
+  line-height: 40px;
+  height: 40px;
+  margin: 0 auto;
+}

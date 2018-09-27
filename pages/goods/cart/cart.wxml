@@ -1,0 +1,94 @@
+<scroll-view>
+  <view class="motify {{prompt==''?'hide':''}}">
+    <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+    <view class="motify-inner">{{prompt}}</view>
+  </view>
+  <block wx:if="{{cart_list.length > 0 && cart_list != undefined}}">
+    <view class="cart-prolist">
+      <view class="ul cart-prolist-ul">
+        <view class='li' data-parent-shopid="0">
+          <view class="h2 title">
+            <image class="custom-store-img" src='/images/goods/shop-img.png'></image>店铺名称：{{shop_name}}
+            <view class="cart_ed">
+              <block wx:if='{{edit == 0}}'>
+                <view class="a" id="cart_edit" data-shopid="0" catchtap='cartEdit' data-edit='1'>编辑</view>
+              </block>
+              <block wx:if='{{edit == 1}}'>
+                <view class="a" id="edit_success0" catchtap='cartEdit' data-edit='0'>完成</view>
+              </block>
+            </view>
+          </view>
+        </view>
+        <block wx:for='{{cart_list}}' wx:key='' wx:for-index='i' wx:for-item='cart'>
+          <view class="li cart-list-li" data-shopid="0">
+            <image class="checkbox" catchtap='selectCart' data-index='{{i}}' data-status='{{cart.status}}' src='/images/goods/{{cart.status==1?"cartp2.png":"cartp1.png"}}'></image>
+            <view class="product">
+              <view class="pic">
+                <view class='a' catchtap='goodsDetail' data-id='{{cart.goods_id}}' data-name='{{cart.goods_name}}'>
+                  <image src="{{cart.picture_info.pic_cover_small==''?0:cart.picture_info.pic_cover_small}}" binderror='errorImg' data-index='{{i}}' data-key='{{k}}' alt="商品图片"></image>
+                </view>
+              </view>
+              <view class="info">
+                <view class="p info-name">
+                  <view class='a' catchtap='goodsDetail' data-id='{{cart.goods_id}}' data-name='{{cart.goods_name}}'>
+                    <view class='name'>{{cart.goods_name}}</view>
+                    <block wx:if='{{cart.sku_name!=""}}'>
+                    <view class='sku span'>
+                    尺寸：<text>身高:{{cart.size.height}} </text>
+                         <text>体重:{{cart.size.weight}} </text>
+                         <text wx:if="{{cart.size.other!=''}}">三围:{{cart.size.other}} </text>
+                         <text wx:if="{{cart.size.other!=''}}">备注:{{cart.size.notes}} </text>
+                      </view>
+                      <view class='sku span'>规格：{{cart.sku_name}}<text wx:if="{{cart.xznr!=''}}">绣字内容：{{cart.xznr}} </text></view>
+                      
+                    </block>
+                  </view>
+                </view>
+                <view class="number">¥
+                  <view class='span' name="goods_price">{{cart.promotion_price}}</view>
+                  <view class="edit_num">
+                    <view class="span ui-number">
+                      <view class="decrease" data-type='minus' data-index='{{i}}' data-key='{{k}}' data-id='{{cart.cart_id}}' catchtap='numAdjust'>-</view>
+                      <input class="num" value="{{cart.num}}" data-index='{{i}}' data-key='{{k}}' data-id='{{cart.cart_id}}' bindblur='inputAdjust' />
+                      <view class="increase" data-type='add' data-index='{{i}}' data-key='{{k}}' data-id='{{cart.cart_id}}' catchtap='numAdjust'>+</view>
+                    </view>
+                  </view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="fixed bottom">
+      <view class="btn_wrap btn_wrap_static">
+        <view class="btn ttn_server" id="div_selected">
+          <view class='div'>
+            <image src='/images/goods/{{check_all==1?"cartp2.png":"cartp1.png"}}' mode='widthFix' catchtap='checkAll'></image>
+          </view>
+          <view class='span' id="sel_text">全选</view>
+        </view>
+        <view class='hidden' id="price_info" style="{{edit==1?'':'visibility:unset;'}}">合计： ¥
+          <view class='span' id="orderprice" class="price">{{total_price}}</view>
+        </view>
+        <view class="btn btn_buy {{is_checked==0?'delete':'next'}}" catchtap='{{edit==1?"deleteCart":"settlement"}}'>
+          <block wx:if='{{edit == 1}}'>
+            <view class='span {{edit==1?"":"hide"}}' id="settlement">删除</view>
+          </block>
+          <block wx:if='{{edit == 0}}'>
+            <view class='span {{edit==0?"":"hide"}}' id="settlement">结算</view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="cart-none" id="cart-none" style="">
+      <view class="i cart-big">
+        <image src='/images/goods/cart-big.png' mode='widthFix'></image>
+      </view>
+      <view class="p text">您的购物车还没有商品！</view>
+      <view class="a btn" catchtap="aIndex" data-url='/pages/index/index'>去逛逛</view>
+    </view>
+  </block>
+</scroll-view>

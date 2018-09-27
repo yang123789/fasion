@@ -1,0 +1,14 @@
+<scroll-view>
+  <view class='article'>
+    <block wx:if='{{status > -2}}'>
+      <view class="pay-block">
+        <icon type="{{status==-1?'clear':'success'}}" color='{{status==-1?"red":""}}' size='45'></icon>
+      </view>
+      <view class='h3'>{{status==-1?'付款失败':'付款成功'}}</view>
+      <block wx:if='{{order_no != "" && order_no != undefined}}'>
+        <view class='p' style='{{status==-1?"color:red;":""}}'>订单号{{order_no}}</view>
+      </block>
+      <button catchtap='toMemberHome'>进入会员中心</button>
+    </block>
+  </view>
+</scroll-view>

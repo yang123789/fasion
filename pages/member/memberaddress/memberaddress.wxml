@@ -1,0 +1,48 @@
+<scroll-view>
+  <view class="motify {{prompt==''?'hide':''}}">
+    <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+    <view class="motify-inner">{{prompt}}</view>
+  </view>
+  <view class="side-nav address {{address_list.length==0?'hide':''}}">
+    <block wx:for='{{address_list}}' wx:key='id' wx:for-item='address' wx:for-index='key'>
+      <view class="li">
+        <view class="color-border">
+          <image class="block-item expresse" src='/images/order/border_order_top.png'></image>
+          <image class="block-item expresse" src='/images/order/border_order_top.png'></image>
+          <image class="block-item expresse" src='/images/order/border_order_top.png'></image>
+          <image class="block-item expresse" src='/images/order/border_order_top.png'></image>
+          <image class="block-item expresse" src='/images/order/border_order_top.png'></image>
+        </view>
+        <view class="div-simply">
+          <view class="payStatus span">收货信息：</view>
+          <view class="payStatus span">
+            <view class="name span">{{address.consigner}}　　</view>
+          </view>
+          <view class="child-div">
+            <view class="a" catchtap='aClick' data-url='/member/updatememberaddress/updatememberaddress?id={{address.id}}'>【修改】</view>
+            <view class="a" catchtap='delAddress' data-id='{{address.id}}' data-key="{{key}}" data-default='{{address.is_default}}'>【删除】</view>
+          </view>
+        </view>
+        <view class="div-simply">
+          <view class="payStatus span">手机号码：</view>
+          <view class="payStatus span">
+            <view class="mobile span">{{address.mobile}}</view>
+          </view>
+        </view>
+        <view class="a last-child" catchtap='selectAddress' data-id='{{address.id}}' data-key="{{key}}">
+          <view class="payStatus span">详细地址：</view>
+          <view class="address span">{{address.address_info}} {{address.address}}</view>
+          <view class="payStatus span right">
+            <icon class="icon-success" type="{{address.is_default==1?'success':''}}" size='14'></icon>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <image class="no-address {{address_list.length==0?'':'hide'}}" src="/images/member/member_none_address.png" mode='aspectFit'></image>
+  <view class="addr-box {{address_list.length==0?'':'hide'}}">
+	  <view class="p addr-tip">你还没有添加收货地址，添加一个吧!</view>
+  </view>
+  <button class="btn-save" catchtap='aClick' data-url='/member/addmemberaddress/addmemberaddress' data-key='' data-id=''>新增收货地址</button>
+  <button class="btn-save wechat-address" catchtap='getWechatAddress'>一键获取微信地址</button>
+</scroll-view>

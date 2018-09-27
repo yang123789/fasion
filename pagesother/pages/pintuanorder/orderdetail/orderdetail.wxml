@@ -1,0 +1,305 @@
+<scroll-view>
+  <view class="motify {{prompt==''?'hide':''}}">
+    <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+    <view class="motify-inner">{{prompt}}</view>
+  </view>
+  <view class="order-detail mt-45">
+    <view class="section order-detail-infor">
+      <view class="order-detail-sum clear">
+        <view class="sum-r order-detail-r">
+          <view class="ul sum-r-ul">
+            <view class='li'>
+              <view class="span status">{{order_detail.status_name==undefined?'待成团':order_detail.status_name}}</view>
+            </view>
+            <view class='li'>
+              <view class="span label">订单号：</view>
+              <view class="span value">{{order_detail.order_no}}</view>
+            </view>
+            <view class='li'>
+              <view class="span label">订单状态：</view>
+              <view class="span value">{{order_detail.status_name==undefined?'待成团':order_detail.status_name}}</view>
+            </view>
+            <view class='li'>
+              <view class="span label">下单时间：</view>
+              <view class="span value">{{order_detail.create_time}}</view>
+            </view>
+            <view class='li'>
+              <view class="span label">支付方式：</view>
+              <view class="span value">{{order_detail.payment_type_name}}</view>
+            </view>
+            <view class='li'>
+              <view class="span label">付款状态：</view>
+              <view class="span value">{{order_detail.pay_status_name}}</view>
+            </view>
+            <view class='li'>
+              <view class="span label">配送方式：</view>
+              <view class="span value">{{order_detail.shipping_type_name}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="section order-detail-address">
+      <view class="address-out clear">
+        <view class="address-l order-detail-l">
+          <image class="i icon-address-small" src='/images/order/offline_store.png' mode='widthFix'></image>
+        </view>
+        <view class="address-r order-detail-r">
+          <view class="ul address-r-ul">
+            <view class="li name">
+              <block wx:if='{{order_detail.order_type == 2}}'>
+                <view class="span label">联系方式：</view>
+                <view class="span value" style="line-height: 150%;">{{order_detail.receiver_mobile}}</view>
+              </block>
+              <block wx:else>
+                <block wx:if='{{order_detail.shipping_type == 2}}'>
+                  <view class="span label">自提地址：</view>
+                  <view class="span value" style="line-height: 150%;">{{order_detail.order_pickup.province_name}} {{order_detail.order_pickup.city_name}} {{order_detail.order_pickup.district_name}} {{order_detail.order_pickup.contact}}</view>
+                </block>
+                <block wx:else>
+                  <view class="span label">收货地址：</view>
+                  <view class="span value" style="line-height: 150%;">{{order_detail.receiver_name}}，{{order_detail.receiver_mobile}}， {{order_detail.address}}　</view>
+                </block>
+              </block>
+            </view>
+            <block wx:if='{{order_detail.buyer_invoice_info[0] != "" && order_detail.buyer_invoice_info[0] != undefined}}'>
+              <view class="li name">
+                <view class="span label">发票抬头：</view>
+                <view class="span value">{{order_detail.buyer_invoice_info[0]}}</view>
+              </view>
+            </block>
+            <block wx:if='{{order_detail.buyer_invoice_info[2] != "" && order_detail.buyer_invoice_info[2] != undefined}}'>
+              <view class="li name">
+                <view class="span label">纳税人识别号：</view>
+                <view class="span value">{{order_detail.buyer_invoice_info[2]}}</view>
+              </view>
+            </block>
+            <block wx:if='{{order_detail.buyer_invoice_info[1] != "" && order_detail.buyer_invoice_info[1] != undefined}}'>
+              <view class="li name">
+                <view class="span label">发票内容：</view>
+                <view class="span value">{{order_detail.buyer_invoice_info[1]}}</view>
+              </view>
+            </block>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 拼团信息 -->
+    <block wx:if="{{order_detail.order_status != 0 && order_detail.order_status != -1}}">
+      <view class="section order-detail-wating-share">
+        <view class="remark-l order-detail-l">
+          <image class="i icon-talks-small" src='/images/order/ssage.png' mode='widthFix' />
+        </view>
+        <view class='label'>
+          <block wx:if='{{order_detail.tuangou_group_info.poor_num > 0}}'>
+            <view class='span'>待分享，还差{{order_detail.tuangou_group_info.poor_num}}人，</view>
+            <block wx:if="{{timers_array[0].end != 1 && timers_array[0].hour != undefined}}">
+              <view class='span'>剩余:{{timers_array[0].hour + ':' + timers_array[0].minute + ':' + timers_array[0].second}}</view>
+            </block>
+            <block wx:else>
+              <view class='span'>拼单已结束</view>
+            </block>
+          </block>
+          <block wx:else>
+            <view class='span'>已成团</view>
+          </block>
+          <view class='ul user-list {{timers_array[0].end==1||timers_array[0].hour==undefined?"end":""}}'>
+            <block wx:for='{{order_detail.tuangou_group_info.user_list}}' wx:key='' wx:for-item='user' wx:for-index='index'>
+              <view class='li'>
+                <block wx:if='{{index == 0}}'>
+                  <view class="span boss">拼主</view>
+                </block>
+                <image src="{{user.user_headimg}}" lazy-load='true' mode='widthFix' />
+              </view>
+            </block>
+            <block wx:for='{{empty_list}}' wx:key=''>
+              <view class='li'>
+                <image src="/images/pintuan/spelling_who.png" lazy-load='true' mode='widthFix' />
+              </view>
+            </block>
+          </view>
+          <block wx:if='{{order_detail.tuangou_group_info.goods_tuangou.colonel_commission > 0}}'>
+            <view class='p spelling-success'>
+              拼团成功后，{{order_detail.tuangou_group_info.group_name}}将获得
+              <block wx:if='{{order_detail.tuangou_group_info.goods_tuangou.colonel_commission > 0}}'>
+                <view class='.em'>{{order_detail.tuangou_group_info.goods_tuangou.colonel_commission}}</view>余额
+              </block>
+              <!-- <block wx:if='{{order_detail.tuangou_group_info.goods_tuangou.colonel_point > 0}}'>
+                <view class='.em'>{{order_detail.tuangou_group_info.goods_tuangou.colonel_point}}</view>佣金
+              </block> -->
+            </view>
+          </block>
+        </view>
+        <block wx:if="{{timers_array[0].end != 1 && timers_array[0].hour != undefined && order_detail.tuangou_group_info.poor_num > 0}}">
+          <button bindtap='inviteFriends' data-id='{{order_detail.tuangou_group_info.goods_id}}' data-group='{{order_detail.tuangou_group_info.group_id}}'>邀请好友</button>
+        </block>
+      </view>
+    </block>
+    <!-- 物流包裹 -->
+    <block wx:if='{{order_detail.goods_packet_list[0] != undefined}}'>
+      <view class="section order-detail-remark">
+        <view class="remark-out clear">
+          <view class="remark-r order-detail-r">
+            <view class="ul remark-r-ul">
+              <view class="li name">
+                <view class='a' catchtap='logistics' data-id='{{order_detail.order_id}}'>
+                  <view class="span label" style="color: rgb(245, 183, 8);">共{{order_detail.goods_packet_list.length}}个包裹</view>
+                  <view class="span label" style="color: rgb(245, 183, 8);">{{order_detail.goods_packet_list[0].express_name}}</view>
+                  <view class="span label" style="color: rgb(245, 183, 8);">{{order_detail.goods_packet_list[0].express_code==''?'':'运单号:' + order_detail.goods_packet_list[0].express_code}}</view>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+
+    <view class="section order-detail-remark">
+      <view class="remark-out clear">
+        <view class="remark-l order-detail-l">
+          <image class="i icon-talks-small" src='/images/order/message.png' mode='widthFix' />
+        </view>
+        <view class="remark-r order-detail-r">
+          <view class="ul remark-r-ul">
+            <view class="li name">
+              <view class="span label">买家留言</view>
+            </view>
+            <view>
+              <view class="span label">
+                <block wx:if='{{order_detail.buyer_message==undefined || order_detail.buyer_message==""}}'>
+                  此订单没有留言
+                </block>
+                <block wx:else>
+                  {{order_detail.buyer_message}}
+                </block>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="list-myorder">
+      <view class="ul ul-product">
+        <block wx:for='{{order_detail.order_goods}}' wx:key='' wx:for-item='goods' wx:for-index='index'>
+          <view class='li' catchtap='goodsDetail' data-id='{{goods.goods_id}}' data-name='{{goods.goods_name}}'>
+            <view class="span pic">
+              <image src="{{goods.picture_info.pic_cover_small}}" binderror='errorImg' data-index='{{index}}' />
+            </view>
+            <view class="text">
+              <view class="span pro-name">
+                <view class='span' style="color:#333333;">{{goods.goods_name}}</view>
+              </view>
+              <br/>
+              <view class="pro-pric">
+                <view class='span'>价格:</view>
+                <view class='span' style="color:#333333;">￥{{goods.price}}</view>
+              </view>
+              <view class="pro-pric">
+                <view class="span color"></view>
+                <view class='span'>数量:</view>
+                <view class='span' style="color:#333333;">{{goods.num}}</view>
+              </view>
+              <view class="pro-pric">
+                <view class='span'>调价:</view>
+                <view class='span' style="color:#333333;">{{goods.adjust_money}}</view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+      <view class="money-content">
+        <view class="money-row">
+          <view>
+            <view class='span'>商品总金额：</view>
+            <view class="span price">￥{{order_detail.goods_money}}</view>
+          </view>
+
+          <block wx:if='{{order_detail.order_goods[0].goods_type != "0"}}'>
+            <view>
+              <view class='span'>运费</view>
+              <view class="span price">￥{{order_detail.shipping_money}}</view>
+            </view>
+          </block>
+
+          <block wx:if='{{order_detail.user_platform_money != 0.00}}'>
+            <view>
+              <view class='span'>余额支付：</view>
+              <view class="span price">￥{{order_detail.user_platform_money}}</view>
+            </view>
+          </block>
+
+          <block wx:if='{{order_detail.coupon_money != 0.00}}'>
+            <view>
+              <view class='span'>优惠券：</view>
+              <view class="span price">￥{{order_detail.coupon_money}}</view>
+            </view>
+          </block>
+
+          <block wx:if='{{order_detail.point != 0}}'>
+            <view>
+              <view class='span'>使用积分：</view>
+              <view class="span price">{{order_detail.point}}</view>
+            </view>
+          </block>
+
+          <block wx:if='{{order_detail.order_goods[0].goods_type != "0" && order_detail.promotion_money != 0.00}}'>
+            <view>
+              <view class='span'>{{order_detail.promotion_type=='ZUHETAOCAN'?'套餐优惠':'满减优惠'}}：</view>
+              <view class="span price">￥{{order_detail.promotion_money}}</view>
+            </view>
+          </block>
+
+          <view>
+            <view class='span'>实际需支付：</view>
+            <view class="span price">
+              <view class='b' style="color:#f44;">￥{{order_detail.pay_money}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 虚拟码 -->
+    <block wx:if='{{order_detail.virtual_goods_list[0] != undefined}}'>
+      <view class="virtual_code">
+        <view class='ul'>
+          <view class='li'>
+            <view class='h5'>虚拟码</view>
+          </view>
+          <block wx:for='{{order_detail.virtual_goods_list}}' wx:key='' wx:for-item='virtual'>
+            <view class='a' catchtap='verificationOrderDetail' data-id='{{virtual.virtual_goods_id}}'>
+              <view class='li'>
+                <view>
+                  <view class="span code">{{virtual.virtual_code}}</view>
+                  <view class="span code-right">{{virtual.use_status_msg}}</view>
+                </view>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view class="order-tablink">
+    <view class="tablink-box">
+      <view class="tablink">
+        <view class='a' catchtap='customerService'>
+          <view class="span kefu">
+            <button open-type="contact" session-from="weapp">
+              <image src='/images/order/order_kefu.png' /> 联系客服
+            </button>
+          </view>
+        </view>
+      </view>
+      <view class="tablink">
+        <view class='a' catchtap='tell'>
+          <view class="span call">
+            <image src='/images/order/call.png' /> 拨打电话
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

@@ -1,0 +1,170 @@
+<scroll-view>
+  <view class="motify {{prompt==''?'hide':''}}">
+    <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+    <view class="motify-inner">{{prompt}}</view>
+  </view>
+  <view class="form main mt-45">
+    <view class="return-process">
+      <view class="ul clear">
+        <view class="li step01 current">
+          <view class="p name">买家申请退款</view>
+          <view class="span number">1</view>
+          <view class="span prcess-line prcess-line-r"></view>
+        </view>
+        <view class="li step02 {{refund_info.refund_status==-1||refund_info.refund_status==1||refund_info.refund_status==2||refund_info.refund_status==3||refund_info.refund_status==4||refund_info.refund_status==5?'current':''}}">
+          <view class="p name">商家处理退款申请</view>
+          <view class="span prcess-line prcess-line-l"></view>
+          <view class="span number">2</view>
+          <view class="span prcess-line prcess-line-r"></view>
+        </view>
+        <view class="li step03 {{refund_info.refund_status==5?'current':''}}">
+          <view class="p name">退款完成</view>
+          <view class="span prcess-line prcess-line-l"></view>
+          <view class="span number">3</view>
+        </view>
+      </view>
+    </view>
+    <block wx:if='{{refund_info.refund_status!=-1 && refund_info.refund_status!=1 && refund_info.refund_status!=2 && refund_info.refund_status!=3 && refund_info.refund_status!=4 && refund_info.refund_status!=5 && refund_info.goods_id != 0 && refund_info.refund_status==undefined}}'>
+      <view class="form form-c" id="form1">
+        <view class="row">
+          <view class="small-12 columns">
+            <view class='label'>
+              <view class="span color-red">*</view>处理方式：</view>
+            <view class="columns-select">
+              <picker id='refund_require' value='{{require_index}}' range='{{require_array}}' range-key='value' bindchange='selector' data-type='1' mode='selector'>
+                <view class='span'>{{require_array[require_index].value}}</view>
+              </picker>
+            </view>
+          </view>
+        </view>
+        <view class="row">
+          <view class="small-12 columns">
+            <view class='label'>
+              <view class="span color-red">*</view>退款原因：</view>
+            <view class="columns-select">
+              <picker id='refund_reason' value='{{reason_index}}' range='{{reason_array}}' range-key='value' bindchange='selector' data-type='2' mode='selector'>
+                <view class='span'>{{reason_array[reason_index].value}}</view>
+              </picker>
+            </view>
+          </view>
+        </view>
+        <block wx:if='{{refund_balance > 0 || refund_money > 0}}'>
+          <view class="row">
+            <view class="small-12 columns">
+              <view class='label'>
+                <view class="span color-red">*</view>退款金额：</view>
+              <block wx:if='{{(refund_balance == 0) || (refund_balance > 0 && refund_money > 0)}}'>
+                <view class="columns-input">
+                  <input value="" id="refund_money" bindblur='refundRequireMoney' class="maxRefund" type="digit" placeholder="最多可退款{{refund_money}}元" />
+                </view>
+              </block>
+              <block wx:if='{{refund_balance > 0 && refund_money == 0}}'>
+                <view class="columns-input">
+                  <view class='span'>自动退还余额
+                    <view class='strong'>{{refund_balance}}</view>元</view>
+                </view>
+              </block>
+            </view>
+          </view>
+        </block>
+        <block wx:if='{{refund_balance > 0 && refund_money > 0}}'>
+          <view class="row">
+            <view class="small-12 columns balance">
+              <view class='label'></view>
+              <view class="columns-input">
+                <view class='span'>自动退还余额
+                  <view class='strong'>{{refund_balance}}</view>元</view>
+              </view>
+            </view>
+          </view>
+        </block>
+        <view class="description-block {{reason_index==4?'':'hide'}}">
+          <view class="row">
+            <view class="small-12 columns" style="background-color:#f5f5f5;">
+              <view class='label'>退款说明：</view>
+            </view>
+          </view>
+          <textarea rows="5" bindinput='refundReason' id="description" placeholder="请输入退款说明"></textarea>
+        </view>
+        <view class="a button" catchtap='refund'>提交退款申请</view>
+      </view>
+    </block>
+    <block wx:if='{{refund_info.refund_status==-1||refund_info.refund_status==1||refund_info.refund_status==2||refund_info.refund_status==3||refund_info.refund_status==4||refund_info.refund_status==5}}'>
+      <view class="none-goods">
+        <icon class="icon-tip-circle" type='{{refund_info.refund_status==5?"success":"info"}}' color='{{refund_info.refund_status==5?"#7bc351":"#45a5cf"}}' size='30'></icon>
+        <view class="text">
+          <block wx:if='{{refund_info.refund_status==-1}}'>
+            <view class='h4 refused'>卖家拒绝您的退款申请</view>
+          </block>
+          <block wx:if='{{refund_info.refund_status==1}}'>
+            <view class='h4'>等待商家处理退款申请</view>
+            <view class='ul'>
+              <view class='li'>如果商家同意，退款申请将达成并退款至您的支付宝账号或银行卡中。</view>
+            </view>
+          </block>
+          <block wx:if='{{refund_info.refund_status==3}}'>
+            <view class='h4'>等待商家收货</view>
+            <view class='ul'>
+              <view class='li'>如果商家同意，退款申请将达成并退款至您的支付宝账号或银行卡中。</view>
+            </view>
+          </block>
+          <block wx:if='{{refund_info.refund_status==4}}'>
+            <view class='h4'></view>
+            <view class='h4 wait'>您已成功申请退款，等待卖家处理退款申请。</view>
+          </block>
+          <block wx:if='{{refund_info.refund_status==5}}'>
+            <view class='h4'>退款成功</view>
+            <view class="p time">退款成功时间:{{refund_info.action_time}}</view>
+            <view class="p money">退款金额： {{refund_real_money}}元</view>
+            <block wx:if='{{refund_detail.refund_balance_money != 0 && refund_detail.refund_balance_money != "" && refund_detail.refund_balance_money != undefined}}'>
+              <view class="p">
+                <view class='span'>
+                  （自动退还余额
+                  <view class='strong'>{{refund_detail.refund_balance_money}}</view>
+                  元）
+                </view>
+              </view>
+            </block>
+          </block>
+        </view>
+      </view>
+    </block>
+    <block wx:if='{{refund_info.refund_status==2}}'>
+      <view class="seller-agree" id="form2">
+        <view class='h4'>请退货并填写物流信息</view>
+        <view class='h5'>1、请退货</view>
+        <view class="p explanation">
+          请退货未经卖家同意，请不要使用到付或平邮。
+          <br/> 退货地址：
+          <block wx:if="{{shop_address.seller_mobile == '' || shop_address.seller_mobile == undefined || shop_address.shop_address == '' || shop_address.shop_address == undefined}}">
+            <view class="span address">该商家暂未配置收货地址</view>
+          </block>
+          <block else>
+            <view class="span address">{{shop_address.shop_address + ' ' + shop_address.seller_name + ' ' + shop_address.seller_mobile}}</view>
+          </block>
+        </view>
+        <view class='h5'>
+          2、请填写退货物流信息
+          <view class='small'>（逾期未填写，退货申请将关闭）</view>
+        </view>
+        <view class="express-form">
+          <view class="row">
+            <view class='label'>
+              <view class="span color-red">*</view>物流公司：
+            </view>
+            <input type="text" id="LogisticsCompany" bindinput='inputExpressCompany' maxlength='40' />
+          </view>
+          <view class="row">
+            <view class='label'>
+              <view class="span color-red">*</view>运单号：
+            </view>
+            <input type="number" id="ExpressNo" bindinput='inputShippingNo' maxlength='30' />
+          </view>
+          <view class="row">
+            <view class="a button" catchtap='returnsGoods'>提交</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</scroll-view>

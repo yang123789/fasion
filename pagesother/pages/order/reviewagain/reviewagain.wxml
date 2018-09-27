@@ -1,0 +1,50 @@
+<view class="motify {{prompt==''?'hide':''}}">
+  <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+  <view class="motify-inner">{{prompt}}</view>
+</view>
+<block wx:for='{{goods_list}}' wx:key='' wx:for-item='goods' wx:for-index='index'>
+  <view class="order-detail mt-45">
+    <view class="section order-detail-remark">
+      <view class="remark-out clear">
+        <view class="evaluate remark-r order-detail-r">
+          <view class="ul remark-r-ul">
+            <view class="li name">
+              <image src="{{goods.picture_info.pic_cover_micro==''?0:goods.picture_info.pic_cover_micro}}" mode='widthFix' binderror='errorImg' data-index='{{index}}'/>
+            </view>
+            <view class="ul remark-right">
+              <view class='li li-name'>{{goods.goods_name}}</view>
+              <view class='li li-sku'>规格：{{goods.sku_name}}</view>
+            </view>
+          </view>
+          <view class='ul'>
+            <view class="evaluate_right">
+              <view class='title'>追加评价</view>
+              <view class="rate_content">
+                <textarea placeholder="请输入要评价的内容，不要超过150个字符。。" data-index='{{index}}' bindinput='inputContent' value='{{goodsEvaluate[index].content}}'></textarea>
+                <view class="span evaluate_right_two">
+                  <view class="input-file" catchtap='uploadImg' data-index='{{index}}'></view>
+                </view>
+                <view class="span evaluate_right_three">
+                  <image src="/images/order/photo.png" mode='widthFix'/>
+                </view>
+                <view class="span evaluate_right_three send">发照片</view>
+                <view class="span evaluate_right_imgs">
+                  <block wx:for='{{img_list[index]}}' wx:key='' wx:for-item='img' wx:for-index='key'>
+                    <image class='li' src='{{img}}' mode='aspectFit' catchtap='deleteImg' data-url='{{img}}' data-index='{{index}}' data-key='{{key}}'>
+                    </image>
+                  </block>
+                </view>
+                <view class="span evaluate_right_four">{{goodsEvaluate[index].img_num}}/5</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</block>
+<view class='evaluation'>
+	<view class='span right'>
+		<button class="submit" id='btn_submit' catchtap='commentv'>发表评价</button>
+	</view>
+</view>

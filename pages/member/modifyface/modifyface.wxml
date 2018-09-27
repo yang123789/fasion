@@ -1,0 +1,19 @@
+<scroll-view>
+  <view class="motify {{prompt==''?'hide':''}}">
+    <icon class="i show_type warning" type='warn' size='25' color='#FFF'></icon>
+    <view class="motify-inner">{{prompt}}</view>
+  </view>
+  <view class="face-box">
+	  <view class="face">
+      <block wx:if='{{filePath != ""}}'>
+        <image class="facepic" src='{{filePath}}' catchtap='uploadImg' mode="aspectFit"/>
+      </block>
+      <block wx:else>
+        <image class="facepic" src='{{user_info.user_headimg!=""?user_info.user_headimg:"/images/member/member_default.png"}}' binderror='errorHeadImg' catchtap='uploadImg' mode="aspectFit"/>
+      </block>
+    </view>
+    <view class="upload_face" catchtap='uplodeHeadImg'>
+      保存头像	
+    </view>
+  </view>
+</scroll-view>
